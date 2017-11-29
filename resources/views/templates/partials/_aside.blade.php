@@ -8,8 +8,9 @@
         <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>Alexander Pierce</p>
-        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+        <p>Adam Firdaus<br>
+        G64150049<br>
+        C3 - Lorong 5 - Kamar 193</p>
       </div>
     </div>
     <!-- search form -->
