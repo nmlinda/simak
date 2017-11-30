@@ -6,7 +6,7 @@
 
       <div class="navbar-custom-menu">
         <ul class="nav navbar-nav">
-          <!-- Messages: style can be found in dropdown.less-->
+          {{--  <!-- Messages: style can be found in dropdown.less-->
           <li class="dropdown messages-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="fa fa-envelope-o"></i>
@@ -202,7 +202,7 @@
                 <a href="#">View all tasks</a>
               </li>
             </ul>
-          </li>
+          </li>  --}}
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -220,7 +220,7 @@
                 </p>
               </li>
               <!-- Menu Body -->
-              <li class="user-body">
+              {{--  <li class="user-body">
                 <div class="row">
                   <div class="col-xs-4 text-center">
                     <a href="#">Followers</a>
@@ -233,7 +233,7 @@
                   </div>
                 </div>
                 <!-- /.row -->
-              </li>
+              </li>  --}}
               <!-- Menu Footer-->
               <li class="user-footer">
                 <div class="pull-left">
@@ -256,7 +256,7 @@
           </li>
           <!-- Control Sidebar Toggle Button -->
           <li>
-            <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>
+            {{--  <a href="#" data-toggle="control-sidebar"><i class="fa fa-gears"></i></a>  --}}
           </li>
         </ul>
       </div>

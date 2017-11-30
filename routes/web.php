@@ -19,6 +19,10 @@ Route::get('/beranda', function () {
     return view('pages.beranda');
 });
 
+Route::get('/templates', function () {
+    return view('templates.dashboard');
+});
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
