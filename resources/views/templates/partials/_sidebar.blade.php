@@ -7,8 +7,10 @@
           <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>Alexander Pierce</p>
-          <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+          <p>
+            Nur Meilinda N<br>
+            Komandan SR<br>
+          </p>
         </div>
       </div>
       <!-- search form -->
@@ -37,10 +39,10 @@
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>  --}}
-        <li><a href="#"><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li>  
-        <li><a href="#"><i class="fa fa-pencil-square-o"></i> <span>Buat Post</span></a></li>  
+        <li><a href="#"><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li>
+        <li><a href="#"><i class="fa fa-pencil-square-o"></i> <span>Buat Post</span></a></li>
         <li><a href="#"><i class="fa fa-line-chart"></i> <span>Nilai</span></a></li>
-        <li><a href="#"><i class="fa fa-calendar-check-o"></i> <span>Kehadiran</span></a></li> 
+        <li><a href="#"><i class="fa fa-calendar-check-o"></i> <span>Kehadiran</span></a></li>
         <li><a href="#"><i class="fa fa-calendar"></i> <span>Timeline</span></a></li>
         <li><a href="#"><i class="fa fa-user-plus"></i> <span>Tambah User</span></a></li>
       </ul>
