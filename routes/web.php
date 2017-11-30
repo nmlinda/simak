@@ -12,5 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('templates.default');
+    return view('pages.login');
 });
+
+Route::get('/beranda', function () {
+    return view('pages.beranda');
+});
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
