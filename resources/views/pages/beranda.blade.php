@@ -1,5 +1,3 @@
-{{$var = 'dashboard'}}
-
 @extends('templates.dashboard')
 
 @section('content')

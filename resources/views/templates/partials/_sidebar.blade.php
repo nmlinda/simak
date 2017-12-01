@@ -8,7 +8,7 @@
         </div>
         <div class="pull-left info">
           <p>
-            Nur Meilinda N<br>
+            {{ Auth::user()->name }}<br>
             Komandan SR<br>
           </p>
         </div>
@@ -39,12 +39,12 @@
             <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
           </ul>
         </li>  --}}
-        <li><a href="#"><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li>
-        <li><a href="#"><i class="fa fa-pencil-square-o"></i> <span>Buat Post</span></a></li>
-        <li><a href="#"><i class="fa fa-line-chart"></i> <span>Nilai</span></a></li>
-        <li><a href="#"><i class="fa fa-calendar-check-o"></i> <span>Kehadiran</span></a></li>
-        <li><a href="#"><i class="fa fa-calendar"></i> <span>Timeline</span></a></li>
-        <li><a href="#"><i class="fa fa-user-plus"></i> <span>Tambah User</span></a></li>
+        <li @if ($active == 'beranda') class="active" @endif><a href="{{ route('pages.beranda') }}"><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li>
+        <li @if ($active == 'post') class="active" @endif><a href="{{ route('pages.post') }}"><i class="fa fa-pencil-square-o"></i> <span>Buat Post</span></a></li>
+        <li @if ($active == 'nilai') class="active" @endif><a href="{{ route('pages.nilai') }}"><i class="fa fa-line-chart"></i> <span>Nilai</span></a></li>
+        <li @if ($active == 'absen') class="active" @endif><a href="{{ route('pages.absen') }}"><i class="fa fa-calendar-check-o"></i> <span>Kehadiran</span></a></li>
+        <li @if ($active == 'timeline') class="active" @endif><a href="{{ route('pages.timeline') }}"><i class="fa fa-calendar"></i> <span>Timeline</span></a></li>
+        <li @if ($active == 'tambah-user') class="active" @endif><a href="{{ route('pages.tambah-user') }}"><i class="fa fa-user-plus"></i> <span>Tambah User</span></a></li>
       </ul>
     </section>
     <!-- /.sidebar -->
