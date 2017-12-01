@@ -47,6 +47,6 @@ Route::post('/tambah-administrator', 'TambahUserController@administrator')->name
 Route::post('/tambah-sr', 'TambahUserController@sr')->name('tambahuser.sr');
 Route::post('/tambah-mahasiswa', 'TambahUserController@mahasiswa')->name('tambahuser.mahasiswa');
 
-Route::get('/loginz', function () {
-    return view('auth.login');
-});
+// Route::get('/loginz', function () {
+//     return view('auth.login');
+// });

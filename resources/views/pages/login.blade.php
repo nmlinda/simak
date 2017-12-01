@@ -63,6 +63,3 @@
 </body>
 </html>
 @endguest
-@auth
-    udah login
-@endauth
