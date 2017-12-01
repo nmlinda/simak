@@ -26,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->string('supervisor');
             $table->rememberToken();
             $table->timestamps();
+
+            // $table->foreign('supervisor')->references('id')->on('users')->onDelete('CASCADE');            
         });
     }
 

@@ -50,6 +50,7 @@ class TambahUserController extends Controller
             'kamar' => request('kamar'), 
             'role' => 'Administrator', 
             'nim' => request('nim'),
+            'supervisor' => request('supervisor'),
         ]);
         return redirect('/tambah-administrator');
     }
@@ -67,6 +68,7 @@ class TambahUserController extends Controller
             'kamar' => request('kamar'), 
             'role' => 'Senior Resident', 
             'nim' => request('nim'),
+            'supervisor' => request('supervisor'),
         ]);
         return redirect('/tambah-sr');
     }
@@ -84,6 +86,7 @@ class TambahUserController extends Controller
             'kamar' => request('kamar'), 
             'role' => 'Mahasiswa', 
             'nim' => request('nim'),
+            'supervisor' => request('supervisor'),
         ]);
         return redirect('/tambah-mahasiswa');
     }

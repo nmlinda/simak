@@ -55,25 +55,28 @@ class DashboardController extends Controller
 
     public function tambahadmin(){
         $active = 1;
+        $supervisor = Auth::user()->id;
         if(!(Auth::user())){
             return redirect('/');
         }
-        return view('pages.tambah-administrator', compact('active'));
+        return view('pages.tambah-administrator', compact('active', 'supervisor'));
     }
 
     public function tambahsr(){
         $active = 2;
+        $supervisor = Auth::user()->id;
         if(!(Auth::user())){
             return redirect('/');
         }
-        return view('pages.tambah-sr', compact('active'));
+        return view('pages.tambah-sr', compact('active', 'supervisor'));
     }
 
     public function tambahmahasiswa(){
         $active = 3;
+        $supervisor = Auth::user()->id;
         if(!(Auth::user())){
             return redirect('/');
         }
-        return view('pages.tambah-mahasiswa', compact('active'));
+        return view('pages.tambah-mahasiswa', compact('active', 'supervisor'));
     }
 }
