@@ -32,8 +32,18 @@ class DashboardController extends Controller
         return view('pages.timeline', compact('active'));
     }
 
-    public function tambahuser(){
-        $active = 'tambah-user';
-        return view('pages.tambah-user', compact('active'));
+    public function tambahadmin(){
+        $active = 1;
+        return view('pages.tambah-administrator', compact('active'));
+    }
+
+    public function tambahsr(){
+        $active = 2;
+        return view('pages.tambah-sr', compact('active'));
+    }
+
+    public function tambahmahasiswa(){
+        $active = 3;
+        return view('pages.tambah-mahasiswa', compact('active'));
     }
 }

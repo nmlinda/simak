@@ -1,3 +1,4 @@
+@guest
 <!DOCTYPE html>
 <html>
 @include('templates.partials._head')
@@ -61,3 +62,7 @@
 </script>
 </body>
 </html>
+@endguest
+@auth
+    udah login
+@endauth
