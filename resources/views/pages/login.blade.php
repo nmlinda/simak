@@ -14,14 +14,14 @@
     <form action="{{ route('login') }}" method="post">
     {{ csrf_field() }}
 
-      <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
-        <input id="email" type="email" placeholder="Email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+      <div class="form-group has-feedback">
+        <input id="nim" type="nim" placeholder="NIM" class="form-control" name="nim" value="" required autofocus>
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        @if ($errors->has('email'))
+        {{--  @if ($errors->has('email'))
             <span class="help-block">
                 <strong>{{ $errors->first('email') }}</strong>
             </span>
-        @endif
+        @endif  --}}
       </div>
       <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required>

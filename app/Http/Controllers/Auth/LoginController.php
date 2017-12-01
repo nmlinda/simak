@@ -17,7 +17,7 @@ class LoginController extends Controller
     | to conveniently provide its functionality to your applications.
     |
     */
-
+    protected $username = 'username';
     use AuthenticatesUsers;
 
     /**
@@ -27,6 +27,7 @@ class LoginController extends Controller
      */
     protected $redirectTo = '/beranda';
 
+        
     /**
      * Create a new controller instance.
      *
