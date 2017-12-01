@@ -9,7 +9,11 @@
         <div class="pull-left info">
           <p>
             {{ Auth::user()->name }}<br>
-            {{ Auth::user()->role }}<br>
+            @if (Auth::user()->role === 'Mahasiswa') 
+              {{ Auth::user()->gedung }} - {{Auth::user()->lorong}} - {{Auth::user()->kamar}}   
+            @else 
+              {{Auth::user()->role}}
+            @endif<br>
           </p>
         </div>
       </div>

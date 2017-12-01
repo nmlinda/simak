@@ -23,6 +23,7 @@ class CreateUsersTable extends Migration
             $table->string('lorong');
             $table->string('kamar');
             $table->string('role');
+            $table->string('supervisor');
             $table->rememberToken();
             $table->timestamps();
         });

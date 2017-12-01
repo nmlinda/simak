@@ -42,3 +42,7 @@ Auth::routes();
 Route::get('/table', function () {
     return view('pages.table');
 });
+
+Route::post('/tambah-administrator', 'TambahUserController@administrator')->name('tambahuser.administrator');
+Route::post('/tambah-sr', 'TambahUserController@sr')->name('tambahuser.sr');
+Route::post('/tambah-mahasiswa', 'TambahUserController@mahasiswa')->name('tambahuser.mahasiswa');
