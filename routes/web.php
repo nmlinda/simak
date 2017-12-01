@@ -19,9 +19,9 @@ Route::get('/', function () {
 });
 
 //error handling double login
-// Route::get('/home', function () {
-//     return redirect('/beranda');
-// });
+Route::get('/home', function () {
+    return redirect('/beranda');
+});
 
 //routing untuk sidebar
 Route::get('/post', 'DashboardController@post')->name('pages.post');
