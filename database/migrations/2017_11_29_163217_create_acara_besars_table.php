@@ -15,7 +15,13 @@ class CreateAcaraBesarsTable extends Migration
     {
         Schema::create('acara_besars', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('nama_acara');
+            $table->string('kehadiran');
+            $table->date('tanggal');
             $table->timestamps();
+            $table->integer('id_mahasiswa')->unsigned();
+
+            $table->foreign('id_mahasiswa')->references('id')->on('users')->onDelete('CASCADE');
         });
     }
 

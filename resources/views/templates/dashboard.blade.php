@@ -39,5 +39,6 @@
 <!-- ./wrapper -->
 
 @include('templates.partials._scripts')
+@yield('scripts')
 </body>
 </html>

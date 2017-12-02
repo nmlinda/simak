@@ -16,9 +16,10 @@ class CreateSodungsTable extends Migration
         Schema::create('sodungs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('kehadiran');
+            $table->date('tanggal');
             $table->timestamps();
             $table->integer('id_mahasiswa')->unsigned();
-
+            
             $table->foreign('id_mahasiswa')->references('id')->on('users')->onDelete('CASCADE');
         });
     }

@@ -46,7 +46,20 @@
         <li @if ($active == 'beranda') class="active" @endif><a href="{{ route('pages.beranda') }}"><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li>
         <li @if ($active == 'post') class="active" @endif><a href="{{ route('pages.post') }}"><i class="fa fa-pencil-square-o"></i> <span>Buat Post</span></a></li>
         <li @if ($active == 'nilai') class="active" @endif><a href="{{ route('pages.nilai') }}"><i class="fa fa-line-chart"></i> <span>Nilai</span></a></li>
-        <li @if ($active == 'absen') class="active" @endif><a href="{{ route('pages.absen') }}"><i class="fa fa-calendar-check-o"></i> <span>Kehadiran</span></a></li>
+        <li class="treeview @if ($active == 'absen') active @endif">
+          <a href="#">
+            <i class="fa fa-calendar-check-o"></i> <span>Kehadiran</span>
+            <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+          </a>
+          <ul class="treeview-menu">
+            <li ><a href="{{ route('pages.absen')}}"><i class="fa fa-circle-o"></i> Tambah</a></li>
+            <li ><a href="#"><i class="fa fa-circle-o"></i> Lihat</a></li>
+            <li ><a href="#"><i class="fa fa-circle-o"></i> Edit</a></li>
+          </ul>
+        </li>
+          
         <li @if ($active == 'timeline') class="active" @endif><a href="{{ route('pages.timeline') }}"><i class="fa fa-calendar"></i> <span>Timeline</span></a></li>
         
         @if($role === 'Administrator' or $role === 'Senior Resident')

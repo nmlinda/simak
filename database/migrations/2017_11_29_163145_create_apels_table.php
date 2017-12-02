@@ -16,6 +16,7 @@ class CreateApelsTable extends Migration
         Schema::create('apels', function (Blueprint $table) {
             $table->increments('id');
             $table->string('kehadiran');
+            $table->date('tanggal');
             $table->timestamps();
             $table->integer('id_mahasiswa')->unsigned();
 
