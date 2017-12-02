@@ -1,0 +1,22 @@
+1. Landing Page
+  1a. pengumuman
+  1b. post
+  1c. tab profil asrama
+  1d. tab panduan asrama
+  1e. tab login
+
+2. Komandan SR
+  2a. post - buat
+  2b. post - lihat
+  2c. post - edit
+  2d. beranda
+  2e. nilai
+  2f. absen - buat
+  2g. absen - lihat
+  2h. absen - edit
+  2i. timeline
+  2j. tambah user - mahasiswa
+  2k. tambah user - SR
+  2l. tambah user - adminstrator
+
+3. SR

@@ -11,12 +11,12 @@
         <li class="active">Nilai</li>
       </ol>
     </section>
-    <section>
-      <div class="container">
+    <section class="content">
+
           <div class="col-md-12">
-              <div class="card">
-                  <div class="card-header" data-background-color="blue">
-                      <p class="category">Penilaian dari kehadiran setiap kegiatan asrama</p>
+              <div class="box box-info">
+                  <div class="box-header">
+                      <h4>Penilaian dari kehadiran setiap kegiatan asrama</h4>
                       <div class="col-md-3 form-group">
                         <label for="sel1">Pilih Kegiatan:</label>
                           <select class="form-control" id="sel1">
@@ -28,7 +28,7 @@
                           </select>
                       </div>
                   </div>
-                  <div class="card-content table-responsive">
+                  <div class="table-responsive">
 
                       <table class="table table-hover">
                           <thead class="text-primary">
@@ -86,7 +86,7 @@
                                   <td>7</td>
                                   <td class="text-primary">73</td>
                               </tr>
-                              <tr  data-background-color="green">
+                              <tr class="callout callout-info">
                                   <td colspan="3">Rata-Rata</td>
                                   <td>73</td>
                               </tr>
@@ -97,7 +97,6 @@
                   </div>
               </div>
           </div>
-      </div>
     </section>
 
 @endsection

@@ -20,7 +20,7 @@
                   <li><!-- start message -->
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                        <img src="{{ asset('assets/dist/img/profile-photo.jpg') }}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Support Team
@@ -33,7 +33,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{ asset('assets/dist/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
+                        <img src="{{ asset('assets/dist/img/profile-photo.jpg') }}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         AdminLTE Design Team
@@ -45,7 +45,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{ asset('assets/dist/img/user4-128x128.jpg') }}" class="img-circle" alt="User Image">
+                        <img src="{{ asset('assets/dist/img/profile-photo.jpg') }}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Developers
@@ -57,7 +57,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{ asset('assets/dist/img/user3-128x128.jpg') }}" class="img-circle" alt="User Image">
+                        <img src="{{ asset('assets/dist/img/profile-photo.jpg') }}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Sales Department
@@ -69,7 +69,7 @@
                   <li>
                     <a href="#">
                       <div class="pull-left">
-                        <img src="{{ asset('assets/dist/img/user4-128x128.jpg') }}" class="img-circle" alt="User Image">
+                        <img src="{{ asset('assets/dist/img/profile-photo.jpg') }}" class="img-circle" alt="User Image">
                       </div>
                       <h4>
                         Reviewers
@@ -206,13 +206,13 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="user-image" alt="User Image">
+              <img src="{{ asset('assets/dist/img/profile-photo.jpg') }}" class="user-image" alt="User Image">
               <span class="hidden-xs">{{ Auth::user()->name }}</span>
             </a>
             <ul class="dropdown-menu">
               <!-- User image -->
               <li class="user-header">
-                <img src="{{ asset('assets/dist/img/user2-160x160.jpg') }}" class="img-circle" alt="User Image">
+                <img src="{{ asset('assets/dist/img/profile-photo.jpg') }}" class="img-circle" alt="User Image">
 
                 <p>
                   <p>

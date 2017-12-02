@@ -4,6 +4,7 @@
     <!-- mini logo for sidebar mini 50x50 pixels -->
     <span class="logo-mini"></span>
     <!-- logo for regular state and mobile devices -->
+    <link rel="icon" type="image/png" href="{{ asset('assets/dist/img/Logo_Asrama.png') }}">
     <span class="logo-lg"><b>SIMAK ASRAMA IPB</b></span>
   </a>
   <!-- Header Navbar: style can be found in header.less -->
