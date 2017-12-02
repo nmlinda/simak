@@ -58,11 +58,13 @@
                                     <div class="tab-pane active" id="tab_1">
                                         <div class="card">
                                             <div class="card-header" data-background-color="blue">
-                                                <h4 class="title">Sodung</h4>
-                                                {{--  <p class="category">2017/2018</p>  --}}
+                                                <h4 class="title">Sodung</h4> 
+                                                <p>Masukan presensi kegiatan sodung.</p>
                                             </div>
                                             <div class="card-content table-responsive">
                                                 <div class="row">
+                                                <table>
+                                                    <tr>
                                                     <div class="col-md-3">
                                                         <label for="lorong">Pilih Lorong :</label>
                                                         <select class="form-control" id="lorong">
@@ -72,8 +74,10 @@
                                                             <option>10</option>
                                                         </select>
                                                     </div>
+                                                    </tr>
                                                     <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">
                                                      {{ csrf_field() }}
+                                                     <tr>
                                                     <div class="col-md-3">
                                                         <!-- Date -->
                                                         <div class="form-group">
@@ -85,6 +89,8 @@
                                                         </div>
                                                         <!-- /.form group -->
                                                     </div>
+                                                    </tr>
+                                                </table>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -136,10 +142,12 @@
                                         <div class="card">
                                             <div class="card-header" data-background-color="blue">
                                                 <h4 class="title">Solong</h4>
-                                                {{--  <p class="category">2017/2018</p>  --}}
+                                                <p>Masukan presensi kegiatan solong.</p>
                                             </div>
                                             <div class="card-content table-responsive">
                                                 <div class="row">
+                                                <table>
+                                                    <tr>
                                                     <div class="col-md-3">
                                                         <label for="lorong">Pilih Lorong :</label>
                                                         <select class="form-control" id="lorong">
@@ -149,6 +157,8 @@
                                                             <option>10</option>
                                                         </select>
                                                     </div>
+                                                    </tr>
+                                                    <tr>
                                                     <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
@@ -162,6 +172,8 @@
                                                         </div>
                                                         <!-- /.form group -->
                                                     </div>
+                                                    </tr>
+                                                </table>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -213,10 +225,12 @@
                                         <div class="card">
                                             <div class="card-header" data-background-color="blue">
                                                 <h4 class="title">Ngadung</h4>
-                                                {{--  <p class="category">2017/2018</p>  --}}
+                                                <p>Masukan presensi kegiatan ngadung.</p>
                                             </div>
                                             <div class="card-content table-responsive">
                                                 <div class="row">
+                                                <table>
+                                                    <tr>
                                                     <div class="col-md-3">
                                                         <label for="lorong">Pilih Lorong :</label>
                                                         <select class="form-control" id="lorong">
@@ -226,7 +240,9 @@
                                                             <option>10</option>
                                                         </select>
                                                     </div>
-                                                    <form class="form-horizontal" method="POST" action="#">{{--{{ route('tambah_ngadung') }}">--}}
+                                                    </tr>
+                                                    <tr>
+                                                    <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">{{--{{ route('tambah_ngadung') }}">--}}
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
                                                         <!-- Date -->
@@ -239,6 +255,8 @@
                                                         </div>
                                                         <!-- /.form group -->
                                                     </div>
+                                                    </tr>
+                                                </table>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -290,10 +308,12 @@
                                         <div class="card">
                                             <div class="card-header" data-background-color="blue">
                                                 <h4 class="title">Ngalong</h4>
-                                                {{--  <p class="category">2017/2018</p>  --}}
+                                                <p>Masukan presensi kegiatan ngalong.</p>
                                             </div>
                                             <div class="card-content table-responsive">
                                                 <div class="row">
+                                                <table>
+                                                    <tr>
                                                     <div class="col-md-3">
                                                         <label for="lorong">Pilih Lorong :</label>
                                                         <select class="form-control" id="lorong">
@@ -303,7 +323,9 @@
                                                             <option>10</option>
                                                         </select>
                                                     </div>
-                                                    <form class="form-horizontal" method="POST" action="#">{{--{{ route('tambah_ngalong') }}">--}}
+                                                    </tr>
+                                                    <tr>
+                                                    <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
                                                         <!-- Date -->
@@ -316,6 +338,8 @@
                                                         </div>
                                                         <!-- /.form group -->
                                                     </div>
+                                                    </tr>
+                                                </table>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -367,10 +391,12 @@
                                         <div class="card">
                                             <div class="card-header" data-background-color="blue">
                                                 <h4 class="title">Apel</h4>
-                                                {{--  <p class="category">2017/2018</p>  --}}
+                                                <p>Masukan presensi kegiatan apel.</p>
                                             </div>
                                             <div class="card-content table-responsive">
                                                 <div class="row">
+                                                <table>
+                                                    <tr>
                                                     <div class="col-md-3">
                                                         <label for="lorong">Pilih Lorong :</label>
                                                         <select class="form-control" id="lorong">
@@ -380,7 +406,9 @@
                                                             <option>10</option>
                                                         </select>
                                                     </div>
-                                                    <form class="form-horizontal" method="POST" action="#">{{--{{ route('tambah_apel') }}">--}}
+                                                    </tr>
+                                                    <tr>
+                                                    <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">{{--{{ route('tambah_apel') }}">--}}
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
                                                         <!-- Date -->
@@ -393,6 +421,8 @@
                                                         </div>
                                                         <!-- /.form group -->
                                                     </div>
+                                                    </tr>
+                                                </table>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -444,10 +474,12 @@
                                         <div class="card">
                                             <div class="card-header" data-background-color="blue">
                                                 <h4 class="title">Hari Bersih Asrama</h4>
-                                                {{--  <p class="category">2017/2018</p>  --}}
+                                                <p>Masukan presensi kegiatan hari bersih asrama.</p>
                                             </div>
                                             <div class="card-content table-responsive">
                                                 <div class="row">
+                                                <table>
+                                                    <tr>
                                                     <div class="col-md-3">
                                                         <label for="lorong">Pilih Lorong :</label>
                                                         <select class="form-control" id="lorong">
@@ -457,7 +489,9 @@
                                                             <option>10</option>
                                                         </select>
                                                     </div>
-                                                    <form class="form-horizontal" method="POST" action="#">{{--{{ route('tambah_HBA') }}">--}}
+                                                    </tr>
+                                                    <tr>
+                                                    <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">{{--{{ route('tambah_HBA') }}">--}}
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
                                                         <!-- Date -->
@@ -470,6 +504,8 @@
                                                         </div>
                                                         <!-- /.form group -->
                                                     </div>
+                                                    </tr>
+                                                </table>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
@@ -534,7 +570,7 @@
                                                             <option>10</option>
                                                         </select>
                                                     </div>
-                                                    <form class="form-horizontal" method="POST" action="#">
+                                                    <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
                                                         <!-- Date -->
