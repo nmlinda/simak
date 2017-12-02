@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateHBAsTable extends Migration
+class CreateHariBersihAsramasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateHBAsTable extends Migration
      */
     public function up()
     {
-        Schema::create('h_b_as', function (Blueprint $table) {
+        Schema::create('hari_bersih_asramas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('kehadiran');
             $table->date('tanggal');
@@ -31,6 +31,6 @@ class CreateHBAsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('h_b_as');
+        Schema::dropIfExists('hari_bersih_asramas');
     }
 }

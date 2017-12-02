@@ -10,13 +10,12 @@
     </a>
     @include('templates.partials._navbar')
   </header>
-  @include('templates.partials._sidebar')
+  {{--  @include('templates.partials._sidebar')  --}}
   <div class="content-wrapper">
     @yield('content')
   </div>
   @include('templates.partials._footer')
 </div>
 @include('templates.partials._scripts')
-@yield('scripts')
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -41,7 +42,24 @@ class DashboardController extends Controller
             return redirect('/');
         }
         $role = Auth::user()->role;
-        return view('pages.absen', compact('active', 'role'));
+        $id = Auth::user()->id;
+        $users = User::all()->where('supervisor', $id);
+        $nomor = 0;
+        // dd($users);
+        return view('pages.absen', compact('active', 'role', 'users', 'nomor'));
+    }
+
+    public function absen_lihat(){
+        $active = 'absen';
+        if(!(Auth::user())){
+            return redirect('/');
+        }
+        $role = Auth::user()->role;
+        $id = Auth::user()->id;
+        $users = User::all()->where('supervisor', $id);
+        $nomor = 0;
+        // dd($users);
+        return view('pages.absen-lihat', compact('active', 'role', 'users', 'nomor'));
     }
 
     public function timeline(){

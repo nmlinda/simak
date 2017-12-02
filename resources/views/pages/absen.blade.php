@@ -6,7 +6,16 @@
 
   <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
   <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-
+    <style>
+    table, th, td {
+        border: 2px solid #aaaaaa;
+        {{--  border-collapse: collapse;  --}}
+    }
+    th, td {
+        {{--  padding: 5px;  --}}
+        {{--  text-align: left;      --}}
+    }
+    </style>
   <!-- Bootstrap Date-Picker Plugin -->
   {{--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>  --}}
@@ -30,136 +39,567 @@
           <div class="container-fluid">
               <div class="row">
                   <div class="col-md-12">
-                      <div class="card">
-                          <div class="card-header" data-background-color="blue">
-                              <h4 class="title">Absen</h4>
-                              <p class="category">Jumlah Kehadiran Mahasiswa pada setiap kegiatan asrama.</p>
-                          </div>
-                          <div class="card-content table-responsive">
-                            <div class="col-md-3 form-group">
-                              <label for="sel1">Pilih Kegiatan:</label>
-                                <select class="form-control" id="sel1">
-                                  <option>Sodung</option>
-                                  <option>Solong</option>
-                                  <option>Ngadung</option>
-                                  <option>Ngalong</option>
-                                  <option>HBA</option>
-                                </select>
+                    <div class="box box-default">
+                        <div class="box-header with-border">
+                            <i class="fa fa-book"></i>
+                            <h3 class="box-title">Masukan Absensi Kegiatan</h3>
+                            <div><br></div>
+                            <div class="nav-tabs-custom">
+                                <ul class="nav nav-tabs">
+                                    <li class="active"><a href="#tab_1" data-toggle="tab">Sodung</a></li>
+                                    <li><a href="#tab_2" data-toggle="tab">Solong</a></li>
+                                    <li><a href="#tab_3" data-toggle="tab">Ngadung</a></li>
+                                    <li><a href="#tab_4" data-toggle="tab">Ngalong</a></li>
+                                    <li><a href="#tab_5" data-toggle="tab">Apel</a></li>
+                                    <li><a href="#tab_6" data-toggle="tab">HBA</a></li>
+                                    <li><a href="#tab_7" data-toggle="tab">Acara Lain</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="tab_1">
+                                        <div class="card">
+                                            <div class="card-header" data-background-color="blue">
+                                                <h4 class="title">Sodung</h4>
+                                                {{--  <p class="category">2017/2018</p>  --}}
+                                            </div>
+                                            <div class="card-content table-responsive">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label for="lorong">Pilih Lorong :</label>
+                                                        <select class="form-control" id="lorong">
+                                                            <option>Semua</option>
+                                                            <option>2</option>
+                                                            <option>4</option>
+                                                            <option>10</option>
+                                                        </select>
+                                                    </div>
+                                                    <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">
+                                                     {{ csrf_field() }}
+                                                    <div class="col-md-3">
+                                                        <!-- Date -->
+                                                        <div class="form-group">
+                                                            <div class="form-group"> <!-- Date input -->
+                                                                <label class="control-label" for="date">Date</label>
+                                                                <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                        <!-- /.form group -->
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama</th>
+                                                                <th>NIM</th>
+                                                                <th colspan="2">Kehadiran</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th>Tidak Hadir</th>
+                                                                <th>Hadir</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @php
+                                                            @endphp
+                                                            @foreach($users as $user)
+                                                            <tr>
+                                                                <td>{{$nomor+=1}}</td>
+                                                                <td>{{$user->name}}</td>
+                                                                <td>{{$user->nim}}</td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
+                                                                </td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="1">
+                                                                </td>
+                                                                <input type="hidden" name="id_mahasiswa[{{$nomor-1}}]" value="{{ $user->id }}">
+                                                            </tr>
+                                                            @endforeach
+                                                            <input type="hidden" name="model" value="Sodung">
+                                                        </table>
+                                                        <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_2">
+                                        <p hidden>{{ $nomor = 0}}</p>
+                                        <div class="card">
+                                            <div class="card-header" data-background-color="blue">
+                                                <h4 class="title">Solong</h4>
+                                                {{--  <p class="category">2017/2018</p>  --}}
+                                            </div>
+                                            <div class="card-content table-responsive">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label for="lorong">Pilih Lorong :</label>
+                                                        <select class="form-control" id="lorong">
+                                                            <option>Semua</option>
+                                                            <option>2</option>
+                                                            <option>4</option>
+                                                            <option>10</option>
+                                                        </select>
+                                                    </div>
+                                                    <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">
+                                                     {{ csrf_field() }}
+                                                    <div class="col-md-3">
+                                                        <!-- Date -->
+                                                        <div class="form-group">
+                                                            <div class="form-group"> <!-- Date input -->
+                                                                <label class="control-label" for="date">Date</label>
+                                                                <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                        <!-- /.form group -->
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama</th>
+                                                                <th>NIM</th>
+                                                                <th colspan="2">Kehadiran</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th>Tidak Hadir</th>
+                                                                <th>Hadir</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @php
+                                                            @endphp
+                                                            @foreach($users as $user)
+                                                            <tr>
+                                                                <td>{{$nomor+=1}}</td>
+                                                                <td>{{$user->name}}</td>
+                                                                <td>{{$user->nim}}</td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
+                                                                </td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="1">
+                                                                </td>
+                                                                <input type="hidden" name="id_mahasiswa[{{$nomor-1}}]" value="{{ $user->id }}">
+                                                            </tr>
+                                                            @endforeach
+                                                            <input type="hidden" name="model" value="Solong">
+                                                        </table>
+                                                        <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_3">
+                                        <p hidden>{{ $nomor = 0}}</p>
+                                        <div class="card">
+                                            <div class="card-header" data-background-color="blue">
+                                                <h4 class="title">Ngadung</h4>
+                                                {{--  <p class="category">2017/2018</p>  --}}
+                                            </div>
+                                            <div class="card-content table-responsive">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label for="lorong">Pilih Lorong :</label>
+                                                        <select class="form-control" id="lorong">
+                                                            <option>Semua</option>
+                                                            <option>2</option>
+                                                            <option>4</option>
+                                                            <option>10</option>
+                                                        </select>
+                                                    </div>
+                                                    <form class="form-horizontal" method="POST" action="#">{{--{{ route('tambah_ngadung') }}">--}}
+                                                     {{ csrf_field() }}
+                                                    <div class="col-md-3">
+                                                        <!-- Date -->
+                                                        <div class="form-group">
+                                                            <div class="form-group"> <!-- Date input -->
+                                                                <label class="control-label" for="date">Date</label>
+                                                                <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                        <!-- /.form group -->
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama</th>
+                                                                <th>NIM</th>
+                                                                <th colspan="2">Kehadiran</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th>Tidak Hadir</th>
+                                                                <th>Hadir</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @php
+                                                            @endphp
+                                                            @foreach($users as $user)
+                                                            <tr>
+                                                                <td>{{$nomor+=1}}</td>
+                                                                <td>{{$user->name}}</td>
+                                                                <td>{{$user->nim}}</td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
+                                                                </td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="1">
+                                                                </td>
+                                                                <input type="hidden" name="id_mahasiswa[{{$nomor-1}}]" value="{{ $user->id }}">
+                                                            </tr>
+                                                            @endforeach
+                                                            <input type="hidden" name="model" value="Ngadung">
+                                                        </table>
+                                                        <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_4">
+                                        <p hidden>{{ $nomor = 0}}</p>
+                                        <div class="card">
+                                            <div class="card-header" data-background-color="blue">
+                                                <h4 class="title">Ngalong</h4>
+                                                {{--  <p class="category">2017/2018</p>  --}}
+                                            </div>
+                                            <div class="card-content table-responsive">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label for="lorong">Pilih Lorong :</label>
+                                                        <select class="form-control" id="lorong">
+                                                            <option>Semua</option>
+                                                            <option>2</option>
+                                                            <option>4</option>
+                                                            <option>10</option>
+                                                        </select>
+                                                    </div>
+                                                    <form class="form-horizontal" method="POST" action="#">{{--{{ route('tambah_ngalong') }}">--}}
+                                                     {{ csrf_field() }}
+                                                    <div class="col-md-3">
+                                                        <!-- Date -->
+                                                        <div class="form-group">
+                                                            <div class="form-group"> <!-- Date input -->
+                                                                <label class="control-label" for="date">Date</label>
+                                                                <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                        <!-- /.form group -->
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama</th>
+                                                                <th>NIM</th>
+                                                                <th colspan="2">Kehadiran</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th>Tidak Hadir</th>
+                                                                <th>Hadir</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @php
+                                                            @endphp
+                                                            @foreach($users as $user)
+                                                            <tr>
+                                                                <td>{{$nomor+=1}}</td>
+                                                                <td>{{$user->name}}</td>
+                                                                <td>{{$user->nim}}</td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
+                                                                </td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="1">
+                                                                </td>
+                                                                <input type="hidden" name="id_mahasiswa[{{$nomor-1}}]" value="{{ $user->id }}">
+                                                            </tr>
+                                                            @endforeach
+                                                            <input type="hidden" name="model" value="Ngalong">
+                                                        </table>
+                                                        <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_5">
+                                        <p hidden>{{ $nomor = 0}}</p>
+                                        <div class="card">
+                                            <div class="card-header" data-background-color="blue">
+                                                <h4 class="title">Apel</h4>
+                                                {{--  <p class="category">2017/2018</p>  --}}
+                                            </div>
+                                            <div class="card-content table-responsive">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label for="lorong">Pilih Lorong :</label>
+                                                        <select class="form-control" id="lorong">
+                                                            <option>Semua</option>
+                                                            <option>2</option>
+                                                            <option>4</option>
+                                                            <option>10</option>
+                                                        </select>
+                                                    </div>
+                                                    <form class="form-horizontal" method="POST" action="#">{{--{{ route('tambah_apel') }}">--}}
+                                                     {{ csrf_field() }}
+                                                    <div class="col-md-3">
+                                                        <!-- Date -->
+                                                        <div class="form-group">
+                                                            <div class="form-group"> <!-- Date input -->
+                                                                <label class="control-label" for="date">Date</label>
+                                                                <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                        <!-- /.form group -->
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama</th>
+                                                                <th>NIM</th>
+                                                                <th colspan="2">Kehadiran</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th>Tidak Hadir</th>
+                                                                <th>Hadir</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @php
+                                                            @endphp
+                                                            @foreach($users as $user)
+                                                            <tr>
+                                                                <td>{{$nomor+=1}}</td>
+                                                                <td>{{$user->name}}</td>
+                                                                <td>{{$user->nim}}</td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
+                                                                </td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="1">
+                                                                </td>
+                                                                <input type="hidden" name="id_mahasiswa[{{$nomor-1}}]" value="{{ $user->id }}">
+                                                            </tr>
+                                                            @endforeach
+                                                            <input type="hidden" name="model" value="Apel">
+                                                        </table>
+                                                        <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_6">
+                                        <p hidden>{{ $nomor = 0}}</p>
+                                        <div class="card">
+                                            <div class="card-header" data-background-color="blue">
+                                                <h4 class="title">Hari Bersih Asrama</h4>
+                                                {{--  <p class="category">2017/2018</p>  --}}
+                                            </div>
+                                            <div class="card-content table-responsive">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label for="lorong">Pilih Lorong :</label>
+                                                        <select class="form-control" id="lorong">
+                                                            <option>Semua</option>
+                                                            <option>2</option>
+                                                            <option>4</option>
+                                                            <option>10</option>
+                                                        </select>
+                                                    </div>
+                                                    <form class="form-horizontal" method="POST" action="#">{{--{{ route('tambah_HBA') }}">--}}
+                                                     {{ csrf_field() }}
+                                                    <div class="col-md-3">
+                                                        <!-- Date -->
+                                                        <div class="form-group">
+                                                            <div class="form-group"> <!-- Date input -->
+                                                                <label class="control-label" for="date">Date</label>
+                                                                <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                        <!-- /.form group -->
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama</th>
+                                                                <th>NIM</th>
+                                                                <th colspan="2">Kehadiran</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th>Tidak Hadir</th>
+                                                                <th>Hadir</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @php
+                                                            @endphp
+                                                            @foreach($users as $user)
+                                                            <tr>
+                                                                <td>{{$nomor+=1}}</td>
+                                                                <td>{{$user->name}}</td>
+                                                                <td>{{$user->nim}}</td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
+                                                                </td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="1">
+                                                                </td>
+                                                                <input type="hidden" name="id_mahasiswa[{{$nomor-1}}]" value="{{ $user->id }}">
+                                                            </tr>
+                                                            @endforeach
+                                                            <input type="hidden" name="model" value="HBA">
+                                                        </table>
+                                                        <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                    <div class="tab-pane" id="tab_7">
+                                        <p hidden>{{ $nomor = 0}}</p>
+                                        <div class="card">
+                                            <div class="card-header" data-background-color="blue">
+                                                <h4 class="title">Acara Lain</h4>
+                                                {{--  <p class="category">2017/2018</p>  --}}
+                                            </div>
+                                            <div class="card-content table-responsive">
+                                                <div class="row">
+                                                    <div class="col-md-3">
+                                                        <label for="lorong">Pilih Lorong :</label>
+                                                        <select class="form-control" id="lorong">
+                                                            <option>Semua</option>
+                                                            <option>2</option>
+                                                            <option>4</option>
+                                                            <option>10</option>
+                                                        </select>
+                                                    </div>
+                                                    <form class="form-horizontal" method="POST" action="#">
+                                                     {{ csrf_field() }}
+                                                    <div class="col-md-3">
+                                                        <!-- Date -->
+                                                        <div class="form-group">
+                                                            <div class="form-group"> <!-- Date input -->
+                                                                <label class="control-label" for="date">Date</label>
+                                                                <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                            </div>
+                                                            <!-- /.input group -->
+                                                        </div>
+                                                        <!-- /.form group -->
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <table class="table table-hover">
+                                                            <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>Nama</th>
+                                                                <th>NIM</th>
+                                                                <th colspan="2">Kehadiran</th>
+                                                            </tr>
+                                                            <tr>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th></th>
+                                                                <th>Tidak Hadir</th>
+                                                                <th>Hadir</th>
+                                                            </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                            @php
+                                                            @endphp
+                                                            @foreach($users as $user)
+                                                            <tr>
+                                                                <td>{{$nomor+=1}}</td>
+                                                                <td>{{$user->name}}</td>
+                                                                <td>{{$user->nim}}</td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
+                                                                </td>
+                                                                <td>
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="1">
+                                                                </td>
+                                                                <input type="hidden" name="id_mahasiswa[{{$nomor-1}}]" value="{{ $user->id }}">
+                                                            </tr>
+                                                            @endforeach
+                                                        </table>
+                                                        <button type="submit" class="btn btn-primary pull-right">Simpan</button>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- /.tab-pane -->
+                                </div>
+                                <!-- /.tab-content -->
                             </div>
-                              <table class="table table-hover">
-                                  <thead>
-                                      <th>Bulan</th>
-                                      <th>Hari/Tanggal</th>
-                                      <th>Kehadiran</th>
-                                      <th>Jumlah Kehadiran</th>
-                                  </thead>
-                                  <tbody>
-                                      <tr>
-                                          <td rowspan="3">Januari</td>
-                                          <td>Sabtu, 17 Januari 2018</td>
-                                          <td>Hadir</td>
-                                          <td rowspan="3">2</td>
-                                      </tr>
-                                      <tr>
-                                          <td>Senin, 20 Januari 2018</td>
-                                          <td>Alfa</td>
-                                      </tr>
-                                      <tr>
-                                          <td>Kamis, 30 Januari 2018</td>
-                                          <td>Hadir</td>
-                                      </tr>
-                                      <tr>
-                                          <td rowspan="3">Februari</td>
-                                          <td>Jum'at, 4 Februari 2018</td>
-                                          <td>Hadir</td>
-                                          <td rowspan="3">1</td>
-                                      </tr>
-                                      <tr>
-                                          <td>Rabu, 14 Februari 2018</td>
-                                          <td>Sakit</td>
-                                      </tr>
-                                      <tr>
-                                          <td>Selasa, 25 Februari 2018</td>
-                                          <td>Sakit</td>
-                                      </tr>
-                                      <tr data-background-color="green">
-                                        <td colspan="3">Total Kehadiran</td>
-                                        <td>5</td>
-                                      </tr>
-                                  </tbody>
-                              </table>
-                          </div>
-                      </div>
+                        </div>
+                    </div>
                   </div>
                   <div class="col-md-12">
-                      <div class="card">
-                          <div class="card-header" data-background-color="blue">
-                              <h4 class="title">Input Absensi</h4>
-                              <p class="category">2017/2018</p>
-                          </div>
-                          <div class="card-content table-responsive">
-                          <div class="row">
-                            <div class="col-md-3">
-                              <label for="sel1">Pilih Kegiatan :</label>
-                                <select class="form-control" id="sel1">
-                                  <option>Sodung</option>
-                                  <option>Solong</option>
-                                  <option>Ngadung</option>
-                                  <option>Ngalong</option>
-                                  <option>HBA</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                              <label for="lorong">Pilih Lorong :</label>
-                                <select class="form-control" id="lorong">
-                                  <option>Semua</option>
-                                  <option>2</option>
-                                  <option>4</option>
-                                  <option>10</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                              <!-- Date -->
-                                <div class="form-group">
-                                    <div class="form-group"> <!-- Date input -->
-                                        <label class="control-label" for="date">Date</label>
-                                        <input class="form-control" id="date" name="date" placeholder="MM/DD/YYY" type="text"/>
-                                    </div>
-                                    <!-- /.input group -->
-                                </div>
-                                <!-- /.form group -->
-                            </div>
-                          </div>
-
-                            <form>
-                              <table class="table table-hover">
-                                  <thead>
-                                      <th>No</th>
-                                      <th>Nama</th>
-                                      <th>NIM</th>
-                                      <th>Kehadiran</th>
-                                  </thead>
-                                  <tbody>
-                                    <tr>
-                                      <td>1</td>
-                                      <td>Adam Firdaus</td>
-                                      <td>G64150014</td>
-                                      <td>
-                                        <div class="form-check">
-                                          <label class="form-check-label">
-                                            <input type="checkbox" class="form-check-input" value="">
-                                          </label>
-                                        </div>
-                                      </td>
-                                    </tr>
-
-                                  </tbody>
-
-                              </table>
-                              <button type="submit" class="btn btn-primary pull-right">Simpan</button>
-                            </form>
-                          </div>
-                      </div>
+                  
                   </div>
               </div>
           </div>
@@ -172,7 +612,7 @@
       var date_input=$('input[name="date"]'); //our date input has the name "date"
       var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
       var options={
-        format: 'mm/dd/yyyy',
+        format: 'yyyy-mm-dd',
         container: container,
         todayHighlight: true,
         autoclose: true,
