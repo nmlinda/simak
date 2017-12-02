@@ -70,23 +70,48 @@
                     <div class="form-group">
                         <label for="gedung" class="col-md-4 control-label">Gedung</label>
 
-                        <div class="col-md-6">
-                            <input id="gedung" type="text" class="form-control" name="gedung" value="{{ old('gedung') }}" required>
+                        <div class="col-md-2">
+                          <select class="form-control" name="gedung" required>
+                            <option hidden>-</option>
+                            <option value="A1">A1</option>
+                            <option value="A2">A2</option>
+                            <option value="A3">A3</option>
+                            <option value="A4">A4</option>
+                            <option value="A5">A5</option>
+                            <option value="A6">A6</option>
+                            <option value="C1">C1</option>
+                            <option value="C2">C2</option>
+                            <option value="C3">C3</option>
+                            <option value="C4">C4</option>
+                            <option value="C5">C5</option>
+                          </select>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="lorong" class="col-md-4 control-label">Lorong</label>
 
-                        <div class="col-md-6">
-                            <input id="lorong" type="text" class="form-control" name="lorong" value="{{ old('gedung') }}" required>
+                        <div class="col-md-2">
+                          <select class="form-control" name="lorong" required>
+                            <option hidden>-</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                            <option value="6">6</option>
+                            <option value="7">7</option>
+                            <option value="8">8</option>
+                            <option value="9">9</option>
+                            <option value="10">10</option>
+                          </select>
                         </div>
                     </div>
 
                     <div class="form-group">
                         <label for="kamar" class="col-md-4 control-label">Kamar</label>
 
-                        <div class="col-md-6">
+                        <div class="col-md-2">
                             <input id="kamar" type="text" class="form-control" name="kamar" value="{{ old('gedung') }}" required>
                         </div>
                     </div>

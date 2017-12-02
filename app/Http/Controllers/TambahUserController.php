@@ -42,13 +42,13 @@ class TambahUserController extends Controller
         $password = request('password');
 
         User::create([
-            'name' => request('name'), 
-            'email' => request('email'), 
-            'password' => bcrypt($password), 
-            'gedung' => request('gedung'), 
-            'lorong' => request('lorong'), 
-            'kamar' => request('kamar'), 
-            'role' => 'Administrator', 
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => bcrypt($password),
+            'gedung' => request('gedung'),
+            'lorong' => request('lorong'),
+            'kamar' => request('kamar'),
+            'role' => 'Administrator',
             'nim' => request('nim'),
             'supervisor' => request('supervisor'),
         ]);
@@ -60,13 +60,13 @@ class TambahUserController extends Controller
         $password = request('password');
 
         User::create([
-            'name' => request('name'), 
-            'email' => request('email'), 
-            'password' => bcrypt($password), 
-            'gedung' => request('gedung'), 
-            'lorong' => request('lorong'), 
-            'kamar' => request('kamar'), 
-            'role' => 'Senior Resident', 
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => bcrypt($password),
+            'gedung' => request('gedung'),
+            'lorong' => request('lorong'),
+            'kamar' => request('kamar'),
+            'role' => 'Senior Resident',
             'nim' => request('nim'),
             'supervisor' => request('supervisor'),
         ]);
@@ -78,13 +78,13 @@ class TambahUserController extends Controller
         $password = request('password');
 
         User::create([
-            'name' => request('name'), 
-            'email' => request('email'), 
-            'password' => bcrypt($password), 
-            'gedung' => request('gedung'), 
-            'lorong' => request('lorong'), 
-            'kamar' => request('kamar'), 
-            'role' => 'Mahasiswa', 
+            'name' => request('name'),
+            'email' => request('email'),
+            'password' => bcrypt($password),
+            'gedung' => request('gedung'),
+            'lorong' => request('lorong'),
+            'kamar' => request('kamar'),
+            'role' => 'Mahasiswa',
             'nim' => request('nim'),
             'supervisor' => request('supervisor'),
         ]);

@@ -13,14 +13,10 @@
       </ol>
     </section>
     {{--  content  --}}
-    <section>
+    <section class="content">
         <div class="col-md-12">
-            <div class="card">
-                <div class="card-header" data-background-color="blue">
-                    <p class="category"></p>
-                </div>
+            <div class="box box-primary">
                 <div class="card-content table-responsive">
-
                     <table class="table table-hover">
                         <thead>
                             <th>Kegiatan</th>
@@ -28,7 +24,7 @@
                         </thead>
                         <tbody>
                             <tr>
-                              <td colspan="2" data-background-color="green">Januari</td>
+                              <td colspan="2" class="callout callout-info">Januari</td>
                             </tr>
                             <tr>
                               <td>Apel Pagi</td>
@@ -43,7 +39,7 @@
                               <td>14 Januari 2018</td>
                             </tr>
                             <tr>
-                              <td colspan="2" data-background-color="green">Februari</td>
+                              <td colspan="2" class="callout callout-info">Februari</td>
                             </tr>
                             <tr>
                               <td>Apel Pagi</td>
