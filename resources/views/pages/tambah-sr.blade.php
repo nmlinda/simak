@@ -11,7 +11,7 @@
         <li class="active">Senior Resident</li>
       </ol>
     </section>
-    <section>
+    <section class="content">
       <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
