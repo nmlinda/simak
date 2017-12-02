@@ -32,6 +32,7 @@ Route::get('/timeline', 'DashboardController@timeline')->name('pages.timeline');
 Route::get('/tambah-administrator', 'DashboardController@tambahadmin')->name('pages.tambah-administrator');
 Route::get('/tambah-sr', 'DashboardController@tambahsr')->name('pages.tambah-sr');
 Route::get('/tambah-mahasiswa', 'DashboardController@tambahmahasiswa')->name('pages.tambah-mahasiswa');
+Route::get('/test', 'DashboardController@test')->name('test');
 
 // Route::get('/templates', function () {
 //     return view('templates.dashboard');

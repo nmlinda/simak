@@ -48,6 +48,8 @@
         <li @if ($active == 'nilai') class="active" @endif><a href="{{ route('pages.nilai') }}"><i class="fa fa-line-chart"></i> <span>Nilai</span></a></li>
         <li @if ($active == 'absen') class="active" @endif><a href="{{ route('pages.absen') }}"><i class="fa fa-calendar-check-o"></i> <span>Kehadiran</span></a></li>
         <li @if ($active == 'timeline') class="active" @endif><a href="{{ route('pages.timeline') }}"><i class="fa fa-calendar"></i> <span>Timeline</span></a></li>
+        
+        @if($role === 'Administrator' or $role === 'Senior Resident')
         <li class="treeview @if ($active >= 1 and $active <= 3 ) active @endif">
           <a href="#">
             <i class="fa fa-user-plus"></i> <span>Tambah User</span>
@@ -56,11 +58,16 @@
             </span>
           </a>
           <ul class="treeview-menu">
+            @if($role === 'Administrator')
             <li @if ($active == 1 ) class="active" @endif><a href="{{ route('pages.tambah-administrator') }}"><i class="fa fa-circle-o"></i> Administrator</a></li>
             <li @if ($active == 2 ) class="active" @endif><a href="{{ route('pages.tambah-sr') }}"><i class="fa fa-circle-o"></i> Senior Resident</a></li>
+            <li @if ($active == 3 ) class="active" @endif><a href="{{ route('pages.tambah-mahasiswa') }}"><i class="fa fa-circle-o"></i> Mahasiswa</a></li>    
+            @else
             <li @if ($active == 3 ) class="active" @endif><a href="{{ route('pages.tambah-mahasiswa') }}"><i class="fa fa-circle-o"></i> Mahasiswa</a></li>
+            @endif
           </ul>
         </li>
+        @endif
       </ul>
     </section>
     <!-- /.sidebar -->
