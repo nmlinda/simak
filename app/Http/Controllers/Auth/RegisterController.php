@@ -60,17 +60,36 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    // protected function create(array $data)
+    // {
+    //     return User::create([
+    //         'name' => $data['name'],
+    //         'email' => $data['email'],
+    //         'gedung' => $data['gedung'],
+    //         'lorong' => $data['lorong'],
+    //         'kamar' => $data['kamar'],
+    //         'password' => bcrypt($data['password']),
+    //         'role' => $data['role'],
+    //         'nim' => $data['nim'],
+    //     ]);
+    // }
+
+    //custom 
+    public function create()
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'gedung' => $data['gedung'],
-            'lorong' => $data['lorong'],
-            'kamar' => $data['kamar'],
-            'password' => bcrypt($data['password']),
-            'role' => $data['role'],
-            'nim' => $data['nim'],
+        $password = request('password');
+
+        User::create([
+            'name' => request('name'), 
+            'email' => request('email'), 
+            'password' => bcrypt($password), 
+            'gedung' => request('gedung'), 
+            'lorong' => request('lorong'), 
+            'kamar' => request('kamar'), 
+            'role' => 'Administrator', 
+            'nim' => request('nim'),
+            'supervisor' => request('supervisor'),
         ]);
+        // return redirect('/tambah-administrator');
     }
 }

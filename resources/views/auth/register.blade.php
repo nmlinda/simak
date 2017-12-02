@@ -99,7 +99,8 @@
                             </div>
                         </div>
 
-                        <input type="hidden" name="role" value="User">
+                        <input type="hidden" name="role" value="Administrator">
+                        <input type="hidden" name="supervisor" value="1">
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
