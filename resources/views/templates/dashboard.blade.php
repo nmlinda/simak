@@ -4,7 +4,7 @@
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
   <header class="main-header">
-    <a href="index2.html" class="logo">
+    <a href="{{ route('pages.beranda')}}" class="logo">
       <span class="logo-mini"><b>SI</b>AS</span>
       <span class="logo-lg"><b>Simak</b>Asrama</span>
     </a>
