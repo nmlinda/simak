@@ -54,9 +54,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li ><a href="{{ route('pages.absen')}}"><i class="fa fa-circle-o"></i> Tambah</a></li>
-            <li ><a href="{{ route('pages.absen-lihat')}}"><i class="fa fa-circle-o"></i> Lihat</a></li>
-            <li ><a href="#"><i class="fa fa-circle-o"></i> Edit</a></li>
+            <li @if($absen== 'tambah') class="active" @endif><a href="{{ route('pages.absen')}}"><i class="fa fa-circle-o"></i> Tambah</a></li>
+            <li @if($absen== 'lihat') class="active" @endif><a href="{{ route('pages.absen/lihat')}}"><i class="fa fa-circle-o"></i> Lihat</a></li>
+            <li @if($absen== 'edit') class="active" @endif><a href="{{ route('pages.absen/edit') }}"><i class="fa fa-circle-o"></i> Edit</a></li>
           </ul>
         </li>
 

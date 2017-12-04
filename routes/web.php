@@ -27,8 +27,9 @@ Route::get('/home', function () {
 Route::get('/post', 'DashboardController@post')->name('pages.post');
 Route::get('/beranda', 'DashboardController@beranda')->name('pages.beranda');
 Route::get('/nilai', 'DashboardController@nilai')->name('pages.nilai');
-Route::get('/absen', 'DashboardController@absen')->name('pages.absen');
-Route::get('/absen-lihat', 'DashboardController@absen_lihat')->name('pages.absen-lihat');
+Route::get('/absen/tambah', 'DashboardController@absen')->name('pages.absen');
+Route::get('/absen/lihat', 'DashboardController@absen_lihat')->name('pages.absen/lihat');
+Route::get('/absen/edit', 'DashboardController@absen_edit')->name('pages.absen/edit');
 Route::get('/timeline', 'DashboardController@timeline')->name('pages.timeline');
 Route::get('/tambah-administrator', 'DashboardController@tambahadmin')->name('pages.tambah-administrator');
 Route::get('/tambah-sr', 'DashboardController@tambahsr')->name('pages.tambah-sr');
@@ -57,7 +58,7 @@ Route::post('/tambah-mahasiswa', 'TambahUserController@mahasiswa')->name('tambah
 //     return view('auth.login');
 // });
 
-Route::post('/absen', 'KegiatanController@tambah_kegiatan')->name('tambah_kegiatan');
+Route::post('/absen/tambah', 'KegiatanController@tambah_kegiatan')->name('tambah_kegiatan');
 // Route::post('/absen', 'SolongController@tambah_solong')->name('tambah_solong');
 // Route::post('/absen', 'NgadungController@tambah_ngadung')->name('tambah_ngadung');
 // Route::post('/absen', 'NgalongController@tambah_ngalong')->name('tambah_ngalong');
