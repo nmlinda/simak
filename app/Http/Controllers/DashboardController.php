@@ -6,6 +6,7 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Post;
  
 class DashboardController extends Controller
 {
@@ -42,11 +43,12 @@ class DashboardController extends Controller
     public function post_semua(){
         $active = 13;
         $absen = 'false';
+        $posts = Post::All();
         $role = Auth::user()->role;
         if(($role !== 'Administrator' and $role !== 'Senior Resident')){
             return redirect('/');
         }
-        return view('pages.post-semua', compact('active', 'role', 'absen'));
+        return view('pages.post-semua', compact('active', 'role', 'absen','posts'));
     }
 
     public function nilai(){
