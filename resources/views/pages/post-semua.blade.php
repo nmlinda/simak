@@ -14,28 +14,34 @@
 
     <!-- Main content -->
     <section class="content">
+      @if($posts)
+        <div class="callout callout-info">
+           <h4>Belum ada post tersedia.</h4>
 
-      @foreach ($posts as $post)
-        <!-- Default box -->
-        <div class="box box-info">
-          <div class="box-header with-border">
-           
-            <h3><strong>{{ $post->judul }}</strong></h3>
-             <p>Minggu, 18 Desember 2017<br>19.00</p>
-      
-          </div>
-         <div class="box-body">
-            {{ $post->isi }}
-         </div>
-          <!-- /.box-body -->
-         <div class="box-footer">
-           {{ $post->kategori }}
-         </div>
-         <!-- /.box-footer-->
-       </div>
-        <!-- /.box -->
-      @endforeach
+           <p>Buat <a href="{{ route('pages.post-buat') }}">post</a> sekarang.</p>
+        </div>
+      @else
+        @foreach ($posts as $post)
+         <!-- Default box -->
+         <div class="box box-info">
+           <div class="box-header with-border">
 
+              <h3><strong>{{ $post->judul }}</strong></h3>
+               <p>Minggu, 18 Desember 2017<br>19.00</p>
+
+            </div>
+          <div class="box-body">
+              {{ $post->isi }}
+           </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <button type="button" class="btn btn-sm bg-navy">{{ $post->kategori }}</button>
+            </div>
+           <!-- /.box-footer-->
+         </div>
+          <!-- /.box -->
+        @endforeach
+      @endif
     </section>
     <!-- /.content -->
   

@@ -17,7 +17,11 @@
       
       
       @if(!$postSaya)
-          <h1>gada</h1>
+        <div class="callout callout-info">
+           <h4>Anda belum membuat post.</h4>
+
+           <p>Buat <a href="{{ route('pages.post-buat') }}">post</a> sekarang.</p>
+        </div>
       @else
         @foreach ($posts as $post)
          <!-- Default box -->
@@ -40,7 +44,7 @@
            </div>
             <!-- /.box-body -->
           <div class="box-footer">
-            {{ $post->kategori }}
+            <button type="button" class="btn btn-sm bg-navy">{{ $post->kategori }}</button>
           </div>
           <!-- /.box-footer-->
         </div>
