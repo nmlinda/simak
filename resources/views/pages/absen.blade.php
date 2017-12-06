@@ -31,6 +31,7 @@
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li class="active">Absen</li>
+        <li class="active">Tambah</li>
       </ol>
     </section>
     {{--  content  --}}

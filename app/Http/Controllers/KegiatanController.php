@@ -73,6 +73,6 @@ class KegiatanController extends Controller
                 ]);
             }
         }
-        return redirect('/absen')->with('status' , 'your message has been saved');
+        return redirect('/absen-tambah')->with('status' , 'your message has been saved');
     }
 }
