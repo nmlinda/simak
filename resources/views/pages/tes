@@ -8,7 +8,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ route('pages.beranda') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Semua Post</li>
+        <li class="active">Post saya</li>
       </ol>
     </section>
 
@@ -22,7 +22,14 @@
            
             <h3><strong>{{ $post->judul }}</strong></h3>
              <p>Minggu, 18 Desember 2017<br>19.00</p>
-      
+
+            <div class="box-tools pull-right">
+             <button type="button" class="btn btn-sm btn-primary">
+                <i class="fa fa-pencil-square-o"></i> Edit</button>
+             <button type="button" class="btn btn-sm btn-danger">
+                <i class="fa fa-trash-o"></i> Hapus</button>
+            </div>
+
           </div>
          <div class="box-body">
             {{ $post->isi }}

@@ -42,11 +42,14 @@ class DashboardController extends Controller
     public function post_saya(){
         $active = 12;
         $absen = 'false';
+        $id = Auth::user()->id;
+        $posts = Post::All();
+        $postSaya = Post::all()->where('id_mahasiswa', $id);
         $role = Auth::user()->role;
         if(($role !== 'Administrator' and $role !== 'Senior Resident')){
             return redirect('/');
         }
-        return view('pages.post-saya', compact('active', 'role', 'absen'));
+        return view('pages.post-saya', compact('active', 'role', 'absen','posts','postSaya'));
     }
 
     public function post_semua(){
