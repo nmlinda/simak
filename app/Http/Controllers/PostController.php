@@ -20,4 +20,7 @@ class PostController extends Controller
 
         return redirect('/beranda');
     }
+
+   
+
 }

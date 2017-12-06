@@ -59,6 +59,7 @@ Route::get('/test', function () {
 
 Route::post('/post', 'PostController@store')->name('pages.post-store');
 
+
 Route::post('/tambah-administrator', 'TambahUserController@administrator')->name('tambahuser.administrator');
 Route::post('/tambah-sr', 'TambahUserController@sr')->name('tambahuser.sr');
 Route::post('/tambah-mahasiswa', 'TambahUserController@mahasiswa')->name('tambahuser.mahasiswa');

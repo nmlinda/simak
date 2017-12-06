@@ -15,6 +15,8 @@ use App\hariBersihAsrama;
 use Illuminate\Support\Facades\DB;
 
 
+use App\Post;
+ 
 class DashboardController extends Controller
 {
     public function beranda(){
@@ -50,11 +52,12 @@ class DashboardController extends Controller
     public function post_semua(){
         $active = 13;
         $absen = 'false';
+        $posts = Post::All();
         $role = Auth::user()->role;
         if(($role !== 'Administrator' and $role !== 'Senior Resident')){
             return redirect('/');
         }
-        return view('pages.post-semua', compact('active', 'role', 'absen'));
+        return view('pages.post-semua', compact('active', 'role', 'absen','posts'));
     }
 
     public function nilai(){

@@ -7,8 +7,8 @@
         {{--  <small>Control panel</small>  --}}
       </h1>
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Post</li>
+        <li><a href="{{ route('pages.beranda') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Buat Post</li>
       </ol>
     </section>
     <section class="content">
