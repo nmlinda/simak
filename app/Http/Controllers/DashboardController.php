@@ -6,6 +6,14 @@ use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Sodung;
+use App\Solong;
+use App\Ngadung;
+use App\Ngalong;
+use App\Apel;
+use App\hariBersihAsrama;
+use Illuminate\Support\Facades\DB;
+
 
 class DashboardController extends Controller
 {
@@ -62,9 +70,67 @@ class DashboardController extends Controller
         $id = Auth::user()->id;
         $users = User::all()->where('supervisor', $id);
         $nomor = 0;
+        $sum_sodung = 0;
+        $sum_solong = 0;
+        $sum_ngadung = 0;
+        $sum_ngalong = 0;
+        $sum_apel = 0;
+        $sum_hariBersihAsrama = 0;
+        $nomor2 = 0;
         $absen = 'lihat';
-        // dd($users);
-        return view('pages.absen-lihat', compact('active', 'role', 'users', 'nomor', 'absen'));
+        $sodungs = Sodung::all()->groupBy('tanggal');
+        foreach($sodungs as $sodung){
+            $sum_sodung +=1;
+        }
+        $sodungs = DB::table('sodungs')->orderBy('tanggal', 'asc')->get();
+        $solongs = Solong::all()->groupBy('tanggal');
+        foreach($solongs as $solong){
+            $sum_solong +=1;
+        }
+        $solongs = DB::table('solongs')->orderBy('tanggal', 'asc')->get();
+        $ngadungs = Ngadung::all()->groupBy('tanggal');
+        foreach($ngadungs as $ngadung){
+            $sum_ngadung +=1;
+        }
+        $ngadungs = DB::table('ngadungs')->orderBy('tanggal', 'asc')->get();
+        $ngalongs = Ngalong::all()->groupBy('tanggal');
+        foreach($ngalongs as $ngalong){
+            $sum_ngalong +=1;
+        }
+        $ngalongs = DB::table('ngalongs')->orderBy('tanggal', 'asc')->get();
+        $apels = Apel::all()->groupBy('tanggal');
+        foreach($apels as $apel){
+            $sum_apel +=1;
+        }
+        $apels = DB::table('apels')->orderBy('tanggal', 'asc')->get();
+        $hariBersihAsramas = hariBersihAsrama::all()->groupBy('tanggal');
+        foreach($hariBersihAsramas as $hariBersihAsrama){
+            $sum_hariBersihAsrama +=1;
+        }
+        $hariBersihAsramas = DB::table('hari_bersih_asramas')->orderBy('tanggal', 'asc')->get();
+        // dd($sodungs);
+        return view(
+            'pages.absen-lihat', 
+            compact(
+                'active', 
+                'role', 
+                'users', 
+                'nomor', 
+                'nomor2',
+                'absen', 
+                'sum_sodung', 
+                'sodungs',
+                'sum_solong', 
+                'solongs',
+                'sum_ngadung',
+                'ngadungs',
+                'sum_ngalong',
+                'ngalongs',
+                'sum_apel',
+                'apels',
+                'sum_hariBersihAsrama',
+                'hariBersihAsramas'
+            ));
     }
 
     public function absen_edit(){

@@ -73,6 +73,17 @@ class KegiatanController extends Controller
                 ]);
             }
         }
-        return redirect('/absen-tambah')->with('status' , 'your message has been saved');
+        return redirect('/absen/tambah')->with('status' , 'your message has been saved');
+    }
+
+    public function lihat_kegiatan(){
+        $sodung = Sodung::all();
+        $solong = Solong::all();
+        $ngadung = Ngadung::all();
+        $ngalong = Ngalong::all();
+        $apel = Apel::all();
+        $hba = hariBersihAsrama::all();
+
+
     }
 }
