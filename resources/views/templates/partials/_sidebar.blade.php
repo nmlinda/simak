@@ -43,8 +43,25 @@
         <li><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard v2</a></li>
       </ul>
     </li>  --}}
+    
     <li @if ($active == 'beranda') class="active" @endif><a href="{{ route('pages.beranda') }}"><i class="fa fa-dashboard"></i> <span>Beranda</span></a></li>
-    <li @if ($active == 'post') class="active" @endif><a href="{{ route('pages.post') }}"><i class="fa fa-pencil-square-o"></i> <span>Buat Post</span></a></li>
+    
+    @if($role === 'Administrator' or $role === 'Senior Resident')
+    <li class="treeview @if ($active >= 11 and $active <= 13 ) active @endif">
+      <a href="#">
+        <i class="fa fa-pencil-square-o"></i> <span>Post</span>
+        <span class="pull-right-container">
+          <i class="fa fa-angle-left pull-right"></i>
+        </span>
+      </a>
+      <ul class="treeview-menu">
+        <li @if ($active == 11 ) class="active" @endif><a href="{{ route('pages.post-buat') }}"><i class="fa fa-circle-o"></i> Buat post</a></li>
+        <li @if ($active == 12 ) class="active" @endif><a href="{{ route('pages.post-saya') }}"><i class="fa fa-circle-o"></i> Post saya</a></li>
+        <li @if ($active == 13 ) class="active" @endif><a href="{{ route('pages.post-semua') }}"><i class="fa fa-circle-o"></i> Lihat semua post</a></li>
+      </ul>
+    </li>
+    @endif
+    
     <li @if ($active == 'nilai') class="active" @endif><a href="{{ route('pages.nilai') }}"><i class="fa fa-line-chart"></i> <span>Nilai</span></a></li>
     <li class="treeview @if ($active == 'absen') active @endif">
       <a href="#">

@@ -24,13 +24,20 @@ Route::get('/home', function () {
 });
  
 //routing untuk sidebar
-Route::get('/post', 'DashboardController@post')->name('pages.post');
 Route::get('/beranda', 'DashboardController@beranda')->name('pages.beranda');
+
+Route::get('/post', 'DashboardController@post')->name('pages.post-buat');
+Route::get('/post-saya', 'DashboardController@post_saya')->name('pages.post-saya');
+Route::get('/post-semua', 'DashboardController@post_semua')->name('pages.post-semua');
+
 Route::get('/nilai', 'DashboardController@nilai')->name('pages.nilai');
+
 Route::get('/absen/tambah', 'DashboardController@absen')->name('pages.absen');
 Route::get('/absen/lihat', 'DashboardController@absen_lihat')->name('pages.absen/lihat');
 Route::get('/absen/edit', 'DashboardController@absen_edit')->name('pages.absen/edit');
+
 Route::get('/timeline', 'DashboardController@timeline')->name('pages.timeline');
+
 Route::get('/tambah-administrator', 'DashboardController@tambahadmin')->name('pages.tambah-administrator');
 Route::get('/tambah-sr', 'DashboardController@tambahsr')->name('pages.tambah-sr');
 Route::get('/tambah-mahasiswa', 'DashboardController@tambahmahasiswa')->name('pages.tambah-mahasiswa');
@@ -49,7 +56,9 @@ Route::get('/table', function () {
 Route::get('/test', function () {
     return view('test');
 });
- 
+
+Route::post('/post', 'PostController@store')->name('pages.post-store');
+
 Route::post('/tambah-administrator', 'TambahUserController@administrator')->name('tambahuser.administrator');
 Route::post('/tambah-sr', 'TambahUserController@sr')->name('tambahuser.sr');
 Route::post('/tambah-mahasiswa', 'TambahUserController@mahasiswa')->name('tambahuser.mahasiswa');

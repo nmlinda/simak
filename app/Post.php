@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'judul', 'isi', 'kategori'
+        'judul', 'isi', 'kategori', 'id_mahasiswa'
     ];
 }

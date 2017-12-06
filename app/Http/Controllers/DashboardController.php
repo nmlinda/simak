@@ -9,16 +9,6 @@ use Illuminate\Support\Facades\Auth;
  
 class DashboardController extends Controller
 {
-    public function post(){
-        $active = 'post';
-        $absen = 'false';
-        if(!(Auth::user())){
-            return redirect('/');
-        }
-        $role = Auth::user()->role;
-        return view('pages.post', compact('active', 'role', 'absen'));
-    }
- 
     public function beranda(){
         $active = 'beranda';
         $absen = 'false';
@@ -28,7 +18,37 @@ class DashboardController extends Controller
         $role = Auth::user()->role;
         return view('pages.beranda', compact('active', 'role', 'absen'));
     }
- 
+    
+    public function post(){
+        $active = 11;
+        $absen = 'false';
+        $role = Auth::user()->role;
+        if(($role !== 'Administrator' and $role !== 'Senior Resident')){
+            return redirect('/');
+        }
+        return view('pages.post-buat', compact('active', 'role', 'absen'));
+    }
+
+    public function post_saya(){
+        $active = 12;
+        $absen = 'false';
+        $role = Auth::user()->role;
+        if(($role !== 'Administrator' and $role !== 'Senior Resident')){
+            return redirect('/');
+        }
+        return view('pages.post-saya', compact('active', 'role', 'absen'));
+    }
+
+    public function post_semua(){
+        $active = 13;
+        $absen = 'false';
+        $role = Auth::user()->role;
+        if(($role !== 'Administrator' and $role !== 'Senior Resident')){
+            return redirect('/');
+        }
+        return view('pages.post-semua', compact('active', 'role', 'absen'));
+    }
+
     public function nilai(){
         $active = 'nilai';
         $absen = 'false';

@@ -25,7 +25,7 @@
         <!-- /.box-header -->
 
         <div class="box-body pad">
-          <form class="" action="{{ route('pages.post-lihat') }}" method="post">
+          <form class="" action="{{ route('pages.post-store') }}" method="post">
             {{ csrf_field() }}
             <div class="form-group">
                 <input class="form-control input-lg" type="text" name="judul" placeholder="Judul">
@@ -37,7 +37,6 @@
             <div class="form-group">
                 <input class="form-control" type="text" name="kategori" placeholder="Kategori">
             </div>
-            
             <div class="form-group"> 
                 <button type="submit" class="btn btn-primary pull-right" value="save">Kirim</button>
             </div>
