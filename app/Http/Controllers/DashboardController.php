@@ -56,11 +56,12 @@ class DashboardController extends Controller
         $active = 13;
         $absen = 'false';
         $posts = Post::All();
+        $users = User::All();
         $role = Auth::user()->role;
         if(($role !== 'Administrator' and $role !== 'Senior Resident')){
             return redirect('/');
         }
-        return view('pages.post-semua', compact('active', 'role', 'absen','posts'));
+        return view('pages.post-semua', compact('active', 'role', 'absen','posts','users'));
     }
 
     public function nilai(){

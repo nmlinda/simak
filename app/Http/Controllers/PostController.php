@@ -9,6 +9,7 @@ use App\User;
 
 class PostController extends Controller
 {
+    
     public function store()
     {
         Post::create([
@@ -21,6 +22,24 @@ class PostController extends Controller
         return redirect('/beranda');
     }
 
-   
+    public function edit(Post $post)
+    {
+        $active =12;
+        $role = Auth::user()->role;
+        $absen= 'false';
+        return view('pages.post-edit', compact('post','active','role','absen'));
+    }
+    
+    public function update(Post $post)
+    {
+        $active = 12;
+        $post->update([
+            'judul' => request('judul'),
+            'isi' => request('isi'),
+            'kategori' => request('kategori'),
+        ]);
+
+        return redirect()->route('pages.post-saya');
+    }
 
 }

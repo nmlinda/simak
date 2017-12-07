@@ -32,8 +32,8 @@
               <p>Minggu, 18 Desember 2017<br>19.00</p>
 
              <div class="box-tools pull-right">
-              <button type="button" class="btn btn-sm btn-primary">
-                  <i class="fa fa-pencil-square-o"></i> Edit</button>
+              <a href="{{ route('pages.post-edit', $post) }}" type="button" class="btn btn-sm btn-primary">
+                  <i class="fa fa-pencil-square-o"></i> Edit</a>
                <button type="button" class="btn btn-sm btn-danger">
                   <i class="fa fa-trash-o"></i> Hapus</button>
               </div>

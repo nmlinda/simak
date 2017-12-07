@@ -58,6 +58,8 @@ Route::get('/test', function () {
 });
 
 Route::post('/post', 'PostController@store')->name('pages.post-store');
+Route::get('/post/{post}/edit', 'PostController@edit')->name('pages.post-edit');
+Route::patch('/post/{post}/edit', 'PostController@update')->name('pages.post-update');
 
 
 Route::post('/tambah-administrator', 'TambahUserController@administrator')->name('tambahuser.administrator');

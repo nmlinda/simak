@@ -14,7 +14,7 @@
 
     <!-- Main content -->
     <section class="content">
-      @if($posts)
+      @if(!$posts)
         <div class="callout callout-info">
            <h4>Belum ada post tersedia.</h4>
 
@@ -27,8 +27,10 @@
            <div class="box-header with-border">
 
               <h3><strong>{{ $post->judul }}</strong></h3>
-               <p>Minggu, 18 Desember 2017<br>19.00</p>
-
+               <p>
+                Nama
+               </p>
+                <span>19.00 17 Nov</span>
             </div>
           <div class="box-body">
               {{ $post->isi }}
