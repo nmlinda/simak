@@ -16,13 +16,7 @@
     <section class="content">
       
       
-      @if(!$postSaya)
-        <div class="callout callout-info">
-           <h4>Anda belum membuat post.</h4>
-
-           <p>Buat <a href="{{ route('pages.post-buat') }}">post</a> sekarang.</p>
-        </div>
-      @else
+      @if($postSaya)
         @foreach ($posts as $post)
          <!-- Default box -->
           <div class="box box-info">
@@ -43,13 +37,18 @@
               {{ $post->isi }}
            </div>
             <!-- /.box-body -->
-          <div class="box-footer">
-            <button type="button" class="btn btn-sm bg-navy">{{ $post->kategori }}</button>
+            <div class="box-footer">
+              <button type="button" class="btn btn-sm bg-navy">{{ $post->kategori }}</button>
+            </div>
+            <!-- /.box-footer-->
           </div>
-          <!-- /.box-footer-->
+          <!-- /.box -->
+        @endforeach
+      @else
+        <div class="callout callout-info">
+           <h4>Anda belum membuat post.</h4>
+           <p>Buat <a href="{{ route('pages.post-buat') }}">post</a> sekarang.</p>
         </div>
-         <!-- /.box -->
-       @endforeach
       @endif
 
     </section>

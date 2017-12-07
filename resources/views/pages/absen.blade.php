@@ -65,48 +65,35 @@
                                             <div class="card-content table-responsive">
                                                 <div class="row">
                                                 <table>
-                                                    <tr>
-                                                    <div class="col-md-3">
-                                                        <label for="lorong">Pilih Lorong :</label>
-                                                        <select class="form-control" id="lorong">
-                                                            <option>Semua</option>
-                                                            <option>2</option>
-                                                            <option>4</option>
-                                                            <option>10</option>
-                                                        </select>
-                                                    </div>
-                                                    </tr>
                                                     <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">
                                                      {{ csrf_field() }}
-                                                     <tr>
-                                                    <div class="col-md-3">
-                                                        <!-- Date -->
-                                                        <div class="form-group">
-                                                            <div class="form-group"> <!-- Date input -->
-                                                                <label class="control-label" for="date">Date</label>
-                                                                <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                    <tr>
+                                                        <div class="col-md-3">
+                                                            <!-- Date -->
+                                                            <div class="form-group">
+                                                                <div class="form-group"> <!-- Date input -->
+                                                                    <label class="control-label" for="date">Date</label>
+                                                                    <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                                </div>
+                                                                <!-- /.input group -->
                                                             </div>
-                                                            <!-- /.input group -->
+                                                            <!-- /.form group -->
                                                         </div>
-                                                        <!-- /.form group -->
-                                                    </div>
                                                     </tr>
                                                 </table>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <table class="table table-hover">
+                                                        <table class="table table-hover text-center">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
+                                                                <th rowspan="2">No</th>
+                                                                <th rowspan="2">Nama</th>
+                                                                <th rowspan="2">NIM</th>
+                                                                <th rowspan="2">Lorong</th>
                                                                 <th colspan="2">Kehadiran</th>
                                                             </tr>
                                                             <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
                                                                 <th>Tidak Hadir</th>
                                                                 <th>Hadir</th>
                                                             </tr>
@@ -119,6 +106,7 @@
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
+                                                                <td>{{$user->lorong}}</td>
                                                                 <td>
                                                                 <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
                                                                 </td>
@@ -149,17 +137,6 @@
                                                 <div class="row">
                                                 <table>
                                                     <tr>
-                                                    <div class="col-md-3">
-                                                        <label for="lorong">Pilih Lorong :</label>
-                                                        <select class="form-control" id="lorong">
-                                                            <option>Semua</option>
-                                                            <option>2</option>
-                                                            <option>4</option>
-                                                            <option>10</option>
-                                                        </select>
-                                                    </div>
-                                                    </tr>
-                                                    <tr>
                                                     <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
@@ -178,18 +155,16 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <table class="table table-hover">
+                                                        <table class="table table-hover text-center">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
+                                                                <th rowspan="2">No</th>
+                                                                <th rowspan="2">Nama</th>
+                                                                <th rowspan="2">NIM</th>
+                                                                <th rowspan="2">Lorong</th>
                                                                 <th colspan="2">Kehadiran</th>
                                                             </tr>
                                                             <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
                                                                 <th>Tidak Hadir</th>
                                                                 <th>Hadir</th>
                                                             </tr>
@@ -202,6 +177,7 @@
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
+                                                                <td>{{$user->lorong}}</td>
                                                                 <td>
                                                                 <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
                                                                 </td>
@@ -232,17 +208,6 @@
                                                 <div class="row">
                                                 <table>
                                                     <tr>
-                                                    <div class="col-md-3">
-                                                        <label for="lorong">Pilih Lorong :</label>
-                                                        <select class="form-control" id="lorong">
-                                                            <option>Semua</option>
-                                                            <option>2</option>
-                                                            <option>4</option>
-                                                            <option>10</option>
-                                                        </select>
-                                                    </div>
-                                                    </tr>
-                                                    <tr>
                                                     <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">{{--{{ route('tambah_ngadung') }}">--}}
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
@@ -261,30 +226,27 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <table class="table table-hover">
+                                                        <table class="table table-hover text-center">
                                                             <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th colspan="2">Kehadiran</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th>Tidak Hadir</th>
-                                                                <th>Hadir</th>
-                                                            </tr>
+                                                                <tr>
+                                                                    <th rowspan="2">No</th>
+                                                                    <th rowspan="2">Nama</th>
+                                                                    <th rowspan="2">NIM</th>
+                                                                    <th rowspan="2">Lorong</th>
+                                                                    <th colspan="2">Kehadiran</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tidak Hadir</th>
+                                                                    <th>Hadir</th>
+                                                                </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @php
-                                                            @endphp
                                                             @foreach($users as $user)
                                                             <tr>
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
+                                                                <td>{{$user->lorong}}</td>
                                                                 <td>
                                                                 <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
                                                                 </td>
@@ -315,17 +277,6 @@
                                                 <div class="row">
                                                 <table>
                                                     <tr>
-                                                    <div class="col-md-3">
-                                                        <label for="lorong">Pilih Lorong :</label>
-                                                        <select class="form-control" id="lorong">
-                                                            <option>Semua</option>
-                                                            <option>2</option>
-                                                            <option>4</option>
-                                                            <option>10</option>
-                                                        </select>
-                                                    </div>
-                                                    </tr>
-                                                    <tr>
                                                     <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
@@ -344,20 +295,18 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <table class="table table-hover">
+                                                        <table class="table table-hover text-center">
                                                             <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th colspan="2">Kehadiran</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th>Tidak Hadir</th>
-                                                                <th>Hadir</th>
+                                                                <tr>
+                                                                    <th rowspan="2">No</th>
+                                                                    <th rowspan="2">Nama</th>
+                                                                    <th rowspan="2">NIM</th>
+                                                                    <th rowspan="2">Lorong</th>
+                                                                    <th colspan="2">Kehadiran</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tidak Hadir</th>
+                                                                    <th>Hadir</th>
                                                             </tr>
                                                             </thead>
                                                             <tbody>
@@ -368,6 +317,7 @@
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
+                                                                <td>{{$user->lorong}}</td>
                                                                 <td>
                                                                 <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
                                                                 </td>
@@ -398,17 +348,6 @@
                                                 <div class="row">
                                                 <table>
                                                     <tr>
-                                                    <div class="col-md-3">
-                                                        <label for="lorong">Pilih Lorong :</label>
-                                                        <select class="form-control" id="lorong">
-                                                            <option>Semua</option>
-                                                            <option>2</option>
-                                                            <option>4</option>
-                                                            <option>10</option>
-                                                        </select>
-                                                    </div>
-                                                    </tr>
-                                                    <tr>
                                                     <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">{{--{{ route('tambah_apel') }}">--}}
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
@@ -427,21 +366,19 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <table class="table table-hover">
+                                                        <table class="table table-hover text-center">
                                                             <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th colspan="2">Kehadiran</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th>Tidak Hadir</th>
-                                                                <th>Hadir</th>
-                                                            </tr>
+                                                                <tr>
+                                                                    <th rowspan="2">No</th>
+                                                                    <th rowspan="2">Nama</th>
+                                                                    <th rowspan="2">NIM</th>
+                                                                    <th rowspan="2">Lorong</th>
+                                                                    <th colspan="2">Kehadiran</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tidak Hadir</th>
+                                                                    <th>Hadir</th>
+                                                                </tr>
                                                             </thead>
                                                             <tbody>
                                                             @php
@@ -451,6 +388,7 @@
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
+                                                                <td>{{$user->lorong}}</td>
                                                                 <td>
                                                                 <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
                                                                 </td>
@@ -481,17 +419,6 @@
                                                 <div class="row">
                                                 <table>
                                                     <tr>
-                                                    <div class="col-md-3">
-                                                        <label for="lorong">Pilih Lorong :</label>
-                                                        <select class="form-control" id="lorong">
-                                                            <option>Semua</option>
-                                                            <option>2</option>
-                                                            <option>4</option>
-                                                            <option>10</option>
-                                                        </select>
-                                                    </div>
-                                                    </tr>
-                                                    <tr>
                                                     <form class="form-horizontal" method="POST" action="{{ route('tambah_kegiatan') }}">{{--{{ route('tambah_HBA') }}">--}}
                                                      {{ csrf_field() }}
                                                     <div class="col-md-3">
@@ -510,30 +437,27 @@
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <table class="table table-hover">
+                                                        <table class="table table-hover text-center">
                                                             <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th colspan="2">Kehadiran</th>
-                                                            </tr>
-                                                            <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th>Tidak Hadir</th>
-                                                                <th>Hadir</th>
-                                                            </tr>
+                                                                <tr>
+                                                                    <th rowspan="2">No</th>
+                                                                    <th rowspan="2">Nama</th>
+                                                                    <th rowspan="2">NIM</th>
+                                                                    <th rowspan="2">Lorong</th>
+                                                                    <th colspan="2">Kehadiran</th>
+                                                                </tr>
+                                                                <tr>
+                                                                    <th>Tidak Hadir</th>
+                                                                    <th>Hadir</th>
+                                                                </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @php
-                                                            @endphp
                                                             @foreach($users as $user)
                                                             <tr>
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
+                                                                <td>{{$user->lorong}}</td>
                                                                 <td>
                                                                 <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
                                                                 </td>
