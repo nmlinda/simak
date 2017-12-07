@@ -1,11 +1,12 @@
 @extends('templates.dashboard')
 
 @section('styles')
-  <!--  jQuery -->
-  {{--  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>  --}}
+    <!--  jQuery -->
+    {{--  <script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>  --}}
 
-  <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
-  <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <!-- Isolated Version of Bootstrap, not needed if your site already uses Bootstrap -->
+    <link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+    <link rel="stylesheet" href="{{ asset('assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css') }}">
     <style>
     table, th, td {
         border: 2px solid #aaaaaa;
@@ -16,12 +17,28 @@
         {{--  text-align: left;      --}}
     }
     </style>
-  <!-- Bootstrap Date-Picker Plugin -->
-  {{--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>  --}}
+    <style>
+    .example-modal .modal {
+        position: relative;
+        top: auto;
+        bottom: auto;
+        right: auto;
+        left: auto;
+        display: block;
+        z-index: 1;
+    }
+
+    .example-modal .modal {
+        background: transparent !important;
+    }
+    </style>
+    <!-- Bootstrap Date-Picker Plugin -->
+    {{--  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>  --}}
 @endsection
+
 @section('content')
-<section class="content-header">
+    <section class="content-header">
       <h1>
         Lihat
         {{--  <small>Control panel</small>  --}}
@@ -33,76 +50,6 @@
       </ol>
     </section>
 
-    {{--  Untuk Mahasiswa  --}}
-    {{--  <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header" data-background-color="blue">
-                            <h4 class="title">Absen</h4>
-                            <p class="category">Jumlah Kehadiran Mahasiswa pada setiap kegiatan asrama.</p>
-                        </div>
-                        <div class="card-content table-responsive">
-                        <div class="col-md-3 form-group">
-                            <label for="sel1">Pilih Kegiatan:</label>
-                            <select class="form-control" id="sel1">
-                                <option>Sodung</option>
-                                <option>Solong</option>
-                                <option>Ngadung</option>
-                                <option>Ngalong</option>
-                                <option>HBA</option>
-                            </select>
-                        </div>
-                            <table class="table table-hover">
-                                <thead>
-                                    <th>Bulan</th>
-                                    <th>Hari/Tanggal</th>
-                                    <th>Kehadiran</th>
-                                    <th>Jumlah Kehadiran</th>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td rowspan="3">Januari</td>
-                                        <td>Sabtu, 17 Januari 2018</td>
-                                        <td>Hadir</td>
-                                        <td rowspan="3">2</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Senin, 20 Januari 2018</td>
-                                        <td>Alfa</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kamis, 30 Januari 2018</td>
-                                        <td>Hadir</td>
-                                    </tr>
-                                    <tr>
-                                        <td rowspan="3">Februari</td>
-                                        <td>Jum'at, 4 Februari 2018</td>
-                                        <td>Hadir</td>
-                                        <td rowspan="3">1</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Rabu, 14 Februari 2018</td>
-                                        <td>Sakit</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Selasa, 25 Februari 2018</td>
-                                        <td>Sakit</td>
-                                    </tr>
-                                    <tr data-background-color="green">
-                                    <td colspan="3">Total Kehadiran</td>
-                                    <td>5</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>  --}}
-    {{--  Untuk selain mahasiswa  --}}
     <section>
       <div class="content">
           <div class="container-fluid">
@@ -129,41 +76,23 @@
                                         <div class="card">
                                             <div class="card-header" data-background-color="blue">
                                                 <h4 class="title">Sodung</h4> 
-                                                <p>Masukan presensi kegiatan sodung.</p>
+                                                <p>Menampilkan presensi kegiatan sodung.</p>
                                             </div>
                                             <div class="card-content table-responsive">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="col-md-3">
-                                                                <label for="lorong">Pilih Lorong :</label>
-                                                                <select class="form-control" id="lorong">
-                                                                    <option>Semua</option>
-                                                                    <option>2</option>
-                                                                    <option>4</option>
-                                                                    <option>10</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <table class="table table-hover text-center">
+                                                        <table id="example1" class="table table-bordered table-hover text-center">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th>Kamar</th>
+                                                                <th rowspan="2">No</th>
+                                                                <th rowspan="2">Nama</th>
+                                                                <th rowspan="2">NIM</th>
+                                                                <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_sodung}} ">Sodung ke</th>
+                                                                <th rowspan="2">Persentase</th>
+                                                                <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
                                                                 @for ($i = $sum_sodung; $i-- > 0;)
                                                                     <th>{{ $nomor2+=1 }}</th>
                                                                 @endfor
@@ -171,80 +100,79 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @php
-                                                            @endphp
                                                             @foreach($users as $user)
                                                             <tr>
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
                                                                 <td>{{$user->kamar}}</td>
+                                                                <p hidden {{$i=0, $ii=0}}></p>
                                                                 @foreach ($sodungs as $sodung)
-                                                                    
                                                                     @if($user->id == $sodung->id_mahasiswa)
                                                                     <td>
-                                                                        {{--  @foreach($sodungs as $sodung)  --}}
                                                                         @if ($sodung->kehadiran == 1)
                                                                         <i class="fa fa-check"></i>
+                                                                        <p hidden {{$i+=1}}></p>
                                                                         @else
                                                                         <i class="fa fa-close"></i>
                                                                         @endif
+                                                                        <p hidden {{$ii+=1}}></p>
                                                                     </td>
-                                                                    {{--  @endforeach  --}}
                                                                     @endif
-                                                                    
                                                                 @endforeach
-                                                                
-                                                                
+                                                                <td>{{$i/$ii*100}} %</td>
+                                                                <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
                                                             </tr>
                                                             @endforeach
                                                             <p hidden {{$nomor=0}}></p>
-                                                            
                                                         </table>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="modal fade" id="modal-default">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span></button>
+                                                    <h4 class="modal-title">Default Modal</h4>
+                                                </div>
+                                                <div class="modal-body">
+                                                {{$user->id}}
+                                                    <p>One fine body&hellip;</p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+                                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            </div>
+                                            <!-- /.modal-content -->
+                                        </div>
+                                        <!-- /.modal-dialog -->
+                                    </div>
                                     <div class="tab-pane" id="tab_2">
                                         <div class="card">
                                             <div class="card-header" data-background-color="blue">
-                                                <h4 class="title">Solong</h4> 
-                                                <p>Masukan presensi kegiatan solong.</p>
+                                                <h4 class="title">Sodung</h4> 
+                                                <p>Menampilkan presensi kegiatan sodung.</p>
                                             </div>
                                             <div class="card-content table-responsive">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="col-md-3">
-                                                                <label for="lorong">Pilih Lorong :</label>
-                                                                <select class="form-control" id="lorong">
-                                                                    <option>Semua</option>
-                                                                    <option>2</option>
-                                                                    <option>4</option>
-                                                                    <option>10</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <table class="table table-hover text-center">
+                                                        <table id="example2" class="table table-bordered table-hover text-center">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th>Kamar</th>
-                                                                <th colspan="{{ $sum_solong }} ">Solong ke</th>
+                                                                <th rowspan="2">No</th>
+                                                                <th rowspan="2">Nama</th>
+                                                                <th rowspan="2">NIM</th>
+                                                                <th rowspan="2">Kamar</th>
+                                                                <th colspan="{{ $sum_solong}} ">Solong ke</th>
+                                                                <th rowspan="2">Persentase</th>
+                                                                <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
                                                                 @for ($i = $sum_solong; $i-- > 0;)
                                                                     <th>{{ $nomor2+=1 }}</th>
                                                                 @endfor
@@ -252,33 +180,31 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @php
-                                                            @endphp
                                                             @foreach($users as $user)
                                                             <tr>
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
                                                                 <td>{{$user->kamar}}</td>
+                                                                <p hidden {{$i=0, $ii=0}}></p>
                                                                 @foreach ($solongs as $solong)
-                                                                    
                                                                     @if($user->id == $solong->id_mahasiswa)
                                                                     <td>
-                                                                        {{--  @foreach($sodungs as $sodung)  --}}
                                                                         @if ($solong->kehadiran == 1)
                                                                         <i class="fa fa-check"></i>
+                                                                        <p hidden {{$i+=1}}></p>
                                                                         @else
                                                                         <i class="fa fa-close"></i>
                                                                         @endif
+                                                                        <p hidden {{$ii+=1}}></p>
                                                                     </td>
-                                                                    {{--  @endforeach  --}}
                                                                     @endif
-                                                                    
                                                                 @endforeach
-                                                                
+                                                                <td>{{$i/$ii*100}} %</td>
+                                                                <td><a href="#"><button class="btn btn-primary">Edit</button></a></td>
                                                             </tr>
                                                             @endforeach
-                                                            <p hidden {{$nomor=0}}>
+                                                            <p hidden {{$nomor=0}}></p>
                                                         </table>
                                                     </div>
                                                 </div>
@@ -289,41 +215,21 @@
                                         <div class="card">
                                             <div class="card-header" data-background-color="blue">
                                                 <h4 class="title">Ngadung</h4> 
-                                                <p>Masukan presensi kegiatan ngadung.</p>
+                                                <p>Menampilkan presensi kegiatan ngadung.</p>
                                             </div>
                                             <div class="card-content table-responsive">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="col-md-3">
-                                                                <label for="lorong">Pilih Lorong :</label>
-                                                                <select class="form-control" id="lorong">
-                                                                    <option>Semua</option>
-                                                                    <option>2</option>
-                                                                    <option>4</option>
-                                                                    <option>10</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <table class="table table-hover text-center">
+                                                        <table id="example3" class="table table-bordered table-hover text-center">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th>Kamar</th>
+                                                                <th rowspan="2">No</th>
+                                                                <th rowspan="2">Nama</th>
+                                                                <th rowspan="2">NIM</th>
+                                                                <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_ngadung}} ">Ngadung ke</th>
                                                             </tr>
                                                             <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
                                                                 @for ($i = $sum_ngadung; $i-- > 0;)
                                                                     <th>{{ $nomor2+=1 }}</th>
                                                                 @endfor
@@ -371,38 +277,18 @@
                                                 <p>Masukan presensi kegiatan apel.</p>
                                             </div>
                                             <div class="card-content table-responsive">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="col-md-3">
-                                                                <label for="lorong">Pilih Lorong :</label>
-                                                                <select class="form-control" id="lorong">
-                                                                    <option>Semua</option>
-                                                                    <option>2</option>
-                                                                    <option>4</option>
-                                                                    <option>10</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <table class="table table-hover text-center">
+                                                        <table id="example4" class="table table-bordered table-hover text-center">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th>Kamar</th>
+                                                                <th rowspan="2">No</th>
+                                                                <th rowspan="2">Nama</th>
+                                                                <th rowspan="2">NIM</th>
+                                                                <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_ngalong}} ">Ngalong ke</th>
                                                             </tr>
                                                             <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
                                                                 @for ($i = $sum_ngalong; $i-- > 0;)
                                                                     <th>{{ $nomor2+=1 }}</th>
                                                                 @endfor
@@ -450,38 +336,18 @@
                                                 <p>Masukan presensi kegiatan ngalong.</p>
                                             </div>
                                             <div class="card-content table-responsive">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="col-md-3">
-                                                                <label for="lorong">Pilih Lorong :</label>
-                                                                <select class="form-control" id="lorong">
-                                                                    <option>Semua</option>
-                                                                    <option>2</option>
-                                                                    <option>4</option>
-                                                                    <option>10</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <table class="table table-hover text-center">
+                                                        <table id="example5" class="table table-bordered table-hover text-center">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th>Kamar</th>
+                                                                <th rowspan="2">No</th>
+                                                                <th rowspan="2">Nama</th>
+                                                                <th rowspan="2">NIM</th>
+                                                                <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_apel}} ">Apel ke</th>
                                                             </tr>
                                                             <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
                                                                 @for ($i = $sum_apel; $i-- > 0;)
                                                                     <th>{{ $nomor2+=1 }}</th>
                                                                 @endfor
@@ -529,38 +395,18 @@
                                                 <p>Masukan presensi kegiatan HBA.</p>
                                             </div>
                                             <div class="card-content table-responsive">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="col-md-3">
-                                                                <label for="lorong">Pilih Lorong :</label>
-                                                                <select class="form-control" id="lorong">
-                                                                    <option>Semua</option>
-                                                                    <option>2</option>
-                                                                    <option>4</option>
-                                                                    <option>10</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <table class="table table-hover text-center">
+                                                        <table id="example6" class="table table-bordered table-hover text-center">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th>Kamar</th>
+                                                                <th rowspan="2">No</th>
+                                                                <th rowspan="2">Nama</th>
+                                                                <th rowspan="2">NIM</th>
+                                                                <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_hariBersihAsrama}} ">HBA ke</th>
                                                             </tr>
                                                             <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
                                                                 @for ($i = $sum_hariBersihAsrama; $i-- > 0;)
                                                                     <th>{{ $nomor2+=1 }}</th>
                                                                 @endfor
@@ -608,38 +454,18 @@
                                                 <p>Masukan presensi kegiatan Acara Lain.</p>
                                             </div>
                                             <div class="card-content table-responsive">
-                                                <div class="row">
-                                                    <div class="col-md-12">
-                                                        <div class="form-group">
-                                                            <div class="col-md-3">
-                                                                <label for="lorong">Pilih Lorong :</label>
-                                                                <select class="form-control" id="lorong">
-                                                                    <option>Semua</option>
-                                                                    <option>2</option>
-                                                                    <option>4</option>
-                                                                    <option>10</option>
-                                                                </select>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <br>
                                                 <div class="col-md-12">
                                                     <div class="form-group">
-                                                        <table class="table table-hover text-center">
+                                                        <table id="example7" class="table table-bordered table-hover text-center">
                                                             <thead>
                                                             <tr>
-                                                                <th>No</th>
-                                                                <th>Nama</th>
-                                                                <th>NIM</th>
-                                                                <th>Kamar</th>
+                                                                <th rowspan="2">No</th>
+                                                                <th rowspan="2">Nama</th>
+                                                                <th rowspan="2">NIM</th>
+                                                                <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_sodung}} ">Sodung ke</th>
                                                             </tr>
                                                             <tr>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
-                                                                <th></th>
                                                                 @for ($i = $sum_sodung; $i-- > 0;)
                                                                     <th>{{ $nomor2+=1 }}</th>
                                                                 @endfor
@@ -697,17 +523,61 @@
 @endsection
 
 @section('scripts')
+    <script src="{{ asset('assets/bower_components/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
     <script>
-    $(document).ready(function(){
-      var date_input=$('input[name="date"]'); //our date input has the name "date"
-      var container=$('.bootstrap-iso form').length>0 ? $('.bootstrap-iso form').parent() : "body";
-      var options={
-        format: 'yyyy-mm-dd',
-        container: container,
-        todayHighlight: true,
-        autoclose: true,
-      };
-      date_input.datepicker(options);
+    $(function () {
+        $('#example1').DataTable()
+        $('#example2').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+        })
+        $('#example3').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+        })
+        $('#example4').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+        })
+        $('#example5').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+        })
+        $('#example6').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+        })
+        $('#example7').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+        })
+
     })
     </script>
 @endsection
+
