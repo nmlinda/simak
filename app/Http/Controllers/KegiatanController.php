@@ -83,7 +83,66 @@ class KegiatanController extends Controller
         $ngalong = Ngalong::all();
         $apel = Apel::all();
         $hba = hariBersihAsrama::all();
+    }
 
-
+    public function editAbsen(){
+        $ids = request('ids');
+        $model = request('model');
+        $kehadirans = request('kehadirans');
+        if($model == 'sodung'){
+            foreach (array_combine($ids, $kehadirans) as $id => $kehadiran) {
+                $sodung = Sodung::find($id);
+                // dd($kehadiran);
+                $sodung->update([
+                    'kehadiran'=>$kehadiran
+                ]);
+            }
+        }
+        if($model == 'solong'){
+            foreach (array_combine($ids, $kehadirans) as $id => $kehadiran) {
+                $sodung = Solong::find($id);
+                // dd($kehadiran);
+                $sodung->update([
+                    'kehadiran'=>$kehadiran
+                ]);
+            }
+        }
+        if($model == 'ngadung'){
+            foreach (array_combine($ids, $kehadirans) as $id => $kehadiran) {
+                $sodung = Ngadung::find($id);
+                // dd($kehadiran);
+                $sodung->update([
+                    'kehadiran'=>$kehadiran
+                ]);
+            }
+        }
+        if($model == 'ngalong'){
+            foreach (array_combine($ids, $kehadirans) as $id => $kehadiran) {
+                $sodung = Ngalong::find($id);
+                // dd($kehadiran);
+                $sodung->update([
+                    'kehadiran'=>$kehadiran
+                ]);
+            }
+        }
+        if($model == 'apel'){
+            foreach (array_combine($ids, $kehadirans) as $id => $kehadiran) {
+                $sodung = Apel::find($id);
+                // dd($kehadiran);
+                $sodung->update([
+                    'kehadiran'=>$kehadiran
+                ]);
+            }
+        }
+        if($model == 'hariBersihAsrama'){
+            foreach (array_combine($ids, $kehadirans) as $id => $kehadiran) {
+                $sodung = hariBersihAsrama::find($id);
+                // dd($kehadiran);
+                $sodung->update([
+                    'kehadiran'=>$kehadiran
+                ]);
+            }
+        }
+        return redirect()->route('pages.absen/lihat');
     }
 }
