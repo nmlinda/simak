@@ -59,7 +59,6 @@
                         <div class="box-header with-border">
                             <i class="fa fa-book"></i>
                             <h3 class="box-title">Masukan Absensi Kegiatan</h3>
-                            <a href="{{ route('pages.absen/edit') }}"><button class="pull-right btn btn-primary">Edit</button></a>
                             <div><br></div>
                             <div class="nav-tabs-custom">
                                 <ul class="nav nav-tabs">
@@ -121,29 +120,60 @@
                                                                     @endif
                                                                 @endforeach
                                                                 <td>{{$i/$ii*100}} %</td>
-                                                                <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-default-{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
-                                                            </tr>
-                                                            <div class="modal fade" id="modal-default-{{$user->id}}">
-                                                                <div class="modal-dialog">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span></button>
-                                                                            <h4 class="modal-title">Default Modal</h4>
+                                                                <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sodung{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
+                                                                <div class="modal fade" id="modal-sodung{{$user->id}}">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span></button>
+                                                                                <h4 class="modal-title">Edit Data Sodung {{$user->name}}</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                            <form method="POST" role="form" action="{{route('editAbsen')}}">
+                                                                                {{ csrf_field() }}
+                                                                                {{ method_field('PATCH')}}
+                                                                                <input type="hidden" name="model" value="sodung">
+                                                                                <div class="form-group">
+                                                                                    <label>Nama</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->name}}" value="{{$user->name}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>NIM</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->nim}}" value="{{$user->nim}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Lorong / Kamar</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->lorong}} / {{$user->kamar}}" value="{{$user->lorong}} / {{$user->kamar}}" disabled>
+                                                                                </div>
+                                                                                <i hidden {{$index_id=0}}></i>
+                                                                                @foreach($sodungs as $sodung)
+                                                                                    @if($user->id == $sodung->id_mahasiswa)
+                                                                                        <div class="form-group">
+                                                                                            <label>@php
+                                                                                                echo date('d F Y', strtotime($sodung->tanggal));
+                                                                                            @endphp</label>
+                                                                                            <select class="form-control" name="kehadirans[{{$index_id}}]" >
+                                                                                                <option value="1" @if($sodung->kehadiran == 1) selected @endif>Hadir</option>
+                                                                                                <option value="0" @if($sodung->kehadiran == 0) selected @endif>Tidak Hadir</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <input type="hidden" name="ids[{{$index_id}}]" value="{{$sodung->id}}">
+                                                                                        <i hidden {{$index_id+=1}}></i>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                            </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+                                                                                <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                                            </div>
+                                                                            </form>
                                                                         </div>
-                                                                        <div class="modal-body">
-                                                                        {{$user->id}}
-                                                                            <p>One fine body&hellip;</p>
-                                                                        </div>
-                                                                        <div class="modal-footer">
-                                                                            <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-                                                                            <button type="button" class="btn btn-primary">Save changes</button>
-                                                                        </div>
+                                                                        <!-- /.modal-content -->
                                                                     </div>
-                                                                    <!-- /.modal-content -->
+                                                                    <!-- /.modal-dialog -->
                                                                 </div>
-                                                                <!-- /.modal-dialog -->
-                                                            </div>
+                                                            </tr>
                                                             @endforeach
                                                             <p hidden {{$nomor=0}}></p>
                                                         </table>
@@ -152,7 +182,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
                                     <div class="tab-pane" id="tab_2">
                                         <div class="card">
                                             <div class="card-header" data-background-color="blue">
@@ -202,7 +231,59 @@
                                                                     @endif
                                                                 @endforeach
                                                                 <td>{{$i/$ii*100}} %</td>
-                                                                <td><a href="#"><button class="btn btn-primary">Edit</button></a></td>
+                                                                <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-solong{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
+                                                                <div class="modal fade" id="modal-solong{{$user->id}}">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span></button>
+                                                                                <h4 class="modal-title">Edit Data Ngalong {{$user->name}}</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                            <form method="POST" role="form" action="#">
+                                                                                {{ csrf_field() }}
+                                                                                {{ method_field('PATCH')}}
+                                                                                <input type="hidden" name="model" value="solong">
+                                                                                <div class="form-group">
+                                                                                    <label>Nama</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->name}}" value="{{$user->name}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>NIM</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->nim}}" value="{{$user->nim}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Lorong / Kamar</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->lorong}} / {{$user->kamar}}" value="{{$user->lorong}} / {{$user->kamar}}" disabled>
+                                                                                </div>
+                                                                                <i hidden {{$index_id=0}}></i>
+                                                                                @foreach($solongs as $solong)
+                                                                                    @if($user->id == $solong->id_mahasiswa)
+                                                                                        <div class="form-group">
+                                                                                            <label>@php
+                                                                                                echo date('d F Y', strtotime($solong->tanggal));
+                                                                                            @endphp</label>
+                                                                                            <select class="form-control" name="kehadirans[{{$index_id}}]" >
+                                                                                                <option value="1" @if($solong->kehadiran == 1) selected @endif>Hadir</option>
+                                                                                                <option value="0" @if($solong->kehadiran == 0) selected @endif>Tidak Hadir</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <input type="hidden" name="ids[{{$index_id}}]" value="{{$solong->id}}">
+                                                                                        <i hidden {{$index_id+=1}}></i>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+                                                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
                                                             </tr>
                                                             @endforeach
                                                             <p hidden {{$nomor=0}}></p>
@@ -229,6 +310,7 @@
                                                                 <th rowspan="2">NIM</th>
                                                                 <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_ngadung}} ">Ngadung ke</th>
+                                                                <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
                                                                 @for ($i = $sum_ngadung; $i-- > 0;)
@@ -261,7 +343,59 @@
                                                                     @endif
                                                                     
                                                                 @endforeach
-                                                                
+                                                                <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-ngadung{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
+                                                                <div class="modal fade" id="modal-ngadung{{$user->id}}">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span></button>
+                                                                                <h4 class="modal-title">Edit Data Ngadung {{$user->name}}</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                            <form method="POST" role="form" action="#">
+                                                                                {{ csrf_field() }}
+                                                                                {{ method_field('PATCH')}}
+                                                                                <input type="hidden" name="model" value="ngadung">
+                                                                                <div class="form-group">
+                                                                                    <label>Nama</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->name}}" value="{{$user->name}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>NIM</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->nim}}" value="{{$user->nim}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Lorong / Kamar</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->lorong}} / {{$user->kamar}}" value="{{$user->lorong}} / {{$user->kamar}}" disabled>
+                                                                                </div>
+                                                                                <i hidden {{$index_id=0}}></i>
+                                                                                @foreach($ngadungs as $ngadung)
+                                                                                    @if($user->id == $ngadung->id_mahasiswa)
+                                                                                        <div class="form-group">
+                                                                                            <label>@php
+                                                                                                echo date('d F Y', strtotime($ngadung->tanggal));
+                                                                                            @endphp</label>
+                                                                                            <select class="form-control" name="kehadirans[{{$index_id}}]" >
+                                                                                                <option value="1" @if($ngadung->kehadiran == 1) selected @endif>Hadir</option>
+                                                                                                <option value="0" @if($ngadung->kehadiran == 0) selected @endif>Tidak Hadir</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <input type="hidden" name="ids[{{$index_id}}]" value="{{$ngadung->id}}">
+                                                                                        <i hidden {{$index_id+=1}}></i>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+                                                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
                                                             </tr>
                                                             @endforeach
                                                             <p hidden {{$nomor=0}}>
@@ -288,6 +422,7 @@
                                                                 <th rowspan="2">NIM</th>
                                                                 <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_ngalong}} ">Ngalong ke</th>
+                                                                <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
                                                                 @for ($i = $sum_ngalong; $i-- > 0;)
@@ -320,7 +455,59 @@
                                                                     @endif
                                                                     
                                                                 @endforeach
-                                                                
+                                                                <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-ngalong{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
+                                                                <div class="modal fade" id="modal-ngalong{{$user->id}}">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span></button>
+                                                                                <h4 class="modal-title">Edit Data Ngalong {{$user->name}}</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                            <form method="POST" role="form" action="#">
+                                                                                {{ csrf_field() }}
+                                                                                {{ method_field('PATCH')}}
+                                                                                <input type="hidden" name="model" value="ngalong">
+                                                                                <div class="form-group">
+                                                                                    <label>Nama</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->name}}" value="{{$user->name}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>NIM</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->nim}}" value="{{$user->nim}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Lorong / Kamar</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->lorong}} / {{$user->kamar}}" value="{{$user->lorong}} / {{$user->kamar}}" disabled>
+                                                                                </div>
+                                                                                <i hidden {{$index_id=0}}></i>
+                                                                                @foreach($ngalongs as $ngalong)
+                                                                                    @if($user->id == $ngalong->id_mahasiswa)
+                                                                                        <div class="form-group">
+                                                                                            <label>@php
+                                                                                                echo date('d F Y', strtotime($ngalong->tanggal));
+                                                                                            @endphp</label>
+                                                                                            <select class="form-control" name="kehadirans[{{$index_id}}]" >
+                                                                                                <option value="1" @if($ngalong->kehadiran == 1) selected @endif>Hadir</option>
+                                                                                                <option value="0" @if($ngalong->kehadiran == 0) selected @endif>Tidak Hadir</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <input type="hidden" name="ids[{{$index_id}}]" value="{{$ngalong->id}}">
+                                                                                        <i hidden {{$index_id+=1}}></i>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+                                                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
                                                             </tr>
                                                             @endforeach
                                                             <p hidden {{$nomor=0}}></p>
@@ -347,6 +534,7 @@
                                                                 <th rowspan="2">NIM</th>
                                                                 <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_apel}} ">Apel ke</th>
+                                                                <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
                                                                 @for ($i = $sum_apel; $i-- > 0;)
@@ -379,7 +567,59 @@
                                                                     @endif
                                                                     
                                                                 @endforeach
-                                                                
+                                                                <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-apel{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
+                                                                <div class="modal fade" id="modal-apel{{$user->id}}">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span></button>
+                                                                                <h4 class="modal-title">Edit Data apel {{$user->name}}</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                            <form method="POST" role="form" action="#">
+                                                                                {{ csrf_field() }}
+                                                                                {{ method_field('PATCH')}}
+                                                                                <input type="hidden" name="model" value="apel">
+                                                                                <div class="form-group">
+                                                                                    <label>Nama</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->name}}" value="{{$user->name}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>NIM</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->nim}}" value="{{$user->nim}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Lorong / Kamar</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->lorong}} / {{$user->kamar}}" value="{{$user->lorong}} / {{$user->kamar}}" disabled>
+                                                                                </div>
+                                                                                <i hidden {{$index_id=0}}></i>
+                                                                                @foreach($apels as $apel)
+                                                                                    @if($user->id == $apel->id_mahasiswa)
+                                                                                        <div class="form-group">
+                                                                                            <label>@php
+                                                                                                echo date('d F Y', strtotime($apel->tanggal));
+                                                                                            @endphp</label>
+                                                                                            <select class="form-control" name="kehadirans[{{$index_id}}]" >
+                                                                                                <option value="1" @if($apel->kehadiran == 1) selected @endif>Hadir</option>
+                                                                                                <option value="0" @if($apel->kehadiran == 0) selected @endif>Tidak Hadir</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <input type="hidden" name="ids[{{$index_id}}]" value="{{$apel->id}}">
+                                                                                        <i hidden {{$index_id+=1}}></i>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+                                                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
                                                             </tr>
                                                             @endforeach
                                                             <p hidden {{$nomor=0}}>
@@ -406,6 +646,7 @@
                                                                 <th rowspan="2">NIM</th>
                                                                 <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_hariBersihAsrama}} ">HBA ke</th>
+                                                                <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
                                                                 @for ($i = $sum_hariBersihAsrama; $i-- > 0;)
@@ -438,7 +679,59 @@
                                                                     @endif
                                                                     
                                                                 @endforeach
-                                                                
+                                                                <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-hariBersihAsrama{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
+                                                                <div class="modal fade" id="modal-hariBersihAsrama{{$user->id}}">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span></button>
+                                                                                <h4 class="modal-title">Edit Data hariBersihAsrama {{$user->name}}</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                            <form method="POST" role="form" action="#">
+                                                                                {{ csrf_field() }}
+                                                                                {{ method_field('PATCH')}}
+                                                                                <input type="hidden" name="model" value="hariBersihAsrama">
+                                                                                <div class="form-group">
+                                                                                    <label>Nama</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->name}}" value="{{$user->name}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>NIM</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->nim}}" value="{{$user->nim}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Lorong / Kamar</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->lorong}} / {{$user->kamar}}" value="{{$user->lorong}} / {{$user->kamar}}" disabled>
+                                                                                </div>
+                                                                                <i hidden {{$index_id=0}}></i>
+                                                                                @foreach($hariBersihAsramas as $hariBersihAsrama)
+                                                                                    @if($user->id == $hariBersihAsrama->id_mahasiswa)
+                                                                                        <div class="form-group">
+                                                                                            <label>@php
+                                                                                                echo date('d F Y', strtotime($hariBersihAsrama->tanggal));
+                                                                                            @endphp</label>
+                                                                                            <select class="form-control" name="kehadirans[{{$index_id}}]" >
+                                                                                                <option value="1" @if($hariBersihAsrama->kehadiran == 1) selected @endif>Hadir</option>
+                                                                                                <option value="0" @if($hariBersihAsrama->kehadiran == 0) selected @endif>Tidak Hadir</option>
+                                                                                            </select>
+                                                                                        </div>
+                                                                                        <input type="hidden" name="ids[{{$index_id}}]" value="{{$hariBersihAsrama->id}}">
+                                                                                        <i hidden {{$index_id+=1}}></i>
+                                                                                    @endif
+                                                                                @endforeach
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+                                                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
                                                             </tr>
                                                             @endforeach
                                                             <p hidden {{$nomor=0}}></p>
@@ -465,6 +758,7 @@
                                                                 <th rowspan="2">NIM</th>
                                                                 <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_sodung}} ">Sodung ke</th>
+                                                                <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
                                                                 @for ($i = $sum_sodung; $i-- > 0;)
@@ -497,7 +791,55 @@
                                                                     @endif
                                                                     
                                                                 @endforeach
-                                                                
+                                                                <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sodung{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
+                                                                <div class="modal fade" id="modal-sodung{{$user->id}}">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header">
+                                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span></button>
+                                                                                <h4 class="modal-title">Edit Data sodung {{$user->name}}</h4>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                            <form method="POST" role="form" action="#">
+                                                                            {{ csrf_field() }}
+                                                                                <div class="form-group">
+                                                                                    <label>Nama</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->name}}" value="{{$user->name}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>NIM</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->nim}}" value="{{$user->nim}}" disabled>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Lorong / Kamar</label>
+                                                                                    <input type="text" class="form-control" placeholder="{{$user->lorong}} / {{$user->kamar}}" value="{{$user->lorong}} / {{$user->kamar}}" disabled>
+                                                                                </div>
+                                                                                <i hidden {{$editNumber=0}}></i>
+                                                                                @foreach($sodungs as $sodung)
+                                                                                    @if($user->id == $sodung->id_mahasiswa)
+                                                                                        <div class="form-group">
+                                                                                            <label>@php
+                                                                                                echo date('d F Y', strtotime($sodung->tanggal));
+                                                                                            @endphp</label>
+                                                                                            <select class="form-control">
+                                                                                                <option @if($sodung->kehadiran == 1) selected @endif value="1">Hadir</option>
+                                                                                                <option @if($sodung->kehadiran == 0) selected @endif value="0">Tidak Hadir</option>
+                                                                                            </select>
+                                                                                        </div>  
+                                                                                    @endif
+                                                                                @endforeach
+                                                                                </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tutup</button>
+                                                                                    <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
+                                                                                </div>
+                                                                            </form>
+                                                                        </div>
+                                                                        <!-- /.modal-content -->
+                                                                    </div>
+                                                                    <!-- /.modal-dialog -->
+                                                                </div>
                                                             </tr>
                                                             @endforeach
                                                             
@@ -528,7 +870,14 @@
     <script src="{{ asset('assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js') }}"></script>
     <script>
     $(function () {
-        $('#example1').DataTable()
+        $('#example1').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+        })
         $('#example2').DataTable({
         'paging'      : true,
         'lengthChange': true,
@@ -570,6 +919,14 @@
         'autoWidth'   : false
         })
         $('#example7').DataTable({
+        'paging'      : true,
+        'lengthChange': true,
+        'searching'   : true,
+        'ordering'    : true,
+        'info'        : true,
+        'autoWidth'   : false
+        })
+        $('#example1modal').DataTable({
         'paging'      : true,
         'lengthChange': true,
         'searching'   : true,
