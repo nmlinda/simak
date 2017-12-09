@@ -40,9 +40,8 @@
               <div class="control-label" for="kategori">Pilih kategori:</div>
                 <div class="col-md-2">
                   <select class="form-control" name="kategori" required>
-                    <option hidden>{{ $post->kategori }}</option>
-                    <option value="Pengumuman">Pengumuman</option>
-                    <option value="Press Release">Press Release</option>
+                    <option value="Pengumuman" @if($post->kategori == 'Pengumuman') selected @endif>Pengumuman</option>
+                    <option value="Press Release" @if($post->kategori == 'Press Release') selected @endif>Press Release</option>
                   </select>
                 </div>
               </div>

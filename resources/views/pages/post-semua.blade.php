@@ -14,7 +14,7 @@
 
     <!-- Main content -->
     <section class="content">
-      @if(!$posts)
+      @if($posts->isEmpty())
         <div class="callout callout-info">
            <h4>Belum ada post tersedia.</h4>
 

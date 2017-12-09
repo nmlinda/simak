@@ -57,7 +57,7 @@ Route::get('/test', function () {
  Route::get('/post/{post}/edit', 'PostController@edit')->name('pages.post-edit');
  Route::patch('/post/{post}/edit', 'PostController@update')->name('pages.post-update');
  Route::delete('/post/{post}/hapus', 'PostController@hapus')->name('pages.post-hapus');
- 
+
 //route untuk tambah user
 Route::post('/tambah-administrator', 'TambahUserController@administrator')->name('tambahuser.administrator');
 Route::post('/tambah-sr', 'TambahUserController@sr')->name('tambahuser.sr');
@@ -67,6 +67,7 @@ Route::post('/tambah-mahasiswa', 'TambahUserController@mahasiswa')->name('tambah
 //     return view('auth.login');
 // });
 
+//route untuk absen
 Route::post('/absen/tambah', 'KegiatanController@tambah_kegiatan')->name('tambah_kegiatan');
 Route::patch('/absen/lihat', 'KegiatanController@editAbsen')->name('editAbsen');
 // Route::post('/absen', 'SolongController@tambah_solong')->name('tambah_solong');
