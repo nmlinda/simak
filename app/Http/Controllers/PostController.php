@@ -19,7 +19,7 @@ class PostController extends Controller
             'id_mahasiswa' => Auth::user()->id
         ]);
 
-        return redirect('/beranda');
+        return redirect('/post-saya');
     }
 
     public function edit(Post $post)
@@ -27,6 +27,7 @@ class PostController extends Controller
         $active =12;
         $role = Auth::user()->role;
         $absen= 'false';
+        
         return view('pages.post-edit', compact('post','active','role','absen'));
     }
     
@@ -39,7 +40,13 @@ class PostController extends Controller
             'kategori' => request('kategori'),
         ]);
 
-        return redirect()->route('pages.post-saya');
+        return redirect('/post-saya');
     }
 
+    public function hapus(Post $post)
+    {
+        $post->delete();
+
+        return redirect('/post-saya');
+    }
 }

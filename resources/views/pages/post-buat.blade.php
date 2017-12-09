@@ -27,19 +27,31 @@
         <div class="box-body pad">
           <form class="" action="{{ route('pages.post-store') }}" method="post">
             {{ csrf_field() }}
-            <div class="form-group">
-                <input class="form-control input-lg" type="text" name="judul" placeholder="Judul">
+            <div class="box-body">
+             <div class="form-group">
+                  <input class="form-control input-lg" type="text" name="judul" placeholder="Judul" required>
+              </div>
+              <div class="form-group">
+                 <textarea class="form-control textarea" placeholder="Tulis post disini.."  name="isi"
+                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;" required></textarea>
+              </div>
+              <div class="form-group">
+                <div class="control-label" for="kategori">Pilih kategori:</div>
+                  <div class="col-md-2">
+                    <select class="form-control" name="kategori" required>
+                      <option hidden>-</option>
+                      <option value="Pengumuman">Pengumuman</option>
+                      <option value="Press Release">Press Release</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
             </div>
-            <div class="form-group">
-                <textarea class="form-control textarea" placeholder="Tulis post disini.."  name="isi"
-                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary pull-right" value="save">Kirim</button>
             </div>
-            <div class="form-group">
-                <input class="form-control" type="text" name="kategori" placeholder="Kategori">
-            </div>
-            <div class="form-group"> 
-                <button type="submit" class="btn btn-primary pull-right" value="save">Kirim</button>
-            </div>
+              
           </form>
         </div>
       </div>

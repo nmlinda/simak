@@ -37,10 +37,19 @@
                     style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
             </div>
             <div class="form-group">
-                <input class="form-control" type="text" name="kategori" placeholder="Kategori" value="{{ $post->kategori }}" required>
+              <div class="control-label" for="kategori">Pilih kategori:</div>
+                <div class="col-md-2">
+                  <select class="form-control" name="kategori" required>
+                    <option hidden>{{ $post->kategori }}</option>
+                    <option value="Pengumuman">Pengumuman</option>
+                    <option value="Press Release">Press Release</option>
+                  </select>
+                </div>
+              </div>
             </div>
-            <div class="form-group"> 
-                <button type="submit" class="btn btn-primary pull-right" >Kirim</button>
+            
+            <div class="box-footer">
+              <button type="submit" class="btn btn-primary pull-right" value="save">Kirim</button>
             </div>
           </form>
         </div>

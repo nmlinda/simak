@@ -23,8 +23,13 @@
       @else
         @foreach ($posts as $post)
          <!-- Default box -->
-         <div class="box box-info">
-           <div class="box-header with-border">
+         @if( $post->kategori == 'Pengumuman')
+            <div class="box box-danger">
+         @else
+            <div class="box box-info">
+         @endif
+            
+            <div class="box-header with-border">
 
               <h3><strong>{{ $post->judul }}</strong></h3>
                <p>
