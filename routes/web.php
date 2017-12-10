@@ -22,6 +22,8 @@ Route::get('/', function () {
 Route::get('/home', function () {
    return redirect('/beranda');
 });
+ //route validasi login
+// Route::middleware('auth')->group(function(){
 
 //routing untuk sidebar
 Route::get('/beranda', 'DashboardController@beranda')->name('pages.beranda');
@@ -57,6 +59,7 @@ Route::get('/test', function () {
  Route::get('/post/{post}/edit', 'PostController@edit')->name('pages.post-edit');
  Route::patch('/post/{post}/edit', 'PostController@update')->name('pages.post-update');
  Route::delete('/post/{post}/hapus', 'PostController@hapus')->name('pages.post-hapus');
+ Route::get('/post/{post}', 'PostController@detail')->name('pages.post-detail');
 
 //route untuk tambah user
 Route::post('/tambah-administrator', 'TambahUserController@administrator')->name('tambahuser.administrator');
@@ -75,3 +78,5 @@ Route::patch('/absen/lihat', 'KegiatanController@editAbsen')->name('editAbsen');
 // Route::post('/absen', 'NgalongController@tambah_ngalong')->name('tambah_ngalong');
 // Route::post('/absen', 'ApelController@tambah_apel')->name('tambah_apel');
 // Route::post('/absen', 'HBAController@tambah_HBA')->name('tambah_HBA');
+
+//});

@@ -14,6 +14,13 @@
 
     <!-- Main content -->
     <section class="content">
+      <div class="input-group input-group-lg margin">
+        <input type="text" class="form-control" placeholder="Pencarian post">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-info btn-flat"><i class="fa fa-fw fa-search"></i></button>
+          </span>
+      </div>
+
       @if($posts->isEmpty())
         <div class="callout callout-info">
            <h4>Belum ada post tersedia.</h4>
@@ -31,15 +38,22 @@
             
             <div class="box-header with-border">
 
-              <h3><strong>{{ $post->judul }}</strong></h3>
-               <p>
-                Nama
-               </p>
-                <span>19.00 17 Nov</span>
+              <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
+              <p>
+                
+              </p>
+              <span>
+               {{ $post->updated_at->diffForHumans() }}
+                <!-- @php
+                 echo date('h:m d F Y', strtotime($post->update_at));
+               @endphp -->
+               <br>
+                {{ $post->updated_at->format('l, d F Y H:i') }}
+              </span>
             </div>
           <div class="box-body">
-              {{ $post->isi }}
-           </div>
+            {!! str_limit($post->isi, 150, ' ...') !!}
+          </div>
             <!-- /.box-body -->
             <div class="box-footer">
               <button type="button" class="btn btn-sm bg-navy">{{ $post->kategori }}</button>
@@ -48,6 +62,7 @@
          </div>
           <!-- /.box -->
         @endforeach
+        {!! $posts->render() !!}
       @endif
     </section>
     <!-- /.content -->

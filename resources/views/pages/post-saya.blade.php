@@ -14,7 +14,12 @@
 
     <!-- Main content -->
     <section class="content">
-      
+      <div class="input-group input-group-lg margin">
+        <input type="text" class="form-control" placeholder="Pencarian post">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-info btn-flat"><i class="fa fa-fw fa-search"></i></button>
+          </span>
+      </div>
       
       @if($postSaya->isEmpty())
         <div class="callout callout-info">
@@ -31,25 +36,59 @@
             <div class="box box-info">
          @endif
             <div class="box-header with-border">
-              <h3><strong>{{ $post->judul }}</strong></h3>
-              <p>Minggu, 18 Desember 2017<br>19.00</p>
+              <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
+              <span>
+                  {{ $post->updated_at->diffForHumans() }}
+                  <!-- @php
+                    echo date('h:m d F Y', strtotime($post->update_at));
+                  @endphp -->
+              </span>
            
               <div class="box-tools pull-right btn-group">
-                <form action="{{ route('pages.post-hapus', $post) }}" class="" method="post">
-                   {{ csrf_field() }}
-                   {{ method_field('DELETE') }}
-                   <a href="{{ route('pages.post-edit', $post) }}" class="btn btn-sm btn-primary">
-                     <i class="fa fa-pencil-square-o"></i> Edit</a>
-                   <button type="submit" class="btn btn-sm btn-danger">
-                     <i class="fa fa-trash-o"></i> Hapus</button>   
-                </form>
+                <a href="{{ route('pages.post-edit', $post) }}" class="btn btn-sm btn-flat btn-primary margin">
+                  <i class="fa fa-pencil-square-o"></i> Edit
+                </a>
+                <button type="button" class="btn btn-sm btn-flat btn-danger margin" data-toggle="modal" 
+                  data-target="#hapus{{$post->id}}" value="{{$post->id}}">
+                  <i class="fa fa-trash-o"></i> Hapus
+                </button>
               </div>
             </div>
 
-           <div class="box-body">
-              {{ $post->isi }}
-           </div>
-            <!-- /.box-body -->
+              <!-- modal hapus -->
+              <div class="modal fade" id="hapus{{$post->id}}">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Menghapus post</h4>
+                    </div>
+                    <div class="modal-body">
+                      Apakah anda yakin ingin menghapus post ini?<br>
+                      <blockquote>
+                        <h4><strong>{{ $post->judul }}</strong></h4>
+                        {!! str_limit($post->isi, 150, ' ...') !!}
+                      </blockquote>
+                    </div>
+                    <div class="modal-footer">
+                      <form method="POST" action="{{ route('pages.post-hapus', $post) }}">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tidak</button>
+                        <button type="submit" class="btn btn-primary">Ya</button>
+                      </form>
+                    </div>                            
+                  </div>
+                  <!-- /.modal-content -->
+                </div>
+                <!-- /.modal-dialog -->
+              </div>
+
+            <div class="box-body">
+            {!! str_limit($post->isi, 150, ' ...') !!}
+            </div>
+              <!-- /.box-body -->
             <div class="box-footer">
               <button type="button" class="btn btn-sm bg-navy">{{ $post->kategori }}</button>
             </div>
@@ -57,6 +96,7 @@
           </div>
           <!-- /.box -->
         @endforeach
+        {!! $posts->render() !!}
       @endif
 
     </section>

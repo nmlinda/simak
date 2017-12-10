@@ -43,8 +43,8 @@ class DashboardController extends Controller
         $active = 12;
         $absen = 'false';
         $id = Auth::user()->id;
-        $posts = Post::All();
-        $postSaya = Post::all()->where('id_mahasiswa', $id);
+        $posts = Post::latest()->paginate(5);
+        $postSaya = Post::All()->where('id_mahasiswa', $id);
         $role = Auth::user()->role;
         if(($role !== 'Administrator' and $role !== 'Senior Resident')){
             return redirect('/');
@@ -55,13 +55,19 @@ class DashboardController extends Controller
     public function post_semua(){
         $active = 13;
         $absen = 'false';
-        $posts = Post::All();
-        $users = User::All();
+        $posts = Post::latest()->paginate(5);
+
+        // $id_pengirim = Post::All();
+        // $users = User::All();
+        // if($users->id == '1'){
+        //     $pengirim = DB::table('users')->get();
+        // }
+        
         $role = Auth::user()->role;
         if(($role !== 'Administrator' and $role !== 'Senior Resident')){
             return redirect('/');
         }
-        return view('pages.post-semua', compact('active', 'role', 'absen','posts','users'));
+        return view('pages.post-semua', compact('active', 'role', 'absen','posts','users','pengirim'));
     }
 
     public function nilai(){

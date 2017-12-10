@@ -12,6 +12,11 @@ class PostController extends Controller
     
     public function store()
     {
+        $this->validate(request(), [
+            'judul' => 'required|max:144',
+            'isi' => 'required|max:1000',
+            'kategori' => 'required',
+        ]);
         Post::create([
             'judul' => request('judul'),
             'isi' => request('isi'),
@@ -19,7 +24,7 @@ class PostController extends Controller
             'id_mahasiswa' => Auth::user()->id
         ]);
 
-        return redirect('/post-saya');
+        return redirect()->route('pages.post-saya')->withSuccess('Post anda berhasil dibuat.');
     }
 
     public function edit(Post $post)
@@ -27,26 +32,36 @@ class PostController extends Controller
         $active =12;
         $role = Auth::user()->role;
         $absen= 'false';
-        
+
         return view('pages.post-edit', compact('post','active','role','absen'));
     }
     
     public function update(Post $post)
     {
         $active = 12;
+        $role = Auth::user()->role;
+        $absen= 'false';
         $post->update([
             'judul' => request('judul'),
             'isi' => request('isi'),
             'kategori' => request('kategori'),
         ]);
 
-        return redirect('/post-saya');
+        return redirect()->route('pages.post-saya')->withSuccess('Post anda berhasil diubah.');
     }
 
     public function hapus(Post $post)
     {
         $post->delete();
+        $active = 12;
+        $absen= 'false';
+        return redirect()->route('pages.post-saya')->withSuccess('Post anda telah dihapus.');
+    }
 
-        return redirect('/post-saya');
+    public function detail(Post $post){
+        $active = 12;
+        $role = Auth::user()->role;
+        $absen= 'false';
+        return view('pages.post-detail', compact('post','active','role','absen'));
     }
 }
