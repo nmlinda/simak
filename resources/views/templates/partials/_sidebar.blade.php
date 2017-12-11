@@ -62,7 +62,7 @@
     </li>
     @endif
     
-    <li @if ($active == 'nilai') class="active" @endif><a href="{{ route('pages.nilai') }}"><i class="fa fa-line-chart"></i> <span>Nilai</span></a></li>
+    {{--  <li @if ($active == 'nilai') class="active" @endif><a href="{{ route('pages.nilai') }}"><i class="fa fa-line-chart"></i> <span>Nilai</span></a></li>  --}}
     <li class="treeview @if ($active == 'absen') active @endif">
       <a href="#">
         <i class="fa fa-calendar-check-o"></i> <span>Kehadiran</span>
@@ -71,9 +71,13 @@
         </span>
       </a>
       <ul class="treeview-menu">
-        <li @if($absen == 'tambah') class="active" @endif><a href="{{ route('pages.absen')}}"><i class="fa fa-circle-o"></i> Tambah</a></li>
-        <li @if($absen == 'lihat') class="active" @endif><a href="{{ route('pages.absen/lihat')}}"><i class="fa fa-circle-o"></i> Lihat</a></li>
-        <li @if($absen == 'edit') class="active" @endif><a href="{{ route('pages.absen/edit') }}"><i class="fa fa-circle-o"></i> Edit</a></li>
+        @if($role=='Administrator' or $role == 'Senior Resident')
+          <li @if($absen == 'tambah') class="active" @endif><a href="{{ route('pages.absen')}}"><i class="fa fa-circle-o"></i> Tambah</a></li>
+          <li @if($absen == 'lihat') class="active" @endif><a href="{{ route('pages.absen/lihat')}}"><i class="fa fa-circle-o"></i> Lihat</a></li>
+        @else 
+          <li @if($absen == 'lihat') class="active" @endif><a href="{{ route('pages.absen/lihat')}}"><i class="fa fa-circle-o"></i> Lihat</a></li>
+        @endif
+        {{--  <li @if($absen == 'edit') class="active" @endif><a href="{{ route('pages.absen/edit') }}"><i class="fa fa-circle-o"></i> Edit</a></li>  --}}
       </ul>
     </li>
 

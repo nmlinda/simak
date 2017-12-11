@@ -34,7 +34,7 @@
             </div>
             <div class="form-group">
                 <textarea class="form-control textarea" placeholder="Tulis post disini.."  name="isi" value="{{ $post->isi }}" required
-                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $post->isi }}</textarea>
             </div>
             <div class="form-group">
               <div class="control-label" for="kategori">Pilih kategori:</div>

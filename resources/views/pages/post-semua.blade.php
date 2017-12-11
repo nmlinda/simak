@@ -22,31 +22,58 @@
         </div>
       @else
         @foreach ($posts as $post)
-         <!-- Default box -->
-         @if( $post->kategori == 'Pengumuman')
+          <div class="col-md-6">
+          @if( $post->kategori == 'Pengumuman')
             <div class="box box-danger">
-         @else
+          @else
             <div class="box box-info">
-         @endif
-            
-            <div class="box-header with-border">
-
-              <h3><strong>{{ $post->judul }}</strong></h3>
-               <p>
-                Nama
-               </p>
-                <span>19.00 17 Nov</span>
+          @endif
+              <div class="box-header with-border">
+                <h2 class="box-title"><i class="fa fa-newspaper-o"></i> {{ $post->judul }}</h2>
+                <h6>{{date('l, d F Y', strtotime($post->created_at))}} at {{date('H.i', strtotime($post->created_at))}}</h6>
+                <div class="box-tools pull-right btn-group">
+                  <a href="{{ route('pages.post-edit', $post) }}" type="button" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a>
+                  <a href="" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapus{{ $post }}"><i class="fa fa-trash-o"></i> Hapus</a>
+                  {{--  Modal Start  --}}
+                  <div class="modal fade" id="#hapus{{ $post }}" style="display: none;">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">×</span></button>
+                          <h4 class="modal-title">Apakah anda yakin ingin menghapus post ini?</h4>
+                        </div>
+                        <div class="modal-body">
+                          {{ $post->judul }}
+                        </div>
+                        <div class="modal-footer">
+                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tidak</button>
+                          <form action="{{ route('pages.post-hapus', $post) }}" class="" method="post">
+                            {{ csrf_field() }}
+                            {{ method_field('DELETE') }}
+                            <button type="button" class="btn btn-primary">Ya</button>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  {{--  Modal End  --}}
+                </div>
+              </div>
+              <div class="box-body">
+                {!! htmlspecialchars_decode(htmlspecialchars_decode(substr($post->isi,0,150))) !!}
+                @if(strlen($post->isi) > 255)
+                    ....
+                @endif
+              </div>
+              <!-- /.box-body -->
+              <div class="box-footer">
+                <button type="button" class="btn btn-sm bg-navy">{{ $post->kategori }}</button>
+                </p>
+              </div>
+              <!-- /.box-footer-->
             </div>
-          <div class="box-body">
-              {{ $post->isi }}
-           </div>
-            <!-- /.box-body -->
-            <div class="box-footer">
-              <button type="button" class="btn btn-sm bg-navy">{{ $post->kategori }}</button>
-            </div>
-           <!-- /.box-footer-->
-         </div>
-          <!-- /.box -->
+          </div>
         @endforeach
       @endif
     </section>
