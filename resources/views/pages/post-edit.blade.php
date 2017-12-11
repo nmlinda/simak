@@ -33,16 +33,14 @@
                 <input class="form-control input-lg" type="text" name="judul" placeholder="Judul" value="{{ $post->judul }}" required>
             </div>
             <div class="form-group">
-                <textarea class="form-control textarea" placeholder="Tulis post disini.."  name="isi" value="{{ $post->isi }}" required
-                    style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ $post->isi }}</textarea>
+                <textarea class="form-control textarea" placeholder="Tulis post disini.."  name="isi" value="{!! $post->isi !!}" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
             </div>
             <div class="form-group">
               <div class="control-label" for="kategori">Pilih kategori:</div>
                 <div class="col-md-2">
                   <select class="form-control" name="kategori" required>
-                    <option hidden>{{ $post->kategori }}</option>
-                    <option value="Pengumuman">Pengumuman</option>
-                    <option value="Press Release">Press Release</option>
+                    <option value="Pengumuman" @if($post->kategori == 'Pengumuman') selected @endif>Pengumuman</option>
+                    <option value="Press Release" @if($post->kategori == 'Press Release') selected @endif>Press Release</option>
                   </select>
                 </div>
               </div>

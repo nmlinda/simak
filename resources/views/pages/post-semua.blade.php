@@ -14,7 +14,14 @@
 
     <!-- Main content -->
     <section class="content">
-      @if(!$posts)
+      <div class="input-group input-group-lg margin">
+        <input type="text" class="form-control" placeholder="Pencarian post">
+          <span class="input-group-btn">
+            <button type="button" class="btn btn-info btn-flat"><i class="fa fa-fw fa-search"></i></button>
+          </span>
+      </div>
+
+      @if($posts->isEmpty())
         <div class="callout callout-info">
            <h4>Belum ada post tersedia.</h4>
 
@@ -22,59 +29,40 @@
         </div>
       @else
         @foreach ($posts as $post)
-          <div class="col-md-6">
-          @if( $post->kategori == 'Pengumuman')
+         <!-- Default box -->
+         @if( $post->kategori == 'Pengumuman')
             <div class="box box-danger">
-          @else
+         @else
             <div class="box box-info">
-          @endif
-              <div class="box-header with-border">
-                <h2 class="box-title"><i class="fa fa-newspaper-o"></i> {{ $post->judul }}</h2>
-                <h6>{{date('l, d F Y', strtotime($post->created_at))}} at {{date('H.i', strtotime($post->created_at))}}</h6>
-                <div class="box-tools pull-right btn-group">
-                  <a href="{{ route('pages.post-edit', $post) }}" type="button" class="btn btn-sm btn-primary"><i class="fa fa-pencil-square-o"></i> Edit</a>
-                  <a href="" type="button" class="btn btn-sm btn-danger" data-toggle="modal" data-target="#hapus{{ $post }}"><i class="fa fa-trash-o"></i> Hapus</a>
-                  {{--  Modal Start  --}}
-                  <div class="modal fade" id="#hapus{{ $post }}" style="display: none;">
-                    <div class="modal-dialog">
-                      <div class="modal-content">
-                        <div class="modal-header">
-                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">×</span></button>
-                          <h4 class="modal-title">Apakah anda yakin ingin menghapus post ini?</h4>
-                        </div>
-                        <div class="modal-body">
-                          {{ $post->judul }}
-                        </div>
-                        <div class="modal-footer">
-                          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Tidak</button>
-                          <form action="{{ route('pages.post-hapus', $post) }}" class="" method="post">
-                            {{ csrf_field() }}
-                            {{ method_field('DELETE') }}
-                            <button type="button" class="btn btn-primary">Ya</button>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {{--  Modal End  --}}
-                </div>
-              </div>
-              <div class="box-body">
-                {!! htmlspecialchars_decode(htmlspecialchars_decode(substr($post->isi,0,150))) !!}
-                @if(strlen($post->isi) > 255)
-                    ....
-                @endif
-              </div>
-              <!-- /.box-body -->
-              <div class="box-footer">
-                <button type="button" class="btn btn-sm bg-navy">{{ $post->kategori }}</button>
-                </p>
-              </div>
-              <!-- /.box-footer-->
+         @endif
+            
+            <div class="box-header with-border">
+
+              <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
+              <p>
+                
+              </p>
+              <span>
+               {{ $post->updated_at->diffForHumans() }}
+                <!-- @php
+                 echo date('h:m d F Y', strtotime($post->update_at));
+               @endphp -->
+               <br>
+                {{ $post->updated_at->format('l, d F Y H:i') }}
+              </span>
             </div>
+          <div class="box-body">
+            {!! str_limit($post->isi, 150, ' ...') !!}
           </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+              <button type="button" class="btn btn-sm bg-navy">{{ $post->kategori }}</button>
+            </div>
+           <!-- /.box-footer-->
+         </div>
+          <!-- /.box -->
         @endforeach
+        {!! $posts->render() !!}
       @endif
     </section>
     <!-- /.content -->
