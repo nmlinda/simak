@@ -29,9 +29,7 @@
                   {{ $post->id_mahasiswa }}
                 </p>
                 <span>
-                  @php
-                    echo date('h:m d F Y', strtotime($post->update_at));
-                  @endphp
+                {{ $post->updated_at->format('d F Y H:i') }}
                 </span>
             </div>
           <div class="box-body">

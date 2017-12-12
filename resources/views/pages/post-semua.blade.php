@@ -14,12 +14,15 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="input-group input-group-lg margin">
-        <input type="text" class="form-control" placeholder="Pencarian post">
+      <!-- search bar -->
+      <form action="{{ route('pages.post-semua-hasil') }}" method="GET">
+        <div class="form-group input-group input-group-lg">
+          <input type="text" class="form-control" placeholder="Pencarian post.." name="cari">
           <span class="input-group-btn">
-            <button type="button" class="btn btn-info btn-flat"><i class="fa fa-fw fa-search"></i></button>
+            <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-fw fa-search"></i></button>
           </span>
-      </div>
+        </div>
+      </form>
 
       @if($posts->isEmpty())
         <div class="callout callout-info">
@@ -39,16 +42,20 @@
             <div class="box-header with-border">
 
               <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
-              <p>
-                
-              </p>
+              <div class="pull-right">{{ $post->updated_at->format('F d, Y - H:i') }}</div>
+              <div class="user-block">
+                <img class="img-circle img-bordered-sm" src="{{ asset('assets/dist/img/profile-photo.jpg') }}" alt="User Image">
+                <span class="name">
+                  {{ $post->user['name'] }}<br>
+                  
+                </span>
+                <span class="role">{{ $post->user['role'] }}</span>
+              </div>
+              
               <span>
                {{ $post->updated_at->diffForHumans() }}
-                <!-- @php
-                 echo date('h:m d F Y', strtotime($post->update_at));
-               @endphp -->
                <br>
-                {{ $post->updated_at->format('l, d F Y H:i') }}
+                {{ $post->updated_at->format('d F Y - H:i') }}
               </span>
             </div>
           <div class="box-body">

@@ -8,7 +8,7 @@
       </h1>
       <ol class="breadcrumb">
         <li><a href="{{ route('pages.beranda') }}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a href="{{ route('pages.post-saya') }}">Post saya</a></li>
+        
         <li class="active">Edit Post</li>
       </ol>
     </section>
@@ -29,13 +29,15 @@
           <form class="" action="{{ route('pages.post-update', $post) }}" method="post">
             {{ csrf_field() }}
             {{ method_field('PATCH')}}
-            <div class="form-group">
+            <div class="form-group" has-feedback{{ $errors->has('judul') ? ' has-error': '' }}>
                 <input class="form-control input-lg" type="text" name="judul" placeholder="Judul" value="{{ $post->judul }}" required>
+                @if ($errors->has('judul')) <span class="help-block"><p>{{ $errors->first('judul') }}</p></span>@endif
             </div>
-            <div class="form-group">
-                <textarea class="form-control textarea" placeholder="Tulis post disini.."  name="isi" value="{!! $post->isi !!}" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+            <div class="form-group"has-feedback{{ $errors->has('isi') ? ' has-error': '' }}>
+                <textarea class="form-control textarea" placeholder="Tulis post disini.."  name="isi" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{{ $post->isi }}}</textarea>
+                @if ($errors->has('isi')) <span class="help-block"><p>{{ $errors->first('isi') }}</p></span>@endif
             </div>
-            <div class="form-group">
+            <div class="form-group"has-feedback{{ $errors->has('kategori') ? ' has-error': '' }}>
               <div class="control-label" for="kategori">Pilih kategori:</div>
                 <div class="col-md-2">
                   <select class="form-control" name="kategori" required>
@@ -44,6 +46,7 @@
                   </select>
                 </div>
               </div>
+              @if ($errors->has('kategori')) <span class="help-block"><p>{{ $errors->first('kategori') }}</p></span>@endif
             </div>
             
             <div class="box-footer">

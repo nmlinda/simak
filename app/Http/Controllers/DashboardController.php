@@ -287,12 +287,13 @@ class DashboardController extends Controller
         }
         $active = 13;
         $absen = 'false';
+        
         $posts = Post::latest()->paginate(5);
         $role = Auth::user()->role;
         if(($role !== 'Administrator' and $role !== 'Senior Resident')){
             return redirect('/');   
         }
-        return view('pages.post-semua', compact('active', 'role', 'absen','posts','users','pengirim'));
+        return view('pages.post-semua', compact('active', 'role', 'absen','posts','pengirim'));
     }
 
     public function nilai(){

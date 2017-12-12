@@ -32,7 +32,7 @@
                   <input class="form-control input-lg" type="text" name="judul" placeholder="Judul" required>
                   @if ($errors->has('judul'))
                     <span class="help-block">
-                      <p>{{ $errors->first('title') }}</p>
+                      <p>{{ $errors->first('judul') }}</p>
                     </span>
                   @endif
               </div>
