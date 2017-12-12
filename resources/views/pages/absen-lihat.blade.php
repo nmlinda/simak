@@ -119,7 +119,13 @@
                                                                     </td>
                                                                     @endif
                                                                 @endforeach
-                                                                <td>{{$i/$ii*100}} %</td>
+                                                                <td>@if($ii == 0)
+                                                                    0
+                                                                    @else
+                                                                    {{$i/$ii*100}}
+                                                                    @endif 
+                                                                    %
+                                                                </td>
                                                                 <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-sodung{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
                                                                 <div class="modal fade" id="modal-sodung{{$user->id}}">
                                                                     <div class="modal-dialog">
@@ -230,7 +236,13 @@
                                                                     </td>
                                                                     @endif
                                                                 @endforeach
-                                                                <td>{{$i/$ii*100}} %</td>
+                                                                <td>@if($ii == 0)
+                                                                    0
+                                                                    @else
+                                                                    {{$i/$ii*100}}
+                                                                    @endif 
+                                                                    %
+                                                                </td>
                                                                 <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-solong{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
                                                                 <div class="modal fade" id="modal-solong{{$user->id}}">
                                                                     <div class="modal-dialog">
@@ -310,6 +322,7 @@
                                                                 <th rowspan="2">NIM</th>
                                                                 <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_ngadung}} ">Ngadung ke</th>
+                                                                <th rowspan="2">Persentase</th>
                                                                 <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
@@ -320,29 +333,33 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @php
-                                                            @endphp
                                                             @foreach($users as $user)
                                                             <tr>
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
                                                                 <td>{{$user->kamar}}</td>
+                                                                <p hidden {{$i=0, $ii=0}}></p>
                                                                 @foreach ($ngadungs as $ngadung)
-                                                                    
                                                                     @if($user->id == $ngadung->id_mahasiswa)
                                                                     <td>
-                                                                        {{--  @foreach($sodungs as $sodung)  --}}
                                                                         @if ($ngadung->kehadiran == 1)
                                                                         <i class="fa fa-check"></i>
+                                                                        <p hidden {{$i+=1}}></p>
                                                                         @else
                                                                         <i class="fa fa-close"></i>
                                                                         @endif
+                                                                        <p hidden {{$ii+=1}}></p>
                                                                     </td>
-                                                                    {{--  @endforeach  --}}
                                                                     @endif
-                                                                    
                                                                 @endforeach
+                                                                <td>@if($ii == 0)
+                                                                    0
+                                                                    @else
+                                                                    {{$i/$ii*100}}
+                                                                    @endif 
+                                                                    %
+                                                                </td>
                                                                 <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-ngadung{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
                                                                 <div class="modal fade" id="modal-ngadung{{$user->id}}">
                                                                     <div class="modal-dialog">
@@ -422,6 +439,7 @@
                                                                 <th rowspan="2">NIM</th>
                                                                 <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_ngalong}} ">Ngalong ke</th>
+                                                                <th rowspan="2">Persentase</th>
                                                                 <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
@@ -432,29 +450,33 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @php
-                                                            @endphp
                                                             @foreach($users as $user)
                                                             <tr>
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
                                                                 <td>{{$user->kamar}}</td>
+                                                                <p hidden {{$i=0, $ii=0}}></p>
                                                                 @foreach ($ngalongs as $ngalong)
-                                                                    
                                                                     @if($user->id == $ngalong->id_mahasiswa)
                                                                     <td>
-                                                                        {{--  @foreach($ngalongs as $ngalong)  --}}
                                                                         @if ($ngalong->kehadiran == 1)
                                                                         <i class="fa fa-check"></i>
+                                                                        <p hidden {{$i+=1}}></p>
                                                                         @else
                                                                         <i class="fa fa-close"></i>
                                                                         @endif
+                                                                        <p hidden {{$ii+=1}}></p>
                                                                     </td>
-                                                                    {{--  @endforeach  --}}
                                                                     @endif
-                                                                    
                                                                 @endforeach
+                                                                <td>@if($ii == 0)
+                                                                    0
+                                                                    @else
+                                                                    {{$i/$ii*100}}
+                                                                    @endif 
+                                                                    %
+                                                                </td>
                                                                 <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-ngalong{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
                                                                 <div class="modal fade" id="modal-ngalong{{$user->id}}">
                                                                     <div class="modal-dialog">
@@ -534,6 +556,7 @@
                                                                 <th rowspan="2">NIM</th>
                                                                 <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_apel}} ">Apel ke</th>
+                                                                <th rowspan="2">Persentase</th>
                                                                 <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
@@ -544,29 +567,33 @@
                                                             </tr>
                                                             </thead>
                                                             <tbody>
-                                                            @php
-                                                            @endphp
                                                             @foreach($users as $user)
                                                             <tr>
                                                                 <td>{{$nomor+=1}}</td>
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
                                                                 <td>{{$user->kamar}}</td>
+                                                                <p hidden {{$i=0, $ii=0}}></p>
                                                                 @foreach ($apels as $apel)
-                                                                    
                                                                     @if($user->id == $apel->id_mahasiswa)
                                                                     <td>
-                                                                        {{--  @foreach($apels as $apel)  --}}
                                                                         @if ($apel->kehadiran == 1)
                                                                         <i class="fa fa-check"></i>
+                                                                        <p hidden {{$i+=1}}></p>
                                                                         @else
                                                                         <i class="fa fa-close"></i>
                                                                         @endif
+                                                                        <p hidden {{$ii+=1}}></p>
                                                                     </td>
-                                                                    {{--  @endforeach  --}}
                                                                     @endif
-                                                                    
                                                                 @endforeach
+                                                                <td>@if($ii == 0)
+                                                                    0
+                                                                    @else
+                                                                    {{$i/$ii*100}}
+                                                                    @endif 
+                                                                    %
+                                                                </td>
                                                                 <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-apel{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
                                                                 <div class="modal fade" id="modal-apel{{$user->id}}">
                                                                     <div class="modal-dialog">
@@ -646,6 +673,7 @@
                                                                 <th rowspan="2">NIM</th>
                                                                 <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_hariBersihAsrama}} ">HBA ke</th>
+                                                                <th rowspan="2"></th>
                                                                 <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>
@@ -664,21 +692,27 @@
                                                                 <td>{{$user->name}}</td>
                                                                 <td>{{$user->nim}}</td>
                                                                 <td>{{$user->kamar}}</td>
+                                                                <p hidden {{$i=0, $ii=0}}></p>
                                                                 @foreach ($hariBersihAsramas as $hariBersihAsrama)
-                                                                    
                                                                     @if($user->id == $hariBersihAsrama->id_mahasiswa)
                                                                     <td>
-                                                                        {{--  @foreach($hariBersihAsramas as $hariBersihAsrama)  --}}
                                                                         @if ($hariBersihAsrama->kehadiran == 1)
                                                                         <i class="fa fa-check"></i>
+                                                                        <p hidden {{$i+=1}}></p>
                                                                         @else
                                                                         <i class="fa fa-close"></i>
                                                                         @endif
+                                                                        <p hidden {{$ii+=1}}></p>
                                                                     </td>
-                                                                    {{--  @endforeach  --}}
                                                                     @endif
-                                                                    
                                                                 @endforeach
+                                                                <td>@if($ii == 0)
+                                                                    0
+                                                                    @else
+                                                                    {{$i/$ii*100}}
+                                                                    @endif 
+                                                                    %
+                                                                </td>
                                                                 <td><a href="#"><button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-hariBersihAsrama{{$user->id}}" value="{{$user->id}}">Edit</button></a></td>
                                                                 <div class="modal fade" id="modal-hariBersihAsrama{{$user->id}}">
                                                                     <div class="modal-dialog">
