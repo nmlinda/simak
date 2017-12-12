@@ -20,11 +20,11 @@ use App\Post;
 class DashboardController extends Controller
 {
     public function beranda(){
-        $active = 'beranda';
-        $absen = 'false';
         if(!(Auth::user())){
             return redirect('/');
         }
+        $active = 'beranda';
+        $absen = 'false';
         $role = Auth::user()->role;
         $id = Auth::user()->id;
         if($role == 'Mahasiswa'){
@@ -253,6 +253,9 @@ class DashboardController extends Controller
     }
     
     public function post(){
+        if(!(Auth::user())){
+            return redirect('/');
+        }
         $active = 11;
         $absen = 'false';
         $role = Auth::user()->role;
@@ -263,6 +266,9 @@ class DashboardController extends Controller
     }
 
     public function post_saya(){
+        if(!(Auth::user())){
+            return redirect('/');
+        }
         $active = 12;
         $absen = 'false';
         $id = Auth::user()->id;
@@ -276,16 +282,12 @@ class DashboardController extends Controller
     }
 
     public function post_semua(){
+        if(!(Auth::user())){
+            return redirect('/');
+        }
         $active = 13;
         $absen = 'false';
         $posts = Post::latest()->paginate(5);
-
-        // $id_pengirim = Post::All();
-        // $users = User::All();
-        // if($users->id == '1'){
-        //     $pengirim = DB::table('users')->get();
-        // }
-        
         $role = Auth::user()->role;
         if(($role !== 'Administrator' and $role !== 'Senior Resident')){
             return redirect('/');   
@@ -414,6 +416,9 @@ class DashboardController extends Controller
     }
  
     public function tambahadmin(){
+        if(!(Auth::user())){
+            return redirect('/');
+        }
         $active = 1;
         $absen = 'false';
         $supervisor = Auth::user()->id;
@@ -425,6 +430,9 @@ class DashboardController extends Controller
     }
  
     public function tambahsr(){
+        if(!(Auth::user())){
+            return redirect('/');
+        }
         $active = 2;
         $absen = 'false';
         $supervisor = Auth::user()->id;
@@ -436,6 +444,9 @@ class DashboardController extends Controller
     }
  
     public function tambahmahasiswa(){
+        if(!(Auth::user())){
+            return redirect('/');
+        }
         $active = 3;
         $absen = 'false';
         $supervisor = Auth::user()->id;
@@ -445,14 +456,4 @@ class DashboardController extends Controller
         }
         return view('pages.tambah-mahasiswa', compact('active', 'supervisor', 'role', 'absen'));
     }
- 
-    // public function test(){
-    //     $supervisor = Auth::user()->id;
-    //     $role = Auth::user()->role;
-    //     $admin = 'Administrator';
-    //     $sr = 'Senior Resident';
-    //     if ( ($role !== $admin) or ($role !== $sr)) $test = 'true';
-    //     else $test = 'false';
-    //     return view('test', compact('supervisor', 'role', 'admin', 'sr', 'test'));
-    // }
 }
