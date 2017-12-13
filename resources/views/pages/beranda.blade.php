@@ -136,8 +136,7 @@
 
         </div>
       </div>
-      @else
-      <section class="content">
+      @elseif($cek==true)
       <!-- Small boxes (Stat box) -->
       <div class="row">
         <div class="col-lg-3 col-xs-6">
@@ -225,19 +224,13 @@
       </div>
       <!-- /.row -->
       <div class="row">
-        <div class="box-body chart-responsive">
+        <div class="box-body chart-responsive" style="min-width: 300px;">
               <div class="chart" id="sr-bar">
               </div>
         </div>
       </div>
-      <!-- Main row -->
-      
-      <!-- /.row (main row) -->
-
-    </section>
       @endif
       <!-- /.row (main row) -->
-
     </section>
 @endsection
 
@@ -345,7 +338,7 @@
             }
         });
       </script>
-    @else
+    @elseif($cek==true)
     <script>
         Highcharts.chart('sr-bar', {
             chart: {
@@ -361,7 +354,7 @@
                 categories: [
                     @foreach($dt_sodungs as $key => $dt_sodung)
                       ' {{$key}} ',
-                  @endforeach
+                    @endforeach
                 ],
                 crosshair: true
             },

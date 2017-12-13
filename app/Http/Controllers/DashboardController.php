@@ -244,14 +244,32 @@ class DashboardController extends Controller
             ));
         }
         $userss = User::all()->where('supervisor', $id);
+        $cek = false;
+        if(count($userss)==0) {
+            return view(
+                'pages.beranda', 
+                compact(
+                    'active', 
+                    'role', 
+                    'absen',
+                    'cek'
+            ));
+        }
         $i=0;
         foreach ($userss as $user){
             $users[$i++] = $user->id;
         }
         $jumlah_mahasiswa = count($users);
-        // dd($jumlah_mahasiswa);
+            // DB::table('users')->select('supervisor')->where('id', $user));
         //inisiasi x-axis
+        $cek = false;
         foreach ($users as $user){
+            $sementara = User::all()->where('id', $user);
+            foreach ($sementara as $sem){
+                if($sem->role=='Mahasiswa'){
+                    $cek = true;
+                }
+            }
             $sodungs = Sodung::all()->where('id_mahasiswa', $user);
             $solongs = Solong::all()->where('id_mahasiswa', $user);
             $ngadungs = Ngadung::all()->where('id_mahasiswa', $user);
@@ -344,6 +362,16 @@ class DashboardController extends Controller
                 $dt_hariBersihAsramas_hadir[date('Y-m', strtotime("+2 month", strtotime($temp)))] = 0;
                 $dt_hariBersihAsramas_hadir[date('Y-m', strtotime("+3 month", strtotime($temp)))] = 0;
             }
+        }
+        if(!$cek){
+            return view(
+                'pages.beranda', 
+                compact(
+                    'active', 
+                    'role', 
+                    'absen',
+                    'cek'
+            ));
         }
         $sum_kegiatan =0;
         $sum_kehadiran =0;
@@ -463,7 +491,7 @@ class DashboardController extends Controller
             
         }
         // dd($dt_sodungs);
-        // dd($sum_kegiatan, $sum_kehadiran);//, $dt_sodungs, $dt_sodungs_hadir, $dt_solongs, $dt_solongs_hadir, $dt_ngadungs_hadir, $dt_ngalongs_hadir, $dt_apels_hadir, $dt_hariBersihAsramas_hadir);
+        // dd($sum_kegiatan, $sum_kehadiran, $dt_sodungs, $dt_sodungs_hadir, $dt_solongs, $dt_solongs_hadir, $dt_ngadungs_hadir, $dt_ngalongs_hadir, $dt_apels_hadir, $dt_hariBersihAsramas_hadir);
         return view(
             'pages.beranda', 
             compact(
@@ -481,7 +509,8 @@ class DashboardController extends Controller
                 'jumlah_kehadiran',
                 'sum_kehadiran',
                 'sum_kegiatan',
-                'jumlah_mahasiswa'
+                'jumlah_mahasiswa',
+                'cek'
         ));
     }
     
