@@ -25,6 +25,9 @@ Route::get('/home', function () {
 
 //routing untuk homepage
 Route::get('/login', 'HomepageController@login')->name('login');
+Route::get('/home/panduan', 'HomepageController@panduan')->name('panduan');
+Route::get('/home/profil', 'HomepageController@profil')->name('profil');
+Route::get('/home/timeline', 'HomepageController@timeline')->name('timeline');
 
  //route validasi login
 // Route::middleware('auth')->group(function(){

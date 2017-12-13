@@ -16,7 +16,7 @@
 
       <div class="form-group has-feedback">
         <input id="nim" type="nim" placeholder="NIM" class="form-control" name="nim" value="" required autofocus>
-        <span class="fa fa-fw fa-user form-control-feedback"></span>
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
         {{--  @if ($errors->has('nim'))
             <span class="help-block">
                 <strong>{{ $errors->first('nim') }}</strong>
