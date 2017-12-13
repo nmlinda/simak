@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
 @include('templates.partials._head')
+@include('templates.partials._alert')
 <body class="hold-transition login-page">
 <div class="login-box">
   <div class="login-logo">
