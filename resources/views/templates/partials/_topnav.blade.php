@@ -12,7 +12,7 @@
           <ul class="nav navbar-nav">
             <li class="active"><a href="#">Beranda <span class="sr-only">(current)</span></a></li>
             <li><a href="#"><i class="fa fa-fw fa-book"></i> Panduan</a></li>
-            <li><a href="#"><i class="fa fa-fw fa-calendar-check-o"></i> Profil</a></li>
+            <li><a href="#"><i class="fa fa-fw fa-group"></i> Profil</a></li>
             <li><a href="#"><i class="fa fa-fw fa-calendar-check-o"></i> Timeline</a></li>
             <li><a href="{{ route('login') }}"><i class="fa fa-fw fa-user"></i> Login</a></li>
           </ul>
