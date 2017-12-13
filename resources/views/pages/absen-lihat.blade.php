@@ -68,7 +68,7 @@
                                     <li><a href="#tab_4" data-toggle="tab">Ngalong</a></li>
                                     <li><a href="#tab_5" data-toggle="tab">Apel</a></li>
                                     <li><a href="#tab_6" data-toggle="tab">HBA</a></li>
-                                    <li><a href="#tab_7" data-toggle="tab">Acara Lain</a></li>
+                                    {{--  <li><a href="#tab_7" data-toggle="tab">Acara Lain</a></li>  --}}
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_1">
@@ -673,7 +673,7 @@
                                                                 <th rowspan="2">NIM</th>
                                                                 <th rowspan="2">Kamar</th>
                                                                 <th colspan="{{ $sum_hariBersihAsrama}} ">HBA ke</th>
-                                                                <th rowspan="2"></th>
+                                                                <th rowspan="2">Persentase</th>
                                                                 <th rowspan="2">Edit</th>
                                                             </tr>
                                                             <tr>

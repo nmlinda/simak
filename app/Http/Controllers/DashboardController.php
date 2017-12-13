@@ -27,6 +27,7 @@ class DashboardController extends Controller
         $absen = 'false';
         $role = Auth::user()->role;
         $id = Auth::user()->id;
+        $childs = User::all()->where('supervisor', $id);
         if($role == 'Mahasiswa'){
             $sodungs = Sodung::all()->where('id_mahasiswa', $id);
             $solongs = Solong::all()->where('id_mahasiswa', $id);
@@ -50,6 +51,7 @@ class DashboardController extends Controller
                 $dt_sodungs_hadir[$i] = 0;
                 // $dt_sodungs_hadir[$i+1] = 0;
             }
+            $dt_sodungs_hadir[$i+1] = 0;
             $i = -1;
             $temp = 0;
             $cek = false;
@@ -64,7 +66,8 @@ class DashboardController extends Controller
                         'absen',
                         'cek',
                         'jumlah_kehadiran',
-                        'jumlah_kegiatan'
+                        'jumlah_kegiatan',
+                        'childs'
                 ));
             }
             foreach ($sodungs as $sodung){
@@ -107,14 +110,19 @@ class DashboardController extends Controller
                 $dt_solongs_hadir[$i] += $solong->kehadiran;
             }
             $i=0;
-            foreach ($dt_solongs as $dt){
-                $jumlah_kegiatan += $dt;
-                $jumlah_kehadiran += $dt_solongs_hadir[$i];
-                if ($dt != 0)
-                    $dt_solongs_hadir[$i] /= $dt;
-                else
-                    $dt_solongs_hadir[$i] = 0;
-                $i++;
+            if(isset($dt_solongs)){
+                foreach ($dt_solongs as $dt){
+                    $jumlah_kegiatan += $dt;
+                    $jumlah_kehadiran += $dt_solongs_hadir[$i];
+                    if ($dt != 0)
+                        $dt_solongs_hadir[$i] /= $dt;
+                    else
+                        $dt_solongs_hadir[$i] = 0;
+                    $i++;
+                }
+            }
+            else{
+                $dt_solongs_hadir[$i] = 0;
             }
             //data ngadung
             $i =-1;
@@ -138,14 +146,19 @@ class DashboardController extends Controller
                 $dt_ngadungs_hadir[$i] += $ngadung->kehadiran;
             }
             $i=0;
-            foreach ($dt_ngadungs as $dt){
-                $jumlah_kegiatan += $dt;
-                $jumlah_kehadiran += $dt_ngadungs_hadir[$i];
-                if ($dt != 0)
-                    $dt_ngadungs_hadir[$i] /= $dt;
-                else
-                    $dt_ngadungs_hadir[$i] = 0;
-                $i++;
+            if(isset($dt_ngadungs)){
+                foreach ($dt_ngadungs as $dt){
+                    $jumlah_kegiatan += $dt;
+                    $jumlah_kehadiran += $dt_ngadungs_hadir[$i];
+                    if ($dt != 0)
+                        $dt_ngadungs_hadir[$i] /= $dt;
+                    else
+                        $dt_ngadungs_hadir[$i] = 0;
+                    $i++;
+                }
+            }
+            else{
+                $dt_ngadungs_hadir[$i] = 0;
             }
             //data ngalong
             $i =-1;
@@ -169,14 +182,19 @@ class DashboardController extends Controller
                 $dt_ngalongs_hadir[$i] += $ngalong->kehadiran;
             }
             $i=0;
-            foreach ($dt_ngalongs as $dt){
-                $jumlah_kegiatan += $dt;
-                $jumlah_kehadiran += $dt_ngalongs_hadir[$i];
-                if ($dt != 0)
-                    $dt_ngalongs_hadir[$i] /= $dt;
-                else
-                    $dt_ngalongs_hadir[$i] = 0;
-                $i++;
+            if(isset($dt_ngalongs)){
+                foreach ($dt_ngalongs as $dt){
+                    $jumlah_kegiatan += $dt;
+                    $jumlah_kehadiran += $dt_ngalongs_hadir[$i];
+                    if ($dt != 0)
+                        $dt_ngalongs_hadir[$i] /= $dt;
+                    else
+                        $dt_ngalongs_hadir[$i] = 0;
+                    $i++;
+                }
+            }
+            else{
+                $dt_ngalongs_hadir[$i] = 0;
             }
             //data apel
             $i =-1;
@@ -200,14 +218,19 @@ class DashboardController extends Controller
                 $dt_apels_hadir[$i] += $apel->kehadiran;
             }
             $i=0;
-            foreach ($dt_apels as $dt){
-                $jumlah_kegiatan += $dt;
-                $jumlah_kehadiran += $dt_apels_hadir[$i];
-                if ($dt != 0)
-                    $dt_apels_hadir[$i] /= $dt;
-                else
-                    $dt_apels_hadir[$i] = 0;
-                $i++;
+            if(isset($dt_apels)){
+                foreach ($dt_apels as $dt){
+                    $jumlah_kegiatan += $dt;
+                    $jumlah_kehadiran += $dt_apels_hadir[$i];
+                    if ($dt != 0)
+                        $dt_apels_hadir[$i] /= $dt;
+                    else
+                        $dt_apels_hadir[$i] = 0;
+                    $i++;
+                }
+            }
+            else{
+                $dt_apels_hadir[$i] = 0;
             }
             //data hariBersihAsrama
             $i =-1;
@@ -231,14 +254,19 @@ class DashboardController extends Controller
                 $dt_hariBersihAsramas_hadir[$i] += $hariBersihAsrama->kehadiran;
             }
             $i=0;
-            foreach ($dt_hariBersihAsramas as $dt){
-                $jumlah_kegiatan += $dt;
-                $jumlah_kehadiran += $dt_hariBersihAsramas_hadir[$i];
-                if ($dt != 0)
-                    $dt_hariBersihAsramas_hadir[$i] /= $dt;
-                else
-                    $dt_hariBersihAsramas_hadir[$i] = 0;
-                $i++;
+            if(isset($dt_hariBersihAsramas_hadir)){
+                foreach ($dt_hariBersihAsramas as $dt){
+                    $jumlah_kegiatan += $dt;
+                    $jumlah_kehadiran += $dt_hariBersihAsramas_hadir[$i];
+                    if ($dt != 0)
+                        $dt_hariBersihAsramas_hadir[$i] /= $dt;
+                    else
+                        $dt_hariBersihAsramas_hadir[$i] = 0;
+                    $i++;
+                }
+            }
+            else{
+                $dt_hariBersihAsramas_hadir[$i] = 0;
             }
             // dd($jumlah_kegiatan, $jumlah_kehadiran);
             $cek=true;
@@ -257,19 +285,27 @@ class DashboardController extends Controller
                     'dt_hariBersihAsramas_hadir',
                     'jumlah_kegiatan', 
                     'jumlah_kehadiran',
-                    'cek'
+                    'cek',
+                    'childs'
             ));
         }
         $userss = User::all()->where('supervisor', $id);
         $cek = false;
         if(count($userss)==0) {
+            $sum_kehadiran = 0;
+            $sum_kegiatan = 1;
+            $jumlah_mahasiswa = count($userss);
             return view(
                 'pages.beranda', 
                 compact(
                     'active', 
                     'role', 
                     'absen',
-                    'cek'
+                    'cek',
+                    'sum_kegiatan',
+                    'sum_kehadiran',
+                    'jumlah_mahasiswa',
+                    'childs'
             ));
         }
         $i=0;
@@ -295,13 +331,20 @@ class DashboardController extends Controller
             $i =-1;
             $temp = 0;
             if(count($sodungs)==0){
+                $sum_kehadiran = 0;
+                $sum_kegiatan = 0;
+                $jumlah_mahasiswa = count($userss);
                 return view(
                     'pages.beranda', 
                     compact(
                         'active', 
                         'role', 
                         'absen',
-                        'cek'
+                        'cek',
+                        'sum_kegiatan',
+                        'sum_kehadiran',
+                        'jumlah_mahasiswa',
+                        'childs'
                 ));
             }
             foreach ($sodungs as $sodung){
@@ -396,7 +439,8 @@ class DashboardController extends Controller
                     'active', 
                     'role', 
                     'absen',
-                    'cek'
+                    'cek',
+                    'childs'
             ));
         }
         $sum_kegiatan =0;
@@ -537,7 +581,8 @@ class DashboardController extends Controller
                 'sum_kehadiran',
                 'sum_kegiatan',
                 'jumlah_mahasiswa',
-                'cek'
+                'cek',
+                'childs'
         ));
     }
     

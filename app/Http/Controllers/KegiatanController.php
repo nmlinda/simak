@@ -13,7 +13,13 @@ use App\Http\Controllers\Controller;
 
 class KegiatanController extends Controller
 {
-    public function tambah_kegiatan(){
+    public function tambah_kegiatan(Request $request){
+        
+        $this->validate($request, [
+            'date' => 'required',
+            // 'kehadiran' => 'required',
+        ]);
+        
         $id_mahasiswa = request('id_mahasiswa');
         $tanggal = request('date');
         $kehadiran = request('kehadiran');
@@ -73,7 +79,7 @@ class KegiatanController extends Controller
                 ]);
             }
         }
-        return redirect('/absen/tambah')->with('status' , 'your message has been saved');
+        return redirect('/absen/tambah')->with('success' , 'Absensi berhasil dimasukan');
     }
 
     public function lihat_kegiatan(){
@@ -143,6 +149,6 @@ class KegiatanController extends Controller
                 ]);
             }
         }
-        return redirect()->route('pages.absen/lihat');
+        return redirect()->route('pages.absen/lihat')->with('success' , 'Data berhasil diperbarui');
     }
 }

@@ -32,7 +32,7 @@
                                 <div class="col-md-6">
                                     <input id="old_password" type="password" class="form-control" name="old_password" required>
 
-                                    @if ($errors->has('password'))
+                                    @if ($errors->has('old_password'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('password_old') }}</strong>
                                         </span>

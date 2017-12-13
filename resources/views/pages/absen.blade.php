@@ -53,7 +53,7 @@
                                     <li><a href="#tab_4" data-toggle="tab">Ngalong</a></li>
                                     <li><a href="#tab_5" data-toggle="tab">Apel</a></li>
                                     <li><a href="#tab_6" data-toggle="tab">HBA</a></li>
-                                    <li><a href="#tab_7" data-toggle="tab">Acara Lain</a></li>
+                                    {{--  <li><a href="#tab_7" data-toggle="tab">Acara Lain</a></li>  --}}
                                 </ul>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tab_1">
@@ -74,6 +74,11 @@
                                                                 <div class="form-group"> <!-- Date input -->
                                                                     <label class="control-label" for="date">Date</label>
                                                                     <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                                    @if ($errors->has('date'))
+                                                                        <span class="help-block">
+                                                                            <strong>{{ $errors->first('date') }}</strong>
+                                                                        </span>
+                                                                    @endif
                                                                 </div>
                                                                 <!-- /.input group -->
                                                             </div>
@@ -111,7 +116,7 @@
                                                                 <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="0">
                                                                 </td>
                                                                 <td>
-                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="1">
+                                                                <input type="radio" class="form-check-input" name="kehadiran[{{$nomor-1}}]" value="1" checked>
                                                                 </td>
                                                                 <input type="hidden" name="id_mahasiswa[{{$nomor-1}}]" value="{{ $user->id }}">
                                                             </tr>
@@ -145,6 +150,11 @@
                                                             <div class="form-group"> <!-- Date input -->
                                                                 <label class="control-label" for="date">Date</label>
                                                                 <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                                @if ($errors->has('date'))
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors->first('date') }}</strong>
+                                                                    </span>
+                                                                @endif
                                                             </div>
                                                             <!-- /.input group -->
                                                         </div>
@@ -216,6 +226,11 @@
                                                             <div class="form-group"> <!-- Date input -->
                                                                 <label class="control-label" for="date">Date</label>
                                                                 <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                                @if ($errors->has('date'))
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors->first('date') }}</strong>
+                                                                    </span>
+                                                                @endif
                                                             </div>
                                                             <!-- /.input group -->
                                                         </div>
@@ -285,6 +300,11 @@
                                                             <div class="form-group"> <!-- Date input -->
                                                                 <label class="control-label" for="date">Date</label>
                                                                 <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                                @if ($errors->has('date'))
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors->first('date') }}</strong>
+                                                                    </span>
+                                                                @endif
                                                             </div>
                                                             <!-- /.input group -->
                                                         </div>
@@ -356,6 +376,11 @@
                                                             <div class="form-group"> <!-- Date input -->
                                                                 <label class="control-label" for="date">Date</label>
                                                                 <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                                @if ($errors->has('date'))
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors->first('date') }}</strong>
+                                                                    </span>
+                                                                @endif
                                                             </div>
                                                             <!-- /.input group -->
                                                         </div>
@@ -427,6 +452,11 @@
                                                             <div class="form-group"> <!-- Date input -->
                                                                 <label class="control-label" for="date">Date</label>
                                                                 <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                                @if ($errors->has('date'))
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors->first('date') }}</strong>
+                                                                    </span>
+                                                                @endif
                                                             </div>
                                                             <!-- /.input group -->
                                                         </div>
@@ -503,6 +533,11 @@
                                                             <div class="form-group"> <!-- Date input -->
                                                                 <label class="control-label" for="date">Date</label>
                                                                 <input class="form-control" id="date" name="date" placeholder="YYYY-MM-DD" type="text"/>
+                                                                @if ($errors->has('date'))
+                                                                    <span class="help-block">
+                                                                        <strong>{{ $errors->first('date') }}</strong>
+                                                                    </span>
+                                                                @endif
                                                             </div>
                                                             <!-- /.input group -->
                                                         </div>
