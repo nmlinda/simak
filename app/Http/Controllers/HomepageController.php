@@ -10,6 +10,18 @@ use App\Http\Requests;
 class HomepageController extends Controller
 {
     public function login(){
-        return view(pages.login);
+        return view('pages.login');
+    }
+
+    public function panduan(){
+        return view('pages.panduan');
+    }
+
+    public function profil(){
+        return view('pages.profil');
+    }
+
+    public function timeline(){
+        return view('pages.timeline-home');
     }
 }

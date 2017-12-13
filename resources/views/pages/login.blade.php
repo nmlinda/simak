@@ -16,10 +16,10 @@
 
       <div class="form-group has-feedback">
         <input id="nim" type="nim" placeholder="NIM" class="form-control" name="nim" value="" required autofocus>
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-        {{--  @if ($errors->has('email'))
+        <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        {{--  @if ($errors->has('nim'))
             <span class="help-block">
-                <strong>{{ $errors->first('email') }}</strong>
+                <strong>{{ $errors->first('nim') }}</strong>
             </span>
         @endif  --}}
       </div>
