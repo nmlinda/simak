@@ -80,6 +80,9 @@ Route::post('/tambah-mahasiswa', 'TambahUserController@mahasiswa')->name('tambah
 //route untuk absen
 Route::post('/absen/tambah', 'KegiatanController@tambah_kegiatan')->name('tambah_kegiatan');
 Route::patch('/absen/lihat', 'KegiatanController@editAbsen')->name('editAbsen');
+
+Route::get('/password/edit', 'UserController@ganti_password')->name('ganti_password');
+Route::patch('/password/edit', 'UserController@update_password')->name('update_password');
 // Route::post('/absen', 'SolongController@tambah_solong')->name('tambah_solong');
 // Route::post('/absen', 'NgadungController@tambah_ngadung')->name('tambah_ngadung');
 // Route::post('/absen', 'NgalongController@tambah_ngalong')->name('tambah_ngalong');
