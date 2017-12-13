@@ -127,7 +127,8 @@
               </div>
             </div>
             <div class="box-body chart-responsive">
-              <div class="chart" id="highchart" style="height: 300px;"></div>
+              <div class="chart" id="highchart" style="height: 350px;">
+              </div>
             </div>
             <!-- /.box-body -->
           </div>
@@ -135,6 +136,105 @@
 
         </div>
       </div>
+      @else
+      <section class="content">
+      <!-- Small boxes (Stat box) -->
+      <div class="row">
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-aqua">
+            <div class="inner">
+              <h3><p hidden {{$x = round($sum_kehadiran/$sum_kegiatan*100, 2)}}></p>
+              @switch($x)
+                  @case($x>= 80)
+                      A
+                      @break
+                  @case($x>=75)
+                      AB
+                      @break
+                  @case($x>=70)
+                      B
+                      @break
+                  @case($x>=60)
+                      BC
+                      @break
+                  @case($x>=50)
+                      C
+                      @break
+                  @case($x>=40)
+                      D
+                      @break
+                  @default
+                      E
+              @endswitch</h3>
+
+              <p>Nilai rata-rata</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-bag"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-green">
+            <div class="inner">
+              <h3>{{ $sum_kegiatan/$jumlah_mahasiswa }}</h3>
+
+              <p>Jumlah Kegiatan</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-stats-bars"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-yellow">
+            <div class="inner">
+              <h3>{{$jumlah_mahasiswa}}</h3>
+
+              <p>Jumlah Mahasiswa</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-person-add"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-xs-6">
+          <!-- small box -->
+          <div class="small-box bg-red">
+            <div class="inner">
+              <h3>{{ round($sum_kehadiran/$sum_kegiatan*100, 2) }}<sup style="font-size: 20px">%</sup></h3>
+
+              <p>Presentasi Kehadiran Total</p>
+            </div>
+            <div class="icon">
+              <i class="ion ion-pie-graph"></i>
+            </div>
+            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          </div>
+        </div>
+        <!-- ./col -->
+      </div>
+      <!-- /.row -->
+      <div class="row">
+        <div class="box-body chart-responsive">
+              <div class="chart" id="sr-bar">
+              </div>
+        </div>
+      </div>
+      <!-- Main row -->
+      
+      <!-- /.row (main row) -->
+
+    </section>
       @endif
       <!-- /.row (main row) -->
 
@@ -161,7 +261,8 @@
                   @foreach($dt_sodungs as $key => $dt_sodung)
                       ' {{$key}} ',
                   @endforeach
-                ]
+                ],
+                crosshair: true
             },
             yAxis: {
                 title: {
@@ -244,5 +345,117 @@
             }
         });
       </script>
+    @else
+    <script>
+        Highcharts.chart('sr-bar', {
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: 'Persentase Kehadiran Mahasiswa'
+            },
+            subtitle: {
+                text: 'Berdasarkan bulan per kegiatan.'
+            },
+            xAxis: {
+                categories: [
+                    @foreach($dt_sodungs as $key => $dt_sodung)
+                      ' {{$key}} ',
+                  @endforeach
+                ],
+                crosshair: true
+            },
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Persentase Kehadiran (%)'
+                }
+            },
+            tooltip: {
+                headerFormat:   '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat:    '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                '<td style="padding:0"><b>{point.y:.1f} %</b></td></tr>',
+                footerFormat:   '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: 'Sodung',
+                data: [
+                    @foreach($dt_sodungs_hadir as $key => $hadir)
+                        @if($hadir != null)
+                            {{ round($hadir*100,2) }},
+                        @endif 
+                    @endforeach
+                ]
+            },{
+                name: 'Solong',
+                data: [
+                    @foreach($dt_solongs_hadir as $key => $hadir)
+                      @if($hadir != null)
+                            {{ round($hadir*100,2) }},
+                        @endif 
+                    @endforeach
+                ]
+            },{
+                name: 'Ngadung',
+                data: [
+                    @foreach($dt_ngadungs_hadir as $key => $hadir)
+                      @if($hadir != null)
+                            {{ round($hadir*100,2) }},
+                        @endif 
+                    @endforeach
+                ]
+            },{
+                name: 'Ngalong',
+                data: [
+                    @foreach($dt_ngalongs_hadir as $key => $hadir)
+                      @if($hadir != null)
+                            {{ round($hadir*100,2) }},
+                        @endif 
+                    @endforeach
+                ]
+            },{
+                name: 'Apel',
+                data: [
+                    @foreach($dt_apels_hadir as $key => $hadir)
+                      @if($hadir != null)
+                            {{ round($hadir*100,2) }},
+                        @endif 
+                    @endforeach
+                ]
+            },{
+                name: 'HBA',
+                data: [
+                    @foreach($dt_hariBersihAsramas_hadir as $key => $hadir)
+                      @if($hadir != null)
+                            {{ round($hadir*100,2) }},
+                        @endif 
+                    @endforeach
+                ]
+            }],
+            responsive: {
+                rules: [{
+                    condition: {
+                        minWidth: 800,
+                        minHeight:1200
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
+    </script>
     @endif
 @endsection

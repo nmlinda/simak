@@ -243,12 +243,245 @@ class DashboardController extends Controller
                     'jumlah_kehadiran'
             ));
         }
+        $userss = User::all()->where('supervisor', $id);
+        $i=0;
+        foreach ($userss as $user){
+            $users[$i++] = $user->id;
+        }
+        $jumlah_mahasiswa = count($users);
+        // dd($jumlah_mahasiswa);
+        //inisiasi x-axis
+        foreach ($users as $user){
+            $sodungs = Sodung::all()->where('id_mahasiswa', $user);
+            $solongs = Solong::all()->where('id_mahasiswa', $user);
+            $ngadungs = Ngadung::all()->where('id_mahasiswa', $user);
+            $ngalongs = Ngalong::all()->where('id_mahasiswa', $user);
+            $apels = Apel::all()->where('id_mahasiswa', $user);
+            $hariBersihAsramas = hariBersihAsrama::all()->where('id_mahasiswa', $user);
+            $i =-1;
+            $temp = 0;
+            foreach ($sodungs as $sodung){
+                if($temp != date('Y-m', strtotime($sodung->tanggal))){
+                    $temp = date('Y-m', strtotime($sodung->tanggal));
+                    $i++;
+                }
+                $dt_sodungs[$temp] = 0;
+                $dt_sodungs[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                // $dt_sodungs[date('Y-m', strtotime("+2 month", strtotime($temp)))] = 0;
+                // $dt_sodungs[date('Y-m', strtotime("+3 month", strtotime($temp)))] = 0;
+                $dt_sodungs_hadir[$temp] = 0;
+                $dt_sodungs_hadir[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_sodungs_hadir[date('Y-m', strtotime("+2 month", strtotime($temp)))] = 0;
+                $dt_sodungs_hadir[date('Y-m', strtotime("+3 month", strtotime($temp)))] = 0;
+            }
+            $i =-1;
+            $temp = 0;
+            foreach ($solongs as $solong){
+                if($temp != date('Y-m', strtotime($solong->tanggal))){
+                    $temp = date('Y-m', strtotime($solong->tanggal));
+                    $i++;
+                }
+                $dt_solongs[$temp] = 0;
+                $dt_solongs[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_solongs_hadir[$temp] = 0;
+                $dt_solongs_hadir[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_solongs_hadir[date('Y-m', strtotime("+2 month", strtotime($temp)))] = 0;
+                $dt_solongs_hadir[date('Y-m', strtotime("+3 month", strtotime($temp)))] = 0;
+            }
+            $i =-1;
+            $temp = 0;
+            foreach ($ngadungs as $ngadung){
+                if($temp != date('Y-m', strtotime($ngadung->tanggal))){
+                    $temp = date('Y-m', strtotime($ngadung->tanggal));
+                    $i++;
+                }
+                $dt_ngadungs[$temp] = 0;
+                $dt_ngadungs[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_ngadungs_hadir[$temp] = 0;
+                $dt_ngadungs_hadir[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_ngadungs_hadir[date('Y-m', strtotime("+2 month", strtotime($temp)))] = 0;
+                $dt_ngadungs_hadir[date('Y-m', strtotime("+3 month", strtotime($temp)))] = 0;
+            }
+            $i =-1;
+            $temp = 0;
+            foreach ($ngalongs as $ngalong){
+                if($temp != date('Y-m', strtotime($ngalong->tanggal))){
+                    $temp = date('Y-m', strtotime($ngalong->tanggal));
+                    $i++;
+                }
+                $dt_ngalongs[$temp] = 0;
+                $dt_ngalongs[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_ngalongs_hadir[$temp] = 0;
+                $dt_ngalongs_hadir[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_ngalongs_hadir[date('Y-m', strtotime("+2 month", strtotime($temp)))] = 0;
+                $dt_ngalongs_hadir[date('Y-m', strtotime("+3 month", strtotime($temp)))] = 0;
+            }
+            $i =-1;
+            $temp = 0;
+            foreach ($apels as $apel){
+                if($temp != date('Y-m', strtotime($apel->tanggal))){
+                    $temp = date('Y-m', strtotime($apel->tanggal));
+                    $i++;
+                }
+                $dt_apels[$temp] = 0;
+                $dt_apels[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_apels_hadir[$temp] = 0;
+                $dt_apels_hadir[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_apels_hadir[date('Y-m', strtotime("+2 month", strtotime($temp)))] = 0;
+                $dt_apels_hadir[date('Y-m', strtotime("+3 month", strtotime($temp)))] = 0;
+            }
+            $i =-1;
+            $temp = 0;
+            foreach ($hariBersihAsramas as $hariBersihAsrama){
+                if($temp != date('Y-m', strtotime($hariBersihAsrama->tanggal))){
+                    $temp = date('Y-m', strtotime($hariBersihAsrama->tanggal));
+                    $i++;
+                }
+                $dt_hariBersihAsramas[$temp] = 0;
+                $dt_hariBersihAsramas[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_hariBersihAsramas_hadir[$temp] = 0;
+                $dt_hariBersihAsramas_hadir[date('Y-m', strtotime("+1 month", strtotime($temp)))] = 0;
+                $dt_hariBersihAsramas_hadir[date('Y-m', strtotime("+2 month", strtotime($temp)))] = 0;
+                $dt_hariBersihAsramas_hadir[date('Y-m', strtotime("+3 month", strtotime($temp)))] = 0;
+            }
+        }
+        $sum_kegiatan =0;
+        $sum_kehadiran =0;
+        foreach ($users as $user){
+            //cari data kegiatan
+            $sodungs = Sodung::all()->where('id_mahasiswa', $user);
+            $solongs = Solong::all()->where('id_mahasiswa', $user);
+            $ngadungs = Ngadung::all()->where('id_mahasiswa', $user);
+            $ngalongs = Ngalong::all()->where('id_mahasiswa', $user);
+            $apels = Apel::all()->where('id_mahasiswa', $user);
+            $hariBersihAsramas = hariBersihAsrama::all()->where('id_mahasiswa', $user);
+            //hitung jumlah kegiatan dan kehadiran per bulan per user
+            $temp = 0;
+            foreach ($sodungs as $sodung){
+                if($temp != date('Y-m', strtotime($sodung->tanggal))){
+                    $temp = date('Y-m', strtotime($sodung->tanggal));
+                    $i+=1;
+                }
+                $dt_sodungs[$temp] += 1;
+                $dt_sodungs_hadir[$temp] += $sodung->kehadiran;
+            }
+            $temp = 0;
+            foreach ($solongs as $solong){
+                if($temp != date('Y-m', strtotime($solong->tanggal))){
+                    $temp = date('Y-m', strtotime($solong->tanggal));
+                    $i+=1;
+                }
+                $dt_solongs[$temp] += 1;
+                $dt_solongs_hadir[$temp] += $solong->kehadiran;
+            }
+            $temp = 0;
+            foreach ($ngadungs as $ngadung){
+                if($temp != date('Y-m', strtotime($ngadung->tanggal))){
+                    $temp = date('Y-m', strtotime($ngadung->tanggal));
+                    $i+=1;
+                }
+                $dt_ngadungs[$temp] += 1;
+                $dt_ngadungs_hadir[$temp] += $ngadung->kehadiran;
+            }
+            $temp = 0;
+            foreach ($ngalongs as $ngalong){
+                if($temp != date('Y-m', strtotime($ngalong->tanggal))){
+                    $temp = date('Y-m', strtotime($ngalong->tanggal));
+                    $i+=1;
+                }
+                $dt_ngalongs[$temp] += 1;
+                $dt_ngalongs_hadir[$temp] += $ngalong->kehadiran;
+            }
+            $temp = 0;
+            foreach ($apels as $apel){
+                if($temp != date('Y-m', strtotime($apel->tanggal))){
+                    $temp = date('Y-m', strtotime($apel->tanggal));
+                    $i+=1;
+                }
+                $dt_apels[$temp] += 1;
+                $dt_apels_hadir[$temp] += $apel->kehadiran;
+            }
+            $temp = 0;
+            foreach ($hariBersihAsramas as $hariBersihAsrama){
+                if($temp != date('Y-m', strtotime($hariBersihAsrama->tanggal))){
+                    $temp = date('Y-m', strtotime($hariBersihAsrama->tanggal));
+                    $i+=1;
+                }
+                $dt_hariBersihAsramas[$temp] += 1;
+                $dt_hariBersihAsramas_hadir[$temp] += $hariBersihAsrama->kehadiran;
+            }
+            foreach ($sodungs as $sodung){
+                $sum_kegiatan++;
+                $sum_kehadiran+=$sodung->kehadiran;
+            }
+            foreach ($solongs as $solong){
+                $sum_kegiatan++;
+                $sum_kehadiran+=$solong->kehadiran;
+            }
+            foreach ($ngadungs as $ngadung){
+                $sum_kegiatan++;
+                $sum_kehadiran+=$ngadung->kehadiran;
+            }
+            foreach ($ngalongs as $ngalong){
+                $sum_kegiatan++;
+                $sum_kehadiran+=$ngalong->kehadiran;
+            }
+            foreach ($apels as $apel){
+                $sum_kegiatan++;
+                $sum_kehadiran+=$apel->kehadiran;
+            }
+            foreach ($hariBersihAsramas as $hariBersihAsrama){
+                $sum_kegiatan++;
+                $sum_kehadiran+=$hariBersihAsrama->kehadiran;
+            }
+        }
+        foreach ($dt_sodungs as $key => $dt){
+            if ($dt_sodungs_hadir[$key] != 0)
+                $dt_sodungs_hadir[$key] = round($dt_sodungs_hadir[$key]/$dt_sodungs[$key],4);
+            else
+                $dt_sodungs_hadir[$key] = 0;
+            if ($dt_solongs_hadir[$key] != 0)
+                $dt_solongs_hadir[$key] = round($dt_solongs_hadir[$key]/$dt_solongs[$key],4);
+            else
+                $dt_solongs_hadir[$key] = 0;
+            if ($dt_ngadungs_hadir[$key] != 0)
+                $dt_ngadungs_hadir[$key] = round($dt_ngadungs_hadir[$key]/$dt_ngadungs[$key],4);
+            else
+                $dt_ngadungs_hadir[$key] = 0;
+            if ($dt_ngalongs_hadir[$key] != 0)
+                $dt_ngalongs_hadir[$key] = round($dt_ngalongs_hadir[$key]/$dt_ngalongs[$key],4);
+            else
+                $dt_ngalongs_hadir[$key] = 0;
+            if ($dt_apels_hadir[$key] != 0)
+                $dt_apels_hadir[$key] = round($dt_apels_hadir[$key]/$dt_apels[$key],4);
+            else
+                $dt_apels_hadir[$key] = 0;
+            if ($dt_hariBersihAsramas_hadir[$key] != 0)
+                $dt_hariBersihAsramas_hadir[$key] = round($dt_hariBersihAsramas_hadir[$key]/$dt_hariBersihAsramas[$key],4);
+            else
+                $dt_hariBersihAsramas_hadir[$key] = 0;
+            
+        }
+        // dd($dt_sodungs);
+        // dd($sum_kegiatan, $sum_kehadiran);//, $dt_sodungs, $dt_sodungs_hadir, $dt_solongs, $dt_solongs_hadir, $dt_ngadungs_hadir, $dt_ngalongs_hadir, $dt_apels_hadir, $dt_hariBersihAsramas_hadir);
         return view(
             'pages.beranda', 
             compact(
                 'active', 
                 'role', 
-                'absen'
+                'absen',
+                'dt_sodungs',
+                'dt_sodungs_hadir',
+                'dt_solongs_hadir',
+                'dt_ngadungs_hadir',
+                'dt_ngalongs_hadir',
+                'dt_apels_hadir',
+                'dt_hariBersihAsramas_hadir',
+                'jumlah_kegiatan', 
+                'jumlah_kehadiran',
+                'sum_kehadiran',
+                'sum_kegiatan',
+                'jumlah_mahasiswa'
         ));
     }
     
