@@ -83,6 +83,8 @@ Route::patch('/absen/lihat', 'KegiatanController@editAbsen')->name('editAbsen');
 
 Route::get('/password/edit', 'UserController@ganti_password')->name('ganti_password');
 Route::patch('/password/edit', 'UserController@update_password')->name('update_password');
+Route::patch('/beranda', 'UserController@edit_user')->name('edit_user');
+Route::delete('/beranda', 'UserController@destroy')->name('user.destroy');
 // Route::post('/absen', 'SolongController@tambah_solong')->name('tambah_solong');
 // Route::post('/absen', 'NgadungController@tambah_ngadung')->name('tambah_ngadung');
 // Route::post('/absen', 'NgalongController@tambah_ngalong')->name('tambah_ngalong');

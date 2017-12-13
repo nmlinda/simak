@@ -52,7 +52,7 @@ class TambahUserController extends Controller
             'nim' => request('nim'),
             'supervisor' => request('supervisor'),
         ]);
-        return redirect('/tambah-administrator');
+        return redirect('/tambah-administrator')->with('success', 'Administrator berhasil ditambahkan');
     }
 
     public function SR()
@@ -70,7 +70,7 @@ class TambahUserController extends Controller
             'nim' => request('nim'),
             'supervisor' => request('supervisor'),
         ]);
-        return redirect('/tambah-sr');
+        return redirect('/tambah-sr')->with('success', 'Senior Resident berhasil ditambahkan');
     }
 
     public function mahasiswa()
@@ -88,6 +88,6 @@ class TambahUserController extends Controller
             'nim' => request('nim'),
             'supervisor' => request('supervisor'),
         ]);
-        return redirect('/tambah-mahasiswa');
+        return redirect('/tambah-mahasiswa')->with('success', 'Mahasiswa berhasil ditambahkan');
     }
 }
