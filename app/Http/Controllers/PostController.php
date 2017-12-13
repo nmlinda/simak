@@ -17,7 +17,29 @@ class PostController extends Controller
             'judul' => 'required|max:144',
             'isi' => 'required|max:1000',
             'kategori' => 'required',
+            'foto' => 'mimes:jpeg,png,jpg|max:15000',
         ]);
+        // $gambar = $request->foto;
+        // $namaFile = $gambar->getClientOriginalName();
+        // $request->foto->move('uploadgambar', $namaFile);
+        // $do = new Gambar($request->all());
+        // $do->file_gambar = $namaFile;
+        // $do->save();
+        // return redirect('pages.post-saya');
+
+        // $photo1 = "";
+        // if ($request->hasFile('foto')){ //has file itu meminta nama databasenya bukan classnya
+        //     $ip = request()->ip();
+        //     $file = $request->foto;
+        //     $fileName = str_random(40) . '.' . $file->guessClientExtension();;
+        //     $getPath = 'http://180.244.234.254/simak/public/img/' . $fileName;
+        //     $destinationPath = "images/post";
+        //     $data['foto'] = '../'. $destinationPath . '/' . $fileName;
+        //     $file -> move($destinationPath, $getPath,$fileName);
+        //     $photo1 = $fileName;
+        //     $data['user'] = $user->email;
+        // }
+
         Post::create([
             'judul' => request('judul'),
             'isi' => request('isi'),

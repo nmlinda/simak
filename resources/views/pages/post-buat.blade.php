@@ -25,7 +25,7 @@
         <!-- /.box-header -->
 
         <div class="box-body pad">
-          <form class="" action="{{ route('pages.post-store') }}" method="post">
+          <form class="" action="{{ route('pages.post-store') }}" method="post" enctype="multipart/form-data">
             {{ csrf_field() }}
             <div class="box-body">
              <div class="form-group has-feedback{{ $errors->has('judul') ? ' has-error': '' }}">
@@ -44,6 +44,11 @@
                     </span>
                   @endif
               </div>
+              <!-- <div class="form-group has-feedback{{ $errors->has('foto') ? ' has-error': '' }}">
+                    <div class="control-label" for="file_gambar">Upload gambar</div>
+                    <input type="file" id="file_gambar" name="foto">
+                    @if ($errors->has('foto')) <span class="help-block"><p>{{ $errors->first('foto') }}</p></span>@endif
+              </div> -->
               <div class="form-group has-feedback{{ $errors->has('kategori') ? ' has-error': '' }}">
                 <div class="control-label" for="kategori">Pilih kategori:</div>
                   <div class="col-md-2">
@@ -54,11 +59,7 @@
                     </select>
                   </div>
                 </div>
-                @if ($errors->has('kategori'))
-                    <span class="help-block">
-                      <p>{{ $errors->first('kategori') }}</p>
-                    </span>
-                  @endif
+                @if ($errors->has('kategori')) <span class="help-block"><p>{{ $errors->first('kategori') }}</p></span>@endif
               </div>
             </div>
 

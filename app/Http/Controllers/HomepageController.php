@@ -5,23 +5,33 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\Post;
 use App\Http\Requests;
 
 class HomepageController extends Controller
 {
+    public function home(){
+        $active = 'home';
+        $posts = Post::latest()->paginate(5);
+        return view('pages.homepage', compact('active','posts'));
+    }
+
     public function login(){
         return view('pages.login');
     }
 
     public function panduan(){
-        return view('pages.panduan');
+        $active = 'panduan';
+        return view('pages.panduan', compact('active'));
     }
 
     public function profil(){
-        return view('pages.profil');
+        $active = 'profil';
+        return view('pages.profil', compact('active'));
     }
 
     public function timeline(){
-        return view('pages.timeline-home');
+        $active = 'tl';
+        return view('pages.timeline-home', compact('active'));
     }
 }
