@@ -238,7 +238,7 @@
     {{--  highchart  --}}
     <script src="https://code.highcharts.com/highcharts.js"></script>
     <script src="https://code.highcharts.com/modules/series-label.js"></script>
-    @if($role == 'Mahasiswa')
+    @if($role == 'Mahasiswa'  && $cek == true)
       <script>
         Highcharts.chart('highchart', {
 
