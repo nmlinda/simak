@@ -89,7 +89,8 @@
               </div>
 
             <div class="box-body">
-            {!! mb_strimwidth($post->isi, 0, 255, "...") !!}
+              <!-- <img src="{{ url('uploadgambar') }}/{{ $post->foto }}" class="img-responsive"> -->
+              {!! mb_strimwidth($post->isi, 0, 255, "...") !!}
             </div>
               <!-- /.box-body -->
             <div class="box-footer">
