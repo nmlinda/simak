@@ -60,6 +60,9 @@ Route::get('/test', function () {
  Route::patch('/post/{post}/edit', 'PostController@update')->name('pages.post-update');
  Route::delete('/post/{post}/hapus', 'PostController@hapus')->name('pages.post-hapus');
  Route::get('/post/{post}', 'PostController@detail')->name('pages.post-detail');
+ Route::get('/post-saya/hasil', 'PostController@cariSaya')->name('pages.post-saya-hasil');
+ Route::get('/post-semua/hasil', 'PostController@cariSemua')->name('pages.post-semua-hasil');
+ 
 
 //route untuk tambah user
 Route::post('/tambah-administrator', 'TambahUserController@administrator')->name('tambahuser.administrator');

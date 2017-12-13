@@ -14,12 +14,15 @@
 
     <!-- Main content -->
     <section class="content">
-      <div class="input-group input-group-lg margin">
-        <input type="text" class="form-control" placeholder="Pencarian post">
+      <!-- search bar -->
+      <form action="{{ route('pages.post-saya-hasil') }}" method="GET">
+        <div class="form-group input-group input-group-lg">
+          <input type="text" class="form-control" placeholder="Pencarian post.." name="cari">
           <span class="input-group-btn">
-            <button type="button" class="btn btn-info btn-flat"><i class="fa fa-fw fa-search"></i></button>
+            <button type="submit" class="btn btn-info btn-flat"><i class="fa fa-fw fa-search"></i></button>
           </span>
-      </div>
+        </div>
+      </form>
       
       @if($postSaya->isEmpty())
         <div class="callout callout-info">
