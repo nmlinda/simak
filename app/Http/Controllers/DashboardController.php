@@ -52,6 +52,21 @@ class DashboardController extends Controller
             }
             $i = -1;
             $temp = 0;
+            $cek = false;
+            if(count($sodungs)==0) {
+                $jumlah_kehadiran = 0;
+                $jumlah_kegiatan = 1;
+                return view(
+                    'pages.beranda', 
+                    compact(
+                        'active', 
+                        'role', 
+                        'absen',
+                        'cek',
+                        'jumlah_kehadiran',
+                        'jumlah_kegiatan'
+                ));
+            }
             foreach ($sodungs as $sodung){
                 if($temp != date('Y-m', strtotime($sodung->tanggal))){
                     $temp = date('Y-m', strtotime($sodung->tanggal));
@@ -226,6 +241,7 @@ class DashboardController extends Controller
                 $i++;
             }
             // dd($jumlah_kegiatan, $jumlah_kehadiran);
+            $cek=true;
             return view(
                 'pages.beranda', 
                 compact(
@@ -240,7 +256,8 @@ class DashboardController extends Controller
                     'dt_apels_hadir',
                     'dt_hariBersihAsramas_hadir',
                     'jumlah_kegiatan', 
-                    'jumlah_kehadiran'
+                    'jumlah_kehadiran',
+                    'cek'
             ));
         }
         $userss = User::all()->where('supervisor', $id);
@@ -262,7 +279,6 @@ class DashboardController extends Controller
         $jumlah_mahasiswa = count($users);
             // DB::table('users')->select('supervisor')->where('id', $user));
         //inisiasi x-axis
-        $cek = false;
         foreach ($users as $user){
             $sementara = User::all()->where('id', $user);
             foreach ($sementara as $sem){
@@ -278,6 +294,16 @@ class DashboardController extends Controller
             $hariBersihAsramas = hariBersihAsrama::all()->where('id_mahasiswa', $user);
             $i =-1;
             $temp = 0;
+            if(count($sodungs)==0){
+                return view(
+                    'pages.beranda', 
+                    compact(
+                        'active', 
+                        'role', 
+                        'absen',
+                        'cek'
+                ));
+            }
             foreach ($sodungs as $sodung){
                 if($temp != date('Y-m', strtotime($sodung->tanggal))){
                     $temp = date('Y-m', strtotime($sodung->tanggal));
@@ -463,6 +489,7 @@ class DashboardController extends Controller
                 $sum_kehadiran+=$hariBersihAsrama->kehadiran;
             }
         }
+
         foreach ($dt_sodungs as $key => $dt){
             if ($dt_sodungs_hadir[$key] != 0)
                 $dt_sodungs_hadir[$key] = round($dt_sodungs_hadir[$key]/$dt_sodungs[$key],4);
