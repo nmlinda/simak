@@ -15,7 +15,7 @@ class PostController extends Controller
     {
         $this->validate(request(), [
             'judul' => 'required|max:144',
-            'isi' => 'required|max:1000',
+            'isi' => 'required',
             'kategori' => 'required',
             // 'foto' => 'mimes:jpeg,png,jpg|max:15000',
         ]);
@@ -67,7 +67,7 @@ class PostController extends Controller
     {
         $this->validate(request(), [
             'judul' => 'required|max:144',
-            'isi' => 'required|max:1000',
+            'isi' => 'required',
             'kategori' => 'required',
         ]);
         $active = 12;
@@ -92,6 +92,10 @@ class PostController extends Controller
     }
 
     public function detail(Post $post){
+        $active = 'home';
+        if(!isset(Auth::user()->role)) {
+            return view('pages.post-detail2', compact('post', 'active'));
+        }
         $active = 12;
         $role = Auth::user()->role;
         $absen= 'false';

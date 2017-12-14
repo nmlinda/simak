@@ -44,7 +44,7 @@
       </div>
     </form>
 
-    <a href="{{ route('password.request') }}">Lupa kata sandi</a><br>
+    {{--  <a href="#">Lupa kata sandi? Hubungi SR anda.</a><br>  --}}
 
   </div>
   <!-- /.login-box-body -->

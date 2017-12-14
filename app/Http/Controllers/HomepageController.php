@@ -12,7 +12,7 @@ class HomepageController extends Controller
 {
     public function home(){
         $active = 'home';
-        $posts = Post::latest()->paginate(2);
+        $posts = Post::latest()->paginate(4);
         return view('pages.homepage', compact('active','posts'));
     }
 
