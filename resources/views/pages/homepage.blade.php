@@ -7,16 +7,7 @@
                 <h3 class="box-title text-center">Seputar Asrama</h3>
             </div>
             <div class="box-body" style="padding-right: 150px; padding-left: 150px;">
-            <div class="box box-danger">
-                <div class="box-header with-border">Judul</div>
-                <div class="box-body">isi</div>
-                <div class="box-footer">Info</div>
-            </div>
-            <div class="box box-danger">
-                <div class="box-header with-border">Judul</div>
-                <div class="box-body">isi</div>
-                <div class="box-footer">Info</div>
-            </div>
+            
             @foreach ($posts as $post)
          <!-- Default box -->
          @if( $post->kategori == 'Pengumuman')
@@ -27,7 +18,7 @@
             
             <div class="box-header with-border">
               <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
-              <div class="pull-right">{{ $post->updated_at->format('F d, Y - H:i') }}</div>
+              <span class="pull-right">{{ $post->updated_at->format('F d, Y - H:i') }}</span>
             </div>
           <div class="box-body text-justify">
             {!! str_limit($post->isi, 150, ' ...') !!}

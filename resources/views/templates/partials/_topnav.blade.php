@@ -22,11 +22,11 @@
     </div>  
     </div>
     <!-- /.container-fluid -->
-    <div class="jumbotron" style="margin-bottom: 0px;>
+    <div class="jumbotron" style="margin-bottom:0px; background-color: #3c8dbc;">
         
         <div class="container">
-            <div class="text-center">
-                 <h2>Sistem Informasi Akademik Asrama PPKU IPB</h2>
+            <div class="text-center" >
+                 <h2 style="color:#fff;">Sistem Informasi Akademik Asrama PPKU IPB</h2>
             </div><!-- /.navbar-collapse -->
         </div>
     </div>

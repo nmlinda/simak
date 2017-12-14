@@ -51,12 +51,7 @@
                 </span>
                 <span class="role">{{ $post->user['role'] }}</span>
               </div>
-              
-              <span>
-               {{ $post->updated_at->diffForHumans() }}
-               <br>
-                {{ $post->updated_at->format('d F Y - H:i') }}
-              </span>
+             
             </div>
           <div class="box-body">
             {!! str_limit($post->isi, 150, ' ...') !!}

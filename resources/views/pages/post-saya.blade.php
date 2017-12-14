@@ -40,12 +40,7 @@
          @endif
             <div class="box-header with-border">
               <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
-              <span>
-                  {{ $post->updated_at->diffForHumans() }}
-                  <!-- @php
-                    echo date('h:m d F Y', strtotime($post->update_at));
-                  @endphp -->
-              </span>
+              <div class="pull-right">{{ $post->updated_at->format('F d, Y - H:i') }}</div>
            
               <div class="box-tools pull-right btn-group">
                 <a href="{{ route('pages.post-edit', $post) }}" class="btn btn-sm btn-flat btn-primary margin">
@@ -89,7 +84,7 @@
               </div>
 
             <div class="box-body">
-              <!-- <img src="{{ url('uploadgambar') }}/{{ $post->foto }}" class="img-responsive"> -->
+              <!-- <img src="#" class="img-responsive" height="128"> -->
               {!! mb_strimwidth($post->isi, 0, 255, "...") !!}
             </div>
               <!-- /.box-body -->

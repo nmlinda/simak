@@ -11,7 +11,7 @@ use App\Http\Requests;
 class PostController extends Controller
 {
     
-    public function store()
+    public function store(Request $request)
     {
         $this->validate(request(), [
             'judul' => 'required|max:144',
@@ -19,10 +19,13 @@ class PostController extends Controller
             'kategori' => 'required',
             'foto' => 'mimes:jpeg,png,jpg|max:15000',
         ]);
+
+        // $foto = $request->file('foto')->store('fotos');
+       
         // $gambar = $request->foto;
         // $namaFile = $gambar->getClientOriginalName();
         // $request->foto->move('uploadgambar', $namaFile);
-        // $do = new Gambar($request->all());
+        // $do = new Post($request->all());
         // $do->file_gambar = $namaFile;
         // $do->save();
         // return redirect('pages.post-saya');
@@ -33,7 +36,7 @@ class PostController extends Controller
         //     $file = $request->foto;
         //     $fileName = str_random(40) . '.' . $file->guessClientExtension();;
         //     $getPath = 'http://180.244.234.254/simak/public/img/' . $fileName;
-        //     $destinationPath = "images/post";
+        //     $destinationPath = "storage/fotos";
         //     $data['foto'] = '../'. $destinationPath . '/' . $fileName;
         //     $file -> move($destinationPath, $getPath,$fileName);
         //     $photo1 = $fileName;
