@@ -7,7 +7,7 @@
                 <h3 class="box-title">Panduan</h3>
             </div>
             <div class="box-body">
-                The great content goes here
+                
             </div>
             <!-- /.box-body -->
         </div>

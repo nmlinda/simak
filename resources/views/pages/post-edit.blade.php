@@ -39,7 +39,7 @@
             </div>
             <div class="form-group"has-feedback{{ $errors->has('kategori') ? ' has-error': '' }}>
               <div class="control-label" for="kategori">Pilih kategori:</div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <select class="form-control" name="kategori" required>
                     <option value="Pengumuman" @if($post->kategori == 'Pengumuman') selected @endif>Pengumuman</option>
                     <option value="Press Release" @if($post->kategori == 'Press Release') selected @endif>Press Release</option>

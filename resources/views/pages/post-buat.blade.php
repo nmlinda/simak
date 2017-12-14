@@ -45,13 +45,13 @@
                   @endif
               </div>
               <!-- <div class="form-group has-feedback{{ $errors->has('foto') ? ' has-error': '' }}">
-                    <div class="control-label" for="file_gambar">Upload gambar</div>
-                    <input type="file" id="file_gambar" name="foto">
+                    <div class="control-label" for="foto">Upload gambar:</div>
+                    <input type="file" id="foto" name="foto" class="form-control">
                     @if ($errors->has('foto')) <span class="help-block"><p>{{ $errors->first('foto') }}</p></span>@endif
               </div> -->
               <div class="form-group has-feedback{{ $errors->has('kategori') ? ' has-error': '' }}">
                 <div class="control-label" for="kategori">Pilih kategori:</div>
-                  <div class="col-md-2">
+                  <div class="col-md-3">
                     <select class="form-control" name="kategori" required>
                       <option hidden>-</option>
                       <option value="Pengumuman">Pengumuman</option>

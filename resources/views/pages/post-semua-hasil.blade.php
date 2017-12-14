@@ -37,9 +37,12 @@
             <!-- header box -->
             <div class="box-header with-border">
               <a href="{{ route('pages.post-detail', $data) }}"><h3><strong>{{ $data->judul }}</strong></h3></a>
-              <span>
-                {{ $data->updated_at->diffForHumans() }}
-              </span>
+              <div class="pull-right">{{ $data->updated_at->format('F d, Y - H:i') }}</div>
+              <div class="user-block">
+                <img class="img-circle img-bordered-sm" src="{{ asset('assets/dist/img/profile-photo.jpg') }}" alt="User Image">
+                <span class="name">{{ $data->user['name'] }}<br></span>
+                <span class="role">{{ $data->user['role'] }}</span>
+              </div>
             </div>
 
             <!-- box body -->

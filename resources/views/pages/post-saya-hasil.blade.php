@@ -37,9 +37,7 @@
             <!-- header box -->
             <div class="box-header with-border">
               <a href="{{ route('pages.post-detail', $data) }}"><h3><strong>{{ $data->judul }}</strong></h3></a>
-              <span>
-                {{ $data->updated_at->diffForHumans() }}
-              </span>
+              <div class="pull-right">{{ $data->updated_at->format('F d, Y - H:i') }}</div>
               <div class="box-tools pull-right btn-group">
                 <a href="{{ route('pages.post-edit', $data) }}" class="btn btn-sm btn-flat btn-primary margin">
                   <i class="fa fa-pencil-square-o"></i> Edit
