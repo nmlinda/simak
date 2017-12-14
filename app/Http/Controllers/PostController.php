@@ -17,7 +17,7 @@ class PostController extends Controller
             'judul' => 'required|max:144',
             'isi' => 'required|max:1000',
             'kategori' => 'required',
-            'foto' => 'mimes:jpeg,png,jpg|max:15000',
+            // 'foto' => 'mimes:jpeg,png,jpg|max:15000',
         ]);
 
         // $foto = $request->file('foto')->store('fotos');
@@ -47,6 +47,7 @@ class PostController extends Controller
             'judul' => request('judul'),
             'isi' => request('isi'),
             'kategori' => request('kategori'),
+            
             'id_mahasiswa' => Auth::user()->id
         ]);
 
@@ -76,6 +77,7 @@ class PostController extends Controller
             'judul' => request('judul'),
             'isi' => request('isi'),
             'kategori' => request('kategori'),
+            
         ]);
 
         return redirect()->route('pages.post-saya')->withSuccess('Post anda berhasil diubah.');

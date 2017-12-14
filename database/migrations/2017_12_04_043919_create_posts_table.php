@@ -19,7 +19,6 @@ class CreatePostsTable extends Migration
             $table->text('isi');
             $table->string('kategori');
             $table->timestamps();
-            $table->string('foto');
             $table->integer('id_mahasiswa')->unsigned();
             
             $table->foreign('id_mahasiswa')->references('id')->on('users')->onDelete('CASCADE');
