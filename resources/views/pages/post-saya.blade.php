@@ -84,7 +84,7 @@
               </div>
 
             <div class="box-body">
-              <!-- <img src="#" class="img-responsive" height="128"> -->
+              <img src="{{ asset('storage/'.$post->foto) }}" alt="" height="128">
               {!! mb_strimwidth($post->isi, 0, 255, "...") !!}
             </div>
               <!-- /.box-body -->

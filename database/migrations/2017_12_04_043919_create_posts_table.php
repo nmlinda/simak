@@ -17,6 +17,7 @@ class CreatePostsTable extends Migration
             $table->increments('id');
             $table->string('judul');
             $table->text('isi');
+            $table->string('foto');
             $table->string('kategori');
             $table->timestamps();
             $table->integer('id_mahasiswa')->unsigned();

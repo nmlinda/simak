@@ -54,6 +54,7 @@
              
             </div>
           <div class="box-body">
+              
             {!! str_limit($post->isi, 150, ' ...') !!}
           </div>
             <!-- /.box-body -->
