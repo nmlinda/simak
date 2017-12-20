@@ -21,22 +21,23 @@
             {{--  <div class="box-body" style="padding-right: 20px; padding-left: 20px;">  --}}
     <div class="content-wrapper">
         <div class="container">
+            <div class="row" style="margin-top: 20px;">
             @foreach($posts as $post)
-            <div class="row">
-                <div class="col-md-8 col-md-offset-2">
-                    <div class="box box-default">
-                        <div class="box-header wiht-border">
-                            <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
+            
+                <div class="col-md-3">
+                    <div class="box box-default" >
+                        <div class="box-header with-border" style="height: 100px;">
+                            <a href="{{ route('pages.post-detail', $post) }}"><h4><strong>{{ $post->judul }}</strong></h4></a>
                             <span class="pull-right">{{ $post->updated_at->format('F d, Y - H:i') }}</span>
                         </div>
-                        <div class="box-body text-justify">
+                        <div class="box-body text-justify" style="height: 180px;">
                             {!! str_limit(strip_tags($post->isi), 500, ' ...') !!}
                         </div>
                     </div>
                 </div>
-            </div>
+            
             {{--  <div class="row">
-                    <div class="col-md-6 col-center-block">
+                    <div class="col-md-4 col-center-block">
                         <div class="col-center-block">
                             <div class="box-header with-border">
                                 <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
@@ -49,6 +50,7 @@
                     </div>
             </div>  --}}
             @endforeach
+            </div>
             <div class="row">
                 <div class="col-md-2 col-md-offset-5">
                     <div class="pull-right">
