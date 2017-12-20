@@ -42,7 +42,10 @@
             <div class="box-header with-border">
 
               <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
-              <div class="pull-right">{{ $post->updated_at->format('F d, Y - H:i') }}</div>
+              <p>
+                <i class="fa fa-calendar"></i> {{ $post->updated_at->format('F d, Y') }}
+                <i class="fa fa-clock-o"></i> {{ $post->updated_at->format('H:i') }}
+              </p>
               <div class="user-block">
                 <img class="img-circle img-bordered-sm" src="{{ asset('assets/dist/img/profile-photo.jpg') }}" alt="User Image">
                 <span class="name">
@@ -54,7 +57,7 @@
              
             </div>
             <div class="box-body">
-              <img src="{{ asset('storage/'.$post->foto) }}" alt="" class="img-responsive" style="display: block;margin-left: auto; margin-right: auto"><br>
+              <img src="{{ asset('storage/'.$post->foto) }}" alt="" class="img-responsive" style="max-height:300px; display: block;margin-left: auto; margin-right: auto"><br>
               {!! mb_strimwidth($post->isi, 0, 255, "...") !!}
             </div>
             <!-- /.box-body -->

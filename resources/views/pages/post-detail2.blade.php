@@ -1,6 +1,14 @@
 @extends('templates.homepage')
 
 @section('content')
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      
+      <ol class="breadcrumb">
+        <li><a href="{{ route('home') }}"><i class="fa fa-dashboard"></i> Beranda</a></li>
+        <li class="active">Detail post</li>
+      </ol>
+    </section>
 
     <!-- Main content -->
     <section class="content">
@@ -13,11 +21,14 @@
             <div class="box box-info">
             @endif
                 <div class="box-header with-border">
-                    <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
-                    <div class="pull-right">{{ $post->updated_at->format('F d, Y - H:i') }}</div>
+                    <h3><strong>{{ $post->judul }}</strong></h3>
+                    <p>
+                        <i class="fa fa-calendar"></i> {{ $post->updated_at->format('F d, Y') }}
+                        <i class="fa fa-clock-o"></i> {{ $post->updated_at->format('H:i') }}
+                    </p>
                 </div>
             <div class="box-body">
-            <img src="{{ asset('storage/'.$post->foto) }}" alt="" class="img-responsive" style="display: block;margin-left: auto; margin-right: auto"><br>
+            <img src="{{ asset('storage/'.$post->foto) }}" alt="" class="img-responsive" style="max-height:300px; display: block;margin-left: auto; margin-right: auto"><br>
               
                 {!! $post->isi !!}
             </div>

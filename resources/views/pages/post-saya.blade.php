@@ -40,8 +40,11 @@
          @endif
             <div class="box-header with-border">
               <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
-              <div class="pull-right">{{ $post->updated_at->format('F d, Y - H:i') }}</div>
-           
+              <p>
+                <i class="fa fa-calendar"></i> {{ $post->updated_at->format('F d, Y') }}
+                <i class="fa fa-clock-o"></i> {{ $post->updated_at->format('H:i') }}
+              </p>
+              
               <div class="box-tools pull-right btn-group">
                 <a href="{{ route('pages.post-edit', $post) }}" class="btn btn-sm btn-flat btn-primary margin">
                   <i class="fa fa-pencil-square-o"></i> Edit
@@ -84,7 +87,7 @@
               </div>
 
             <div class="box-body">
-              <img src="{{ asset('storage/'.$post->foto) }}" alt="" class="img-responsive" style="display: block;margin-left: auto; margin-right: auto"><br>
+              <img src="{{ asset('storage/'.$post->foto) }}" alt="" class="img-responsive" style="display: block;margin-left: auto; margin-right: auto; max-height:300px;"><br>
               {!! mb_strimwidth($post->isi, 0, 255, "...") !!}
             </div>
               <!-- /.box-body -->

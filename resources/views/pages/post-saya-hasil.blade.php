@@ -37,7 +37,10 @@
             <!-- header box -->
             <div class="box-header with-border">
               <a href="{{ route('pages.post-detail', $data) }}"><h3><strong>{{ $data->judul }}</strong></h3></a>
-              <div class="pull-right">{{ $data->updated_at->format('F d, Y - H:i') }}</div>
+              <p>
+                <i class="fa fa-calendar"></i> {{ $post->updated_at->format('F d, Y') }}
+                <i class="fa fa-clock-o"></i> {{ $post->updated_at->format('H:i') }}
+              </p>
               <div class="box-tools pull-right btn-group">
                 <a href="{{ route('pages.post-edit', $data) }}" class="btn btn-sm btn-flat btn-primary margin">
                   <i class="fa fa-pencil-square-o"></i> Edit
@@ -81,7 +84,7 @@
 
             <!-- box body -->
             <div class="box-body">
-              <img src="{{ asset('storage/'.$data->foto) }}" alt="" class="img-responsive" style="display: block;margin-left: auto; margin-right: auto"><br>
+              <img src="{{ asset('storage/'.$data->foto) }}" alt="" class="img-responsive" style="max-height:300px; display: block;margin-left: auto; margin-right: auto"><br>
               {!! mb_strimwidth($data->isi, 0, 255, "...") !!}
             </div>
             <!-- /.box-body -->

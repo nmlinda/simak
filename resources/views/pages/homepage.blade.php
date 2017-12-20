@@ -26,12 +26,16 @@
             
                 <div class="col-md-3">
                     <div class="box box-default" >
-                        <div class="box-header with-border" style="height: 100px;">
+                        <div class="box-body" style="height: 250px;">
                             <a href="{{ route('pages.post-detail', $post) }}"><h4><strong>{{ $post->judul }}</strong></h4></a>
-                            <span class="pull-right">{{ $post->updated_at->format('F d, Y - H:i') }}</span>
-                        </div>
-                        <div class="box-body text-justify" style="height: 180px;">
-                            {!! str_limit(strip_tags($post->isi), 500, ' ...') !!}
+                            <p>
+                                <i class="fa fa-calendar"></i> {{ $post->updated_at->format('F d, Y') }}
+                                <i class="fa fa-clock-o"></i> {{ $post->updated_at->format('H:i') }}
+                            </p>
+                            <div class="text-justify text-muted">
+                                {!! mb_strimwidth($post->isi, 0, 250, ' ...') !!}
+                            </div>   
+                            
                         </div>
                     </div>
                 </div>
