@@ -62,7 +62,7 @@
                     Apakah anda yakin ingin menghapus post ini?<br>
                     <blockquote>
                       <h4><strong>{{ $data->judul }}</strong></h4>
-                      {!! str_limit($data->isi, 150, ' ...') !!}
+                      {!! str_limit(strip_tags($data->isi), 150, ' ...') !!}
                     </blockquote>
                   </div>
                   <div class="modal-footer">
@@ -81,7 +81,8 @@
 
             <!-- box body -->
             <div class="box-body">
-              {!! mb_strimwidth($data->isi, 0, 255, "...") !!}
+              <img src="{{ asset('storage/'.$data->foto) }}" alt="" class="img-responsive" style="display: block;margin-left: auto; margin-right: auto"><br>
+              {!! mb_strimwidth($post->isi, 0, 255, "...") !!}
             </div>
             <!-- /.box-body -->
             

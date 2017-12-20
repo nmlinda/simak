@@ -17,7 +17,8 @@ trait RegistersUsers
      */
     public function showRegistrationForm()
     {
-        return view('auth.register');
+        return redirect('/login')->with('danger', 'Registrasi ditutup melalui jalur ini. Anda tidak bisa lagi melakukan registrasi sepihak.');
+        //return view('auth.register');
     }
 
     /**

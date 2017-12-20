@@ -29,15 +29,21 @@
           <form class="" action="{{ route('pages.post-update', $post) }}" method="post">
             {{ csrf_field() }}
             {{ method_field('PATCH')}}
-            <div class="form-group" has-feedback{{ $errors->has('judul') ? ' has-error': '' }}>
+            <div class="form-group has-feedback{{ $errors->has('judul') ? ' has-error': '' }}">
                 <input class="form-control input-lg" type="text" name="judul" placeholder="Judul" value="{{ $post->judul }}" required>
                 @if ($errors->has('judul')) <span class="help-block"><p>{{ $errors->first('judul') }}</p></span>@endif
             </div>
-            <div class="form-group"has-feedback{{ $errors->has('isi') ? ' has-error': '' }}>
+            <div class="form-group has-feedback{{ $errors->has('isi') ? ' has-error': '' }}">
                 <textarea class="form-control textarea" placeholder="Tulis post disini.."  name="isi" required style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{{ $post->isi }}}</textarea>
                 @if ($errors->has('isi')) <span class="help-block"><p>{{ $errors->first('isi') }}</p></span>@endif
             </div>
-            <div class="form-group"has-feedback{{ $errors->has('kategori') ? ' has-error': '' }}>
+            <!-- <div class="form-group ">
+                  <div class="control-label" for="foto">Upload gambar:</div>
+                  <input type="file" id="foto" name="foto" class="form-control">
+                  @if ($errors->has('foto')) <span class="help-block"><p>{{ $errors->first('foto') }}</p></span>@endif
+                  <img src="{{ asset('storage/'.$post->foto) }}" alt="" class="img-responsive" style="display: block;margin-left: auto; margin-right: auto"><br>
+            </div> -->
+            <div class="form-group has-feedback{{ $errors->has('kategori') ? ' has-error': '' }}">
               <div class="control-label" for="kategori">Pilih kategori:</div>
                 <div class="col-md-3">
                   <select class="form-control" name="kategori" required>

@@ -65,8 +65,8 @@
                     <div class="modal-body">
                       Apakah anda yakin ingin menghapus post ini?<br>
                       <blockquote>
-                        <h4><strong>{{ $post->judul }}</strong></h4>
-                        {!! str_limit($post->isi, 150, ' ...') !!}
+                        <h4><strong>{{ $post->judul }}</strong>
+                        {!! str_limit(strip_tags($post->isi), 150, ' ...') !!}
                       </blockquote>
                     </div>
                     <div class="modal-footer">
@@ -84,7 +84,9 @@
               </div>
 
             <div class="box-body">
-              <img src="{{ asset('storage/'.$post->foto) }}" alt="" height="128">
+              <img src="{{ asset('storage/'.$post->foto) }}" alt="" class="img-responsive" style="display: block;
+    margin-left: auto;
+    margin-right: auto"><br>
               {!! mb_strimwidth($post->isi, 0, 255, "...") !!}
             </div>
               <!-- /.box-body -->

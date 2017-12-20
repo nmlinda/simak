@@ -23,17 +23,12 @@
       @endif
             
             <div class="box-header with-border">
-
-              <h3><strong>{{ $post->judul }}</strong></h3>
-                <p>
-                  {{ $post->id_mahasiswa }}
-                </p>
-                <span>
-                {{ $post->updated_at->format('d F Y H:i') }}
-                </span>
+              <a href="{{ route('pages.post-detail', $post) }}"><h3><strong>{{ $post->judul }}</strong></h3></a>
+              <div class="pull-right">{{ $post->updated_at->format('F d, Y - H:i') }}</div>
             </div>
           <div class="box-body">
-             {!! $post->isi !!}
+            <img src="{{ asset('storage/'.$post->foto) }}" alt="" class="img-responsive" style="display: block;margin-left: auto; margin-right: auto"><br>
+            {!! $post->isi !!}
            </div>
             <!-- /.box-body -->
             <div class="box-footer">

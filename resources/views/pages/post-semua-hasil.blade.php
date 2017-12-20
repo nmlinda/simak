@@ -47,6 +47,7 @@
 
             <!-- box body -->
             <div class="box-body">
+              <img src="{{ asset('storage/'.$data->foto) }}" alt="" class="img-responsive" style="display: block;margin-left: auto; margin-right: auto"><br>
               {!! mb_strimwidth($data->isi, 0, 255, "...") !!}
             </div>
             <!-- /.box-body -->
